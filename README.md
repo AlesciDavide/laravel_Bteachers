@@ -26,3 +26,5 @@
     - run `npm run dev` to build iteratively our front-end packages and code
     - run `php artisan serve` to build iteratively our back-end packages and code
 - Start changing the world with your oustanding code!
+
+![image](https://github.com/user-attachments/assets/fcf9b342-8939-4899-9e3f-da6dbf092300)
