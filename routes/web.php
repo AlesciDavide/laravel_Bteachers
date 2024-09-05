@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
-use App\Http\Controllers\admin\ReviewController;
 use App\Http\Controllers\HomeController as GuestHomeController;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +25,8 @@ Auth::routes();
 Route::get('/home', [GuestHomeController::class, 'index'])->name('home');
 
 route::middleware('auth')->name('admin.')->prefix('admin/')->group(
-    function () {
-        Route::resource("reviews", ReviewController::class);
+    function(){
+        /* rotte protette */
     }
 );
+
