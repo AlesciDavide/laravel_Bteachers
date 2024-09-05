@@ -16,7 +16,7 @@ class SpecializationController extends Controller
         //
 
         $specializations = Specialization::all();
-        return view("admin.specializations.index", compact("specializations"));
+        return view("specializations.index", compact("specializations"));
     }
 
     /**

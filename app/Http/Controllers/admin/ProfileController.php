@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
     public function index()
     {
-        //
+        $profiles = Profile::all();
+
+        return view('profiles.index', compact('profiles'));
     }
 
     /**
@@ -17,7 +20,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        return view('profiles.create');
     }
 
     /**
@@ -25,7 +28,16 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $pdf_path = $request->file('cv')->store('uploads/cv', 'public');
+        $data['cv'] = $pdf_path;
+        $img_path = $request->file('photo')->store('uploads/photo', 'public');
+        $data['photo'] = $img_path;
+
+        $newProfile = new Profile($data);
+        $newProfile->save();
+
+        return redirect()->route('admin.profiles.show', ['profile' =>$newProfile->id]);
     }
 
     /**

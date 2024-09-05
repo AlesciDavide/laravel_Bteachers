@@ -30,11 +30,11 @@ Auth::routes();
 
 Route::get('/home', [GuestHomeController::class, 'index'])->name('home');
 
-route::middleware('auth')->name('admin.')->prefix('admin/')->group(
+route::middleware('auth')->name('admin.')->prefix('teacher/')->group(
 
     function(){
         /* rotte protette */
-        route::get("specializations", [SpecializationController::class, "index"])->name("specializations");
+        route::get("specializations", [SpecializationController::class, "index"])->name("specializations.index");
         Route::resource('messages', MessageController::class);
         Route::resource("reviews", ReviewController::class);
         Route::get("vote", [VoteController::class, 'index'])->name('vote.index');
