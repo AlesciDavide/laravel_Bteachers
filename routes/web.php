@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\admin\MessageController;
 use App\Http\Controllers\HomeController as GuestHomeController;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +27,7 @@ Route::get('/home', [GuestHomeController::class, 'index'])->name('home');
 
 route::middleware('auth')->name('admin.')->prefix('admin/')->group(
     function(){
-        /* rotte protette */
+        Route::resource('/messages', MessageController::class);
     }
 );
 
