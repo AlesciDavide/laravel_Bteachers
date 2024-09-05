@@ -14,6 +14,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             MessageSeeder::class,
+            ReviewSeeder::class,
+            VoteSeeder::class,
+            SponsorSeeder::class,
         ]);
     }
 }
