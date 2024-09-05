@@ -9,8 +9,8 @@
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">nome</th>
-                        <th scope="col">voto</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Vote</th>
                     </tr>
                     </thead>
                     <tbody>
