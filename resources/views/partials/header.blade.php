@@ -14,10 +14,11 @@
 
                     <a class="nav-link" href="{{ route('admin.messages.index')}}"  aria-current="page">
                         Messages
-   <li>
+                    </a>
+                    <li>
                     <a class="nav-link" href="{{ route("admin.vote.index")}}">
                         Lista voti
-                         </li>
+                        </li>
                     </a>
                 </li>
                 <li>
