@@ -3,18 +3,20 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Review;
+use App\Models\Specialization;
 use Illuminate\Http\Request;
 
-class ReviewController extends Controller
+class SpecializationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $reviews = Review::all();
-        return view('reviews.index', compact("reviews"));
+        //
+
+        $specializations = Specialization::all();
+        return view("admin.specializations.index", compact("specializations"));
     }
 
     /**
@@ -22,8 +24,7 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        $review = new Review();
-        return view('reviews.create', compact('review'));
+        //
     }
 
     /**
@@ -31,19 +32,15 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        $newReview = Review::create($data);
-
-        return redirect()->route('admin.reviews.show', $newReview);
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Review $review)
+    public function show(string $id)
     {
-
-        return view("reviews.show", compact("review"));
+        //
     }
 
     /**

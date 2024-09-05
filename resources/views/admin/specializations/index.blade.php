@@ -9,30 +9,23 @@
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">name</th>
-                        <th scope="col">surname</th>
-                        <th scope="col">emial</th>
-                        <th scope="col">review_text</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Campo di Appartenenza</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($reviews as $review)
+                    @foreach ($specializations as $specialization)
 
                     <tr>
-                        <th scope="row">{{ $review->id}}</th>
+                        <th scope="row">{{ $specialization->id}}</th>
 
                         <td>
-                            {{ $review->name}}
+                            {{ $specialization->name}}
 
                         </td>
                         <td>
-                            {{ $review->surname}}
-                        </td>
-                        <td>
-                            {{ $review->email}}
-                        </td>
-                        <td>
-                            {{ $review->review_text}}
+                            {{ $specialization->field}}
+
                         </td>
 
                     </tr>
