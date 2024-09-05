@@ -2,10 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
-use App\Http\Controllers\admin\SpecializationController;
 use App\Http\Controllers\admin\MessageController;
 use App\Http\Controllers\admin\SponsorController;
 use App\Http\Controllers\admin\ReviewController;
+use App\Http\Controllers\admin\SpecializationController;
 use App\Http\Controllers\admin\VoteController;
 use App\Http\Controllers\HomeController as GuestHomeController;
 use Illuminate\Support\Facades\Auth;
