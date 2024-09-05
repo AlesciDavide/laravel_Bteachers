@@ -27,7 +27,7 @@ Route::get('/home', [GuestHomeController::class, 'index'])->name('home');
 
 route::middleware('auth')->name('admin.')->prefix('admin/')->group(
     function(){
-        Route::resource('/messages', MessageController::class);
+        Route::resource('messages', MessageController::class);
     }
 );
 
