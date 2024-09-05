@@ -43,7 +43,7 @@
                     </div> --}}
 
                     <select class="form-select" aria-label="Default select example" id="visible" name="visible">
-                        <option selected value="visible">Visible</option>
+                        <option selected value="1">Visible</option>
                         <option value="0">Invisible</option>
                     </select>
 
