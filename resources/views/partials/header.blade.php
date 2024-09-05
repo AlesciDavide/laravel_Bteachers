@@ -11,13 +11,19 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
                 <li>
+
+                    <a class="nav-link" href="{{ route('admin.messages.index')}}"  aria-current="page">
+                        Messages
+   <li>
                     <a class="nav-link" href="{{ route("admin.vote.index")}}">
                         Lista voti
+                         </li>
                     </a>
                 </li>
                 <li>
                     <a class="nav-link" href="{{ route("admin.sponsors.index")}}">
                         Lista sponsor
+
                     </a>
                 </li>
             </ul>
