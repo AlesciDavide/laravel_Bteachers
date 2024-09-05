@@ -9,10 +9,10 @@
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">name</th>
-                        <th scope="col">surname</th>
-                        <th scope="col">emial</th>
-                        <th scope="col">review_text</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Review_text</th>
                     </tr>
                     </thead>
                     <tbody>
