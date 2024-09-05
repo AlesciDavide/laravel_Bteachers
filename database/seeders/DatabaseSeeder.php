@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             VoteSeeder::class,
             SponsorSeeder::class,
             SpecializationSeeder::class,
+            ProfileSeeder::class,
         ]);
     }
 }
