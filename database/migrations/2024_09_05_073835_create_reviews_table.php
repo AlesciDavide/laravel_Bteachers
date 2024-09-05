@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
+            $table->string('name', length: 100)->nullable();
+            $table->string('surname', length: 100)->nullable();
+            $table->string('email', length: 255);
+            $table->text('review_text');
             $table->timestamps();
         });
     }
