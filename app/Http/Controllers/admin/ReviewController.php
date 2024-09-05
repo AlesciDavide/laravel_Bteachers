@@ -22,7 +22,8 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        //
+        $review = new Review();
+        return view('reviews.create', compact('review'));
     }
 
     /**
@@ -30,7 +31,10 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $newReview = Review::create($data);
+
+        return redirect()->route('admin.reviews.show', $newReview);
     }
 
     /**
