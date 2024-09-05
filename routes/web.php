@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\admin\SpecializationController;
 use App\Http\Controllers\HomeController as GuestHomeController;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,6 +28,7 @@ Route::get('/home', [GuestHomeController::class, 'index'])->name('home');
 route::middleware('auth')->name('admin.')->prefix('admin/')->group(
     function(){
         /* rotte protette */
+        route::get("specializations", [SpecializationController::class, "index"])->name("specializations");
     }
 );
 
