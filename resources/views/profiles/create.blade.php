@@ -35,12 +35,6 @@
                     </div>
 
 
-                    {{--  <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="1" id="visible" name="visible">
-                        <label class="form-check-label" for="visible">
-                            Public profile?
-                        </label>
-                    </div> --}}
 
                     <select class="form-select" aria-label="Default select example" id="visible" name="visible">
                         <option selected value="1">Visible</option>

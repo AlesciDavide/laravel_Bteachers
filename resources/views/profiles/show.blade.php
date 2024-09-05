@@ -9,28 +9,44 @@
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">name</th>
-                        <th scope="col">surname</th>
-                        <th scope="col">emial</th>
-                        <th scope="col">review_text</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Telephone number</th>
+                        <th scope="col">Review_text</th>
+                        <th scope="col">visible</th>
                     </tr>
                     </thead>
                     <tbody>
+
+
                     <tr>
-                        <th scope="row">{{ $review->id}}</th>
+                        <th scope="row">{{ $profile->id}}</th>
 
                         <td>
-                            {{ $review->name}}
+                            <embed src="{{ asset('storage/' . $profile->cv) }}" width="500" height="375"
+                            type="application/pdf">
 
                         </td>
                         <td>
-                            {{ $review->surname}}
+                            <img class="img-fluid w-20" src="{{ asset('storage/' . $profile->photo) }}" alt="">
                         </td>
                         <td>
-                            {{ $review->email}}
+                            {{ $profile->address}}
                         </td>
                         <td>
-                            {{ $review->review_text}}
+                            {{ $profile->telephone_number}}
+                        </td>
+                        <td>
+                            {{ $profile->service}}
+                        </td>
+                        <td>
+                            @if ($profile->visible == true)
+                                Yes
+                            @else
+                                No
+                            @endif
+
                         </td>
 
                     </tr>
