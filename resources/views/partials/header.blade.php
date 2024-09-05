@@ -15,6 +15,11 @@
                         Lista voti
                     </a>
                 </li>
+                <li>
+                    <a class="nav-link" href="{{ route("admin.sponsors.index")}}">
+                        Lista sponsor
+                    </a>
+                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->

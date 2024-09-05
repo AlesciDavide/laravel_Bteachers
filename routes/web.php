@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\admin\SponsorController;
 use App\Http\Controllers\admin\ReviewController;
 use App\Http\Controllers\admin\VoteController;
 use App\Http\Controllers\HomeController as GuestHomeController;
@@ -31,6 +32,10 @@ route::middleware('auth')->name('admin.')->prefix('admin/')->group(
     function () {
         Route::resource("reviews", ReviewController::class);
         Route::get("vote", [VoteController::class, 'index'])->name('vote.index');
+        Route::get("sponsor", [SponsorController::class, 'index'])->name('sponsors.index');
+        Route::get("sponsor/{sponsor}", [SponsorController::class, 'show'])->name('sponsors.show');
+
+
 
     }
 );
