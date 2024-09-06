@@ -37,4 +37,10 @@ class Profile extends Model
     {
         return $this->belongsToMany(Sponsor::class);
     }
+
+    // relation with votes_table
+    public function votes(): BelongsToMany
+    {
+        return $this->belongsToMany(Vote::class);
+    }
 }
