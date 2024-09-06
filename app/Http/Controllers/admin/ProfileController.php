@@ -28,7 +28,7 @@ class ProfileController extends Controller
         $profiles = Profile::all();
         foreach ($profiles as $profileId) {
             if ($user->id == $profileId->user_id) {
-                return redirect()->route('admin.profiles.show', $profileId)->with('message', "Profile has Been Edited");
+                return redirect()->route('admin.profiles.show', $profileId)->with('message', "You already have a profile");
             }
         }
 
