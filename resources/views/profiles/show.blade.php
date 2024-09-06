@@ -3,7 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-
+        @if (session("message"))
+        <div class="alert alert-danger">
+            {{ session("message") }}
+        </div>
+        @endif
         <div class="col-12">
             <table class="table table-dark table-striped">
                 <thead>

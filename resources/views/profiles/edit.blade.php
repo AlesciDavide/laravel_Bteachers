@@ -11,7 +11,7 @@
                 @endforeach
             </ul>
         </div>
-    @endif
+        @endif
 
         <div class="col-12">
             <form action="{{ route('admin.profiles.update' , $profile) }}" method="POST" id="creation_form" enctype="multipart/form-data">

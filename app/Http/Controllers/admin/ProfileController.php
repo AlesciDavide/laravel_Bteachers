@@ -67,14 +67,15 @@ class ProfileController extends Controller
         $img_path = $request->file('photo')->store('uploads/photo', 'public');
         $data['photo'] = $img_path;
         $profile->update($data);
-        return redirect()->route('admin.profiles.show', $profile)->with('message', "Profile Has Been Edited");
+        return redirect()->route('admin.profiles.show', $profile)->with('message', "Profile has Been Edited");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Profile $profile)
     {
-        //
+        $profile->delete();
+        return redirect()->route('admin.profiles.index')->with('message', "Profile  " . $profile->id . " has been Deleted");
     }
 }

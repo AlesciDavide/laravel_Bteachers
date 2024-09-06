@@ -5,6 +5,11 @@
     <div class="row justify-content-center">
 
         <div class="col-12">
+            @if (session("message"))
+            <div class="alert alert-danger">
+                {{ session("message") }}
+            </div>
+            @endif
             <table class="table table-dark table-striped">
                 <thead>
                     <tr>
@@ -46,6 +51,13 @@
                                 No
                             @endif
 
+                        </td>
+                        <td>
+                            <form action="{{ route('admin.profiles.destroy', $profile) }}" method="POST" class="delete-form">
+                                @method("DELETE")
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
                         </td>
 
                     </tr>
