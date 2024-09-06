@@ -37,7 +37,7 @@ class ProfileController extends Controller
         $newProfile = new Profile($data);
         $newProfile->save();
 
-        return redirect()->route('admin.profiles.show', ['profile' =>$newProfile->id]);
+        return redirect()->route('admin.profiles.show', ['profile' => $newProfile->id]);
     }
 
     /**
@@ -51,17 +51,23 @@ class ProfileController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Profile $profile)
     {
-        //
+        return view('profiles.edit', compact('profile'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Profile $profile)
     {
-        //
+        $data = $request->all();
+        $pdf_path = $request->file('cv')->store('uploads/cv', 'public');
+        $data['cv'] = $pdf_path;
+        $img_path = $request->file('photo')->store('uploads/photo', 'public');
+        $data['photo'] = $img_path;
+        $profile->update($data);
+        return redirect()->route('admin.profiles.show', $profile)->with('message', "Profile Has Been Edited");
     }
 
     /**

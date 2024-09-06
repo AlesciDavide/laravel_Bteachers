@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -14,41 +14,48 @@
     @endif
 
         <div class="col-12">
-            <form action="{{ route('admin.project.update', ['project' => $project->id]) }}" method="POST" id="creation_form" enctype="multipart/form-data">
+            <form action="{{ route('admin.profiles.update' , $profile) }}" method="POST" id="creation_form" enctype="multipart/form-data">
                 @method("PUT")
                 @csrf
 
                 <div class="input-group-sm container mb-5 w-50">
 
-                    <label for="nome">Nome</label>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Nome progetto" id="nome" name="nome" value="{{ old('nome', $project->nome) }}">
+                    {{-- <label for="nome">Nome</label>
+                    <input type="text" class="form-control mb-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Nome progetto" id="nome" name="nome" value="{{ old('nome') }}"> --}}
+
+                    <label for="address">Offire address</label>
+                    <input type="text" class="form-control mb-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Office address" id="address" name="address" value="{{ old('address') }}">
+
+                    <label for="telephone_number">Office telephone number</label>
+                    <input type="text" class="form-control mb-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Office telephone number" id="telephone_number" name="telephone_number" value="{{ old('telephone_number') }}">
+
+
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="service" name="service" style="height: 100px"> value="{{ old('service') }}"</textarea>
+                        <label for="service">Describe your services</label>
+                    </div>
 
 
 
-                    <label for="type_id">Tipo di progetto</label>
-
-                    <select class="form-select form-select-sm" aria-label="Tipo di progetto" id="type_id" name="type_id">
-                        @foreach ($types as $type)
-
-                        <option value="{{ $type->id }}"
-                            {{ ($type->id == old("type_id", $project->type_id)) ? "selected" : ""}}
-                            >{{$type->nome}}</option>
-                        @endforeach
+                    <select class="form-select" aria-label="Default select example" id="visible" name="visible">
+                        <option selected value="1">Visible</option>
+                        <option value="0">Invisible</option>
                     </select>
 
-                    <label for="technology_id">Linguaggio utilizzato</label>
+                    {{--  <label for="type_id">Tipo di progetto</label>
+                    <select class="form-select form-select-sm mb-2" aria-label="Tipo di progetto" id="type_id" name="type_id">
+                        @foreach ($types as $type)
+
+                        <option value="{{$type->id}}">{{$type->nome}}</option>
+                        @endforeach
+                    </select>
+--}}
+
+                        {{-- <label for="technology_id">Linguaggio utilizzato</label>
                         <div class="customCheckBoxHolder d-flex flex-wrap ">
                             @foreach ($technologies as $technology)
-                            @if ($errors->any())
                             <input name="technologies[]" type="checkbox" class="customCheckBoxInput" id="technology-check-{{$technology->id}}" autocomplete="off" value="{{$technology->id}}"
-                            {{ in_array($technology->id, old('technologies', [])) ? "checked" : ""}}
-                            >
-                            @else
-                            <input name="technologies[]" type="checkbox" class="customCheckBoxInput" id="technology-check-{{$technology->id}}" autocomplete="off" value="{{$technology->id}}"
-                            {{ $project->technologies->contains($technology) ? "checked" : ""}}
-                            >
-                            @endif
-
+                            {{ in_array($technology->id, old('technologies', [])) ? "checked" : ""}}>
                             <label class="customCheckBoxWrapper m-1" for="technology-check-{{$technology->id}}" style="--dynamic-color: {{ $technology->colore }}">
                                 <div class="customCheckBox">
                                     <div class="inner">{{$technology->nome}}</div>
@@ -56,33 +63,31 @@
                             </label>
 
                             @endforeach
-                    </div>
-                    <label for="url_repo">url_repo</label>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="url_repo" id="url_repo" name="url_repo" value="{{ old('url_repo', $project->url_repo) }}">
+                    </div> --}}
+
+
 
                     <div>
-                        <label for="img" class="form-label">Inserisci un'immagine del progetto</label>
-                        <input class="form-control mb-3" type="file" id="img" name="img" >
-                    </div>
-                    <div class="border border-dark d-flex justify-content-center w-30">
-
-                        <img class="img-fluid" src="{{ asset('storage/' . $project->img) }}" alt="">
+                        <label for="photo" class="form-label">Insert image profile</label>
+                        <input class="form-control mb-3" type="file" id="photo" name="photo" accept="image/*">
                     </div>
 
-                    <div class="d-flex justify-content-between mt-3">
+                    <label for="cv" class="form-label">Insert your CV</label>
+                    <input type="file" name="cv" id="cv" accept=".pdf">
 
-                            <input class="btn btn-primary" type="submit" value="Modifica">
+
+                    <div class="d-flex justify-content-between ">
+
+                            <input class="btn btn-primary" type="submit" value="crea un nuovo progetto">
                             <input class="btn btn-warning" type="reset" value="resetta campi">
 
                     </div>
                 </div>
             </form>
-            <a href="{{ route('admin.project.index')}}" class="card-link d-flex justify-content-center">Torna alla lista dei progetti</a>
         </div>
 
     </div>
 </div>
 @endsection
 
-@endsection
 
