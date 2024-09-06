@@ -29,6 +29,6 @@ class Profile extends Model
     // relation with specializations_table
     public function specializations(): BelongsToMany
     {
-        return $this->belongsToMany(Specialization::class, 'foreign_key');
+        return $this->belongsToMany(Specialization::class);
     }
 }

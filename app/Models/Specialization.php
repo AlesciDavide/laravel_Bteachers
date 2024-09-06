@@ -18,6 +18,6 @@ class Specialization extends Model
     // relation with profiles_table
     public function profiles(): BelongsToMany
     {
-        return $this->belongsToMany(Profile::class, 'foreign_key');
+        return $this->belongsToMany(Profile::class);
     }
 }

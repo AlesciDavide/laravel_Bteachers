@@ -18,6 +18,7 @@
                         <th scope="col">Surname</th>
                         <th scope="col">Email</th>
                         <th scope="col">Telephone number</th>
+                        <th scope="col">Specialization</th>
                         <th scope="col">Review_text</th>
                         <th scope="col">visible</th>
                     </tr>
@@ -40,6 +41,11 @@
                         </td>
                         <td>
                             {{ $profile->telephone_number}}
+                        </td>
+                        <td>
+                            @foreach ( $profile->specializations as $specialization)
+                                {{ $specialization->name}}
+                            @endforeach
                         </td>
                         <td>
                             {{ $profile->service}}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Profile;
+use App\Models\Specialization;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,8 +15,9 @@ class ProfileController extends Controller
     public function index()
     {
         $profiles = Profile::all();
+        $specialization = Specialization::all();
 
-        return view('profiles.index', compact('profiles'));
+        return view('profiles.index', compact('profiles', "specialization"));
     }
 
     /**

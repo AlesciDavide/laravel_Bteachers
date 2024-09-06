@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             SpecializationSeeder::class,
             ProfileSeeder::class,
             UserSeeder::class,
+            ProfileSpecializationSeeder::class,
         ]);
     }
 }
