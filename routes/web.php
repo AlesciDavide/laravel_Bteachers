@@ -37,9 +37,9 @@ route::middleware('auth')->name('admin.')->prefix('teacher/')->group(
         route::get("specializations", [SpecializationController::class, "index"])->name("specializations.index");
         Route::resource('messages', MessageController::class);
         Route::resource("reviews", ReviewController::class);
-        Route::get("vote", [VoteController::class, 'index'])->name('vote.index');
-        Route::get("sponsor", [SponsorController::class, 'index'])->name('sponsors.index');
-        Route::get("sponsor/{sponsor}", [SponsorController::class, 'show'])->name('sponsors.show');
+        Route::get("votes", [VoteController::class, 'index'])->name('vote.index');
+        Route::get("sponsors", [SponsorController::class, 'index'])->name('sponsors.index');
+        Route::get("sponsors/{sponsor}", [SponsorController::class, 'show'])->name('sponsors.show');
         Route::resource("profiles", ProfileController::class);
     }
 );
