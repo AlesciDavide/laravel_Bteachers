@@ -7,6 +7,7 @@ use App\Models\Profile;
 use App\Models\Specialization;
 use App\Models\Sponsor;
 use App\Models\User;
+use App\Models\Vote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -18,8 +19,9 @@ class ProfileController extends Controller
         $profiles = Profile::all();
         $specializations = Specialization::all();
         $sponsors = Sponsor::all();
+        $votes = Vote::all();
 
-        return view('profiles.index', compact('profiles', "specializations", "sponsors"));
+        return view('profiles.index', compact('profiles', "specializations", "sponsors", "votes"));
     }
 
     /**
