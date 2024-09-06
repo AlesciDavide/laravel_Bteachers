@@ -4,7 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
@@ -19,9 +21,18 @@ class ProfileController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(User $user)
     {
-        return view('profiles.create');
+
+        $user = Auth::user();
+        $profiles = Profile::all();
+        foreach ($profiles as $profileId) {
+            if ($user->id == $profileId->user_id) {
+                return redirect()->route('admin.profiles.show', $profileId)->with('message', "Profile has Been Edited");
+            }
+        }
+
+        return view('profiles.create' , compact('user'));
     }
 
     /**
@@ -29,6 +40,8 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
+
+        $user_id = Auth::user()->id;
         $data = $request->all();
         $pdf_path = $request->file('cv')->store('uploads/cv', 'public');
         $data['cv'] = $pdf_path;
@@ -36,6 +49,7 @@ class ProfileController extends Controller
         $data['photo'] = $img_path;
 
         $newProfile = new Profile($data);
+        $newProfile->user_id = $user_id;
         $newProfile->save();
 
         return redirect()->route('admin.profiles.show', ['profile' => $newProfile->id]);
@@ -95,6 +109,8 @@ class ProfileController extends Controller
     public function destroy(Profile $profile)
     {
         $profile->delete();
+        Storage::disk('public')->delete($profile->photo);
+        Storage::disk('public')->delete($profile->cv);
         return redirect()->route('admin.profiles.index')->with('message', "Profile  " . $profile->id . " has been Deleted");
     }
 }

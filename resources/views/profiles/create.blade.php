@@ -19,8 +19,7 @@
 
                 <div class="input-group-sm container mb-5 w-50">
 
-                    {{-- <label for="nome">Nome</label>
-                    <input type="text" class="form-control mb-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Nome progetto" id="nome" name="nome" value="{{ old('nome') }}"> --}}
+                    <h1>{{ $user->name }}</h1>
 
                     <label for="address">Offire address</label>
                     <input type="text" class="form-control mb-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Office address" id="address" name="address" value="{{ old('address') }}">
