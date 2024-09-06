@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             SponsorSeeder::class,
             SpecializationSeeder::class,
             ProfileSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }
