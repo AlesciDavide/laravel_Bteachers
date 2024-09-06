@@ -3,12 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\Profile;
-use App\Models\Sponsor;
+use App\Models\Vote;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 
-class ProfileSponsorSeeder extends Seeder
+class ProfileVoteSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,9 +16,9 @@ class ProfileSponsorSeeder extends Seeder
     public function run(Faker $faker): void
     {
         $profiles = Profile::all();
-        $sponsors = Sponsor::all()->pluck('id');
+        $votes = Vote::all()->pluck('id');
         foreach ($profiles as $profile) {
-            $profile->sponsors()->attach($faker->randomElements($sponsors, rand(1, 3))); // creazione della relazione
+            $profile->votes()->attach($faker->randomElements($votes, rand(1, 5))); // creazione della relazione
         }
     }
 }

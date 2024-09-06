@@ -20,6 +20,7 @@
                         <th scope="col">Telephone number</th>
                         <th scope="col">Specialization</th>
                         <th scope="col">Sponsor Level</th>
+                        <th scope="col">Voti</th>
                         <th scope="col">Review_text</th>
                         <th scope="col">visible</th>
                     </tr>
@@ -51,6 +52,11 @@
                         <td>
                             @foreach ( $profile->sponsors as $sponsor)
                                 {{ $sponsor->level}}
+                            @endforeach
+                        </td>
+                        <td>
+                            @foreach ( $profile->votes as $vote)
+                            {{ $vote->vote}}
                             @endforeach
                         </td>
                         <td>
