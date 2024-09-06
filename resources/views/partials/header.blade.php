@@ -28,6 +28,12 @@
                     </a>
                 </li>
                 <li>
+                    <a class="nav-link" href="{{ route("admin.profiles.index")}}">
+                        Vedi profili
+
+                    </a>
+                </li>
+                <li>
                     <a class="nav-link" href="{{ route("admin.profiles.create")}}">
                         Crea il tuo profilo
 

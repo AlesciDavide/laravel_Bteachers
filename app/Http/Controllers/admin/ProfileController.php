@@ -64,16 +64,23 @@ class ProfileController extends Controller
     {
         $data = $request->all();
 
-        if ($profile->photo) {
+
+        if (!$request->photo) {
+            $data["photo"] = $profile->photo;
+        }else{
             Storage::disk('public')->delete($profile->photo);
             $img_path = $request->file('photo')->store('uploads/photo', 'public');
             $data['photo'] = $img_path;
         }
 
-        if ($profile->cv) {
-        Storage::disk('public')->delete($profile->cv);
-        $pdf_path = $request->file('cv')->store('uploads/cv', 'public');
-        $data['cv'] = $pdf_path;
+
+
+        if (!$request->cv) {
+            $data["cv"] = $profile->cv;
+        }else{
+            Storage::disk('public')->delete($profile->cv);
+            $pdf_path = $request->file('cv')->store('uploads/cv', 'public');
+            $data['cv'] = $pdf_path;
         }
 
 

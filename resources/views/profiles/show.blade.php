@@ -52,7 +52,11 @@
                             @endif
 
                         </td>
-
+                        <td>
+                        <a class="btn btn-primary" href="{{ route("admin.profiles.edit", $profile)}}">
+                            Modifica profilo
+                        </a>
+                    </td>
                     </tr>
                     </tbody>
                 </table>

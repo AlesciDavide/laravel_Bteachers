@@ -60,6 +60,10 @@
                             </form>
                         </td>
 
+                        <td>
+                            <a class="btn btn-secondary" href="{{ route("admin.profiles.edit", $profile)}}">Modifica</a>
+                        </td>
+
                     </tr>
                         @endforeach
                     </tbody>
