@@ -19,6 +19,7 @@
                         <th scope="col">Email</th>
                         <th scope="col">Telephone number</th>
                         <th scope="col">Specialization</th>
+                        <th scope="col">Sponsor Level</th>
                         <th scope="col">Review_text</th>
                         <th scope="col">visible</th>
                     </tr>
@@ -45,6 +46,11 @@
                         <td>
                             @foreach ( $profile->specializations as $specialization)
                                 {{ $specialization->name}}
+                            @endforeach
+                        </td>
+                        <td>
+                            @foreach ( $profile->sponsors as $sponsor)
+                                {{ $sponsor->level}}
                             @endforeach
                         </td>
                         <td>
