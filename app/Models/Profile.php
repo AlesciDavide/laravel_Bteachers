@@ -31,4 +31,10 @@ class Profile extends Model
     {
         return $this->belongsToMany(Specialization::class);
     }
+
+    // relation with sponsors_table
+    public function sponsors(): BelongsToMany
+    {
+        return $this->belongsToMany(Sponsor::class);
+    }
 }
