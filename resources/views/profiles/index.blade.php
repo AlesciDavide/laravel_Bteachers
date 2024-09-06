@@ -56,8 +56,10 @@
                         </td>
                         <td>
                             @foreach ( $profile->votes as $vote)
-                            {{ $vote->vote}}
+                                {{ $vote->vote}}
                             @endforeach
+
+                            La media è: {{$numerical_vote}}
                         </td>
                         <td>
                             {{ $profile->service}}

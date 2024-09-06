@@ -20,8 +20,9 @@ class ProfileController extends Controller
         $specializations = Specialization::all();
         $sponsors = Sponsor::all();
         $votes = Vote::all();
+        $numerical_vote = number_format($votes->pluck("vote")->avg(), 2);
 
-        return view('profiles.index', compact('profiles', "specializations", "sponsors", "votes"));
+        return view('profiles.index', compact('profiles', "specializations", "sponsors", "votes", "numerical_vote"));
     }
 
     /**
