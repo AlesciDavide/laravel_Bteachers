@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Profile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -62,10 +63,21 @@ class ProfileController extends Controller
     public function update(Request $request, Profile $profile)
     {
         $data = $request->all();
+
+        if ($profile->photo) {
+            Storage::disk('public')->delete($profile->photo);
+            $img_path = $request->file('photo')->store('uploads/photo', 'public');
+            $data['photo'] = $img_path;
+        }
+
+        if ($profile->cv) {
+        Storage::disk('public')->delete($profile->cv);
         $pdf_path = $request->file('cv')->store('uploads/cv', 'public');
         $data['cv'] = $pdf_path;
-        $img_path = $request->file('photo')->store('uploads/photo', 'public');
-        $data['photo'] = $img_path;
+        }
+
+
+
         $profile->update($data);
         return redirect()->route('admin.profiles.show', $profile)->with('message', "Profile has Been Edited");
     }

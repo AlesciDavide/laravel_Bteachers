@@ -24,14 +24,14 @@
                     <input type="text" class="form-control mb-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Nome progetto" id="nome" name="nome" value="{{ old('nome') }}"> --}}
 
                     <label for="address">Offire address</label>
-                    <input type="text" class="form-control mb-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Office address" id="address" name="address" value="{{ old('address') }}">
+                    <input type="text" class="form-control mb-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Office address" id="address" name="address" value="{{ old('address', $profile->address) }}">
 
                     <label for="telephone_number">Office telephone number</label>
-                    <input type="text" class="form-control mb-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Office telephone number" id="telephone_number" name="telephone_number" value="{{ old('telephone_number') }}">
+                    <input type="text" class="form-control mb-2" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Office telephone number" id="telephone_number" name="telephone_number" value="{{ old('telephone_number', $profile->telephone_number) }}">
 
 
                     <div class="form-floating">
-                        <textarea class="form-control" placeholder="Leave a comment here" id="service" name="service" style="height: 100px"> value="{{ old('service') }}"</textarea>
+                        <textarea class="form-control" placeholder="Leave a comment here" id="service" name="service" style="height: 100px"> {{ old('service', $profile->service) }}"</textarea>
                         <label for="service">Describe your services</label>
                     </div>
 
@@ -71,9 +71,12 @@
                         <label for="photo" class="form-label">Insert image profile</label>
                         <input class="form-control mb-3" type="file" id="photo" name="photo" accept="image/*">
                     </div>
+                    <img class="img-fluid w-20" src="{{ asset('storage/' . $profile->photo) }}" alt="">
 
                     <label for="cv" class="form-label">Insert your CV</label>
                     <input type="file" name="cv" id="cv" accept=".pdf">
+                    <embed src="{{ asset('storage/' . $profile->cv) }}" width="500" height="375"
+                        type="application/pdf">
 
 
                     <div class="d-flex justify-content-between ">
