@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreReviewRequest;
 use App\Models\Profile;
 use App\Models\Review;
 use Illuminate\Http\Request;
@@ -26,9 +27,9 @@ class ReviewController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(StoreReviewRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
 
         $newReview = new Review();
         $newReview->name = $data['name'];
@@ -52,20 +53,11 @@ class ReviewController extends Controller
     }
 
 
-    public function edit(string $id)
-    {
-
-    }
+    public function edit(string $id) {}
 
 
-    public function update(Request $request, string $id)
-    {
-
-    }
+    public function update(Request $request, string $id) {}
 
 
-    public function destroy(string $id)
-    {
-
-    }
+    public function destroy(string $id) {}
 }
