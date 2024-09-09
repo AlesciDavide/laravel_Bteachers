@@ -51,10 +51,10 @@ class ProfileController extends Controller
     {
 
         $user_id = Auth::user()->id;
-        $data = $request->all();
+        $data = $request->validated();
         $pdf_path = $request->file('cv')->store('uploads/cv', 'public');
-        $data['cv'] = $pdf_path;
         $img_path = $request->file('photo')->store('uploads/photo', 'public');
+        $data['cv'] = $pdf_path;
         $data['photo'] = $img_path;
 
         $newProfile = new Profile($data);
