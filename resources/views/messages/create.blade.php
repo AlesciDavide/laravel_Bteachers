@@ -2,62 +2,78 @@
 
 @section('content')
 
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <h2 class="mb-4">Invia un Nuovo Messaggio</h2>
 
-<form method="POST" action='{{route('admin.messages.store')}}' class="form-selector">
-    @method('POST')
-    @csrf
-    <input type="hidden" name="profile_id" value="{{ $profile->id }}">
-    <div class="input-group input-group-sm mb-3">
-        <span class="input-group-text" id="name">Nome</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="name" name="name" value="{{ old('name') }}">
-    </div>
-    @error('name')
-    <div class="alert alert-danger my-2">
-        {{ $message }}
-    </div>
-@enderror
+            <form method="POST" action='{{ route('admin.messages.store') }}' class="form-selector">
+                @csrf
+                <input type="hidden" name="profile_id" value="{{ $profile->id }}">
 
-    <div class="input-group input-group-sm mb-3">
-        <span class="input-group-text" id="surname">surname</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="surname" value="{{ old('surname') }}">
-    </div>
-    @error('surname')
-    <div class="alert alert-danger my-2">
-        {{ $message }}
-    </div>
-@enderror
+                <!-- Nome -->
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+                    @error('name')
+                    <div class="alert alert-danger mt-2">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
 
-    <div class="input-group input-group-sm mb-3">
-        <span class="input-group-text" id="telephone_number">telephone number</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="telephone_number" value="{{ old('telephone_number') }}">
-    </div>
-    @error('telephone_number')
-    <div class="alert alert-danger my-2">
-        {{ $message }}
-    </div>
-@enderror
+                <!-- Cognome -->
+                <div class="mb-3">
+                    <label for="surname" class="form-label">Cognome</label>
+                    <input type="text" class="form-control" id="surname" name="surname" value="{{ old('surname') }}">
+                    @error('surname')
+                    <div class="alert alert-danger mt-2">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
 
-    <div class="mb-3">
-        <label for="email" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" value="{{ old('email') }}">
-        <div id="email" class="form-text">We'll never share your email with anyone else.</div>
-    </div>
-    @error('email')
-    <div class="alert alert-danger my-2">
-        {{ $message }}
-    </div>
-@enderror
+                <!-- Numero di telefono -->
+                <div class="mb-3">
+                    <label for="telephone_number" class="form-label">Numero di Telefono</label>
+                    <input type="text" class="form-control" id="telephone_number" name="telephone_number" value="{{ old('telephone_number') }}">
+                    @error('telephone_number')
+                    <div class="alert alert-danger mt-2">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
 
-    <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a message here" id="message_text" style="height: 100px" name="message_text"></textarea>
-        <label for="message_text">{{ old('telephone_number') }}</label>
-    </div>
-    @error('message_text')
-    <div class="alert alert-danger my-2">
-        {{ $message }}
-    </div>
-@enderror
+                <!-- Email -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
+                    <div class="form-text">Non condivideremo la tua email con nessun altro.</div>
+                    @error('email')
+                    <div class="alert alert-danger mt-2">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+                <!-- Testo del messaggio -->
+                <div class="mb-3">
+                    <label for="message_text" class="form-label">Testo del Messaggio</label>
+                    <textarea class="form-control" id="message_text" name="message_text" style="height: 150px">{{ old('message_text') }}</textarea>
+                    @error('message_text')
+                    <div class="alert alert-danger mt-2">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+
+                <!-- Pulsante di invio -->
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">Invia Messaggio</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 @endsection
