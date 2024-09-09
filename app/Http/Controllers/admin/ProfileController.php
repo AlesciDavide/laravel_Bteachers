@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProfileRequest;
 use App\Models\Message;
 use App\Models\Profile;
 use App\Models\Specialization;
@@ -46,7 +47,7 @@ class ProfileController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProfileRequest $request)
     {
 
         $user_id = Auth::user()->id;
