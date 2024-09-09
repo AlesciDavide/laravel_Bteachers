@@ -57,11 +57,26 @@
                             @endforeach
                         </td>
                         <td>
-                            @foreach ( $profile->votes as $vote)
-                                {{ $vote->vote}}
-                            @endforeach
+                            @php
+                            $voteArray = [];
+                        @endphp
 
-                            La media è: {{$numerical_vote}}
+                        @foreach ($profile->votes as $vote)
+                            @php
+
+                                $voteArray[] = $vote->pivot->vote_id;
+                            @endphp
+                        @endforeach
+
+                        @php
+                            $totalVotes = array_sum($voteArray);
+                            $numberVote = count($voteArray);
+                            $mediaFinale = $numberVote > 0 ? $totalVotes / $numberVote : 0;
+
+                        @endphp
+
+                        <p>La Media dei voti è: {{ $mediaFinale }}</p>
+
                         </td>
                         <td>
                             {{ $profile->service}}

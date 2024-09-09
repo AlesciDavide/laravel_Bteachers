@@ -21,9 +21,10 @@ class ProfileController extends Controller
         $specializations = Specialization::all();
         $sponsors = Sponsor::all();
         $votes = Vote::all();
-        $numerical_vote = number_format($votes->pluck("vote")->avg(), 2);
 
-        return view('profiles.index', compact('profiles', "specializations", "sponsors", "votes", "numerical_vote"));
+
+
+        return view('profiles.index', compact('profiles', "specializations", "sponsors", "votes"));
     }
 
     /**
@@ -68,12 +69,22 @@ class ProfileController extends Controller
      */
     public function show(Profile $profile)
     {
-        return view('profiles.show', compact('profile'));
+        $profile = Profile::with('votes')->findOrFail($profile->id);
+        $votes = Vote::all(); // Voti disponibili (1-5)
+        return view('profiles.show', compact('profile', 'votes'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    /* storeVote */
+    public function storeVote(Request $request, $profileId)
+    {
+        $profile = Profile::findOrFail($profileId);
+        $voteId = $request->input('vote'); // Qui ricevi il vote_id
+
+        $profile->votes()->attach($voteId);
+
+        return redirect()->back()->with('success', 'Voto aggiunto con successo!');
+    }
+
     public function edit(Profile $profile)
     {
         return view('profiles.edit', compact('profile'));

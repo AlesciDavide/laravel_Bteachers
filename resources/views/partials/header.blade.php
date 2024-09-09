@@ -48,14 +48,12 @@
                                 </a>
                             </li>
                         </ul>
+                    @else
+                    <a class="nav-link" href="{{ route("admin.profiles.create")}}">
+                        Crea Profilo
+                    </a>
                     @endif
                 @endauth
-                {{-- @dd(Auth::user()->id);
-                    <li>
-                        <a class="nav-link" href="{{ route("admin.profiles.create")}}">
-                            Profilo
-                        </a>
-                    </li> --}}
             </ul>
 
             <!-- Right Side Of Navbar -->

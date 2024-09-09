@@ -41,7 +41,7 @@ class Profile extends Model
     // relation with votes_table
     public function votes(): BelongsToMany
     {
-        return $this->belongsToMany(Vote::class);
+        return $this->belongsToMany(Vote::class, 'profile_vote', 'profile_id', 'vote_id');
     }
 
     public function reviews()

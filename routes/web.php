@@ -32,6 +32,10 @@ Route::get('/home', [GuestHomeController::class, 'index'])->name('home');
 
 Route::get('/reviews/create/{profile}', [ReviewController::class, 'create'])->name('reviews.create');
 Route::get('/messages/create/{profile}', [MessageController::class, 'create'])->name('messages.create');
+Route::get('profiles/{id}', [ProfileController::class, 'show'])->name('profiles.show');
+Route::post('profiles/{id}/vote', [ProfileController::class, 'storeVote'])->name('profiles.vote');
+
+
 route::middleware('auth')->name('admin.')->prefix('teacher/')->group(
 
     function () {
