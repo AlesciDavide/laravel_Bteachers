@@ -81,7 +81,15 @@
                         <a class="btn btn-primary" href="{{ route('messages.create', $profile->id) }}">
                             Invia un messaggio
                         </a>
-
+                        <form method="POST" action="{{ route('profiles.vote', $profile->id) }}">
+                            @csrf
+                            <select class="form-select" aria-label="Seleziona un voto" name="vote">
+                                @foreach($votes as $vote)
+                                    <option value="{{ $vote->id }}">{{ $vote->name }} ({{ $vote->vote }})</option>
+                                @endforeach
+                            </select>
+                            <button type="submit" class="btn btn-primary">Invia voto</button>
+                        </form>
                     </td>
                     </tr>
                     </tbody>

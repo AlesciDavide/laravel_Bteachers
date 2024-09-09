@@ -23,7 +23,7 @@ class Profile extends Model
     // relation with users_table
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'foreign_key');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     // relation with specializations_table
@@ -41,7 +41,7 @@ class Profile extends Model
     // relation with votes_table
     public function votes(): BelongsToMany
     {
-        return $this->belongsToMany(Vote::class);
+        return $this->belongsToMany(Vote::class, 'profile_vote', 'profile_id', 'vote_id');
     }
 
     public function reviews()

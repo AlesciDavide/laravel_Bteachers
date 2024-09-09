@@ -33,12 +33,27 @@
 
                     </a>
                 </li>
-                <li>
-                    <a class="nav-link" href="{{ route("admin.profiles.create")}}">
-                        Crea il tuo profilo
 
+                @auth
+                @php
+                    // Recupera il profilo dell'utente loggato
+                    $profile = Auth::user()->profile;
+                    @endphp
+
+                    @if($profile)
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.profiles.show', ['profile' => $profile->id]) }}">
+                                    My Profile
+                                </a>
+                            </li>
+                        </ul>
+                    @else
+                    <a class="nav-link" href="{{ route("admin.profiles.create")}}">
+                        Crea Profilo
                     </a>
-                </li>
+                    @endif
+                @endauth
             </ul>
 
             <!-- Right Side Of Navbar -->
