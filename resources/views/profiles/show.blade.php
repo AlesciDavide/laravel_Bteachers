@@ -1,101 +1,123 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container py-4">
     <div class="row justify-content-center">
+        <!-- Session Message -->
         @if (session("message"))
         <div class="alert alert-danger">
             {{ session("message") }}
         </div>
         @endif
-        <div class="col-12">
-            <table class="table table-dark table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Surname</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Telephone number</th>
-                        <th scope="col">Review_text</th>
-                        <th scope="col">visible</th>
-                    </tr>
-                    </thead>
-                    <tbody>
 
+        <div class="col-md-8">
+            <!-- Profile Details -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h2>Profile Details: {{ $profile->user->name }}, {{ $profile->user->surname }}</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <img class="img-fluid w-100" src="{{ asset('storage/' . $profile->photo) }}" alt="Profile Image">
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-group">
+                                <li class="list-group-item"><strong>ID:</strong> {{ $profile->id }}</li>
+                                <li class="list-group-item"><strong>Email:</strong> {{ $profile->user->email }}</li>
+                                <li class="list-group-item"><strong>Telephone:</strong> {{ $profile->telephone_number }}</li>
+                                <li class="list-group-item"><strong>Address:</strong> {{ $profile->address }}</li>
+                                <li class="list-group-item"><strong>Visible:</strong>
+                                    <span class="badge {{ $profile->visible ? 'bg-success' : 'bg-secondary' }}">
+                                        {{ $profile->visible ? 'Yes' : 'No' }}
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
 
-                    <tr>
-                        <th scope="row">{{ $profile->id }}</th>
+                    <!-- CV (PDF Display) -->
+                    <div class="mb-4">
+                        <h5>Curriculum Vitae</h5>
+                        <embed src="{{ asset('storage/' . $profile->cv) }}" width="100%" height="500px" type="application/pdf">
+                    </div>
 
-                        <td>
-                            <embed src="{{ asset('storage/' . $profile->cv) }}" width="500" height="375"
-                            type="application/pdf">
+                    <!-- Services -->
+                    <div class="mb-4">
+                        <h5>Services</h5>
+                        <p>{{ $profile->service }}</p>
+                    </div>
+                </div>
+            </div>
 
-                        </td>
-                        <td>
-                            <img class="img-fluid w-20" src="{{ asset('storage/' . $profile->photo) }}" alt="">
-                        </td>
-                        <td>
-                            {{ $profile->address}}
-                        </td>
-                        <td>
-                            {{ $profile->telephone_number}}
-                        </td>
-                        <td>
-                            {{ $profile->service}}
-                        </td>
-                        <td>
-                            @if ($profile->visible == true)
-                                Yes
-                            @else
-                                No
-                            @endif
-
-                        </td>
-                        <td>
+            <!-- Reviews Section -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4>Reviews</h4>
+                </div>
+                <div class="card-body">
+                    @if($profile->reviews->isEmpty())
+                        <p>No reviews available.</p>
+                    @else
+                        <ul class="list-group">
                             @foreach ($profile->reviews as $review)
-                                {{$review->id}}
-                                {{$review->name}}
-                                {{$review->review_text}}
+                                <li class="list-group-item">
+                                    <strong>Review #{{ $review->id }}:</strong> {{ $review->review_text }}
+                                </li>
                             @endforeach
+                        </ul>
+                    @endif
+                </div>
+            </div>
 
-                        </td>
-                        <td>
-
+            <!-- Messages Section -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4>Messages</h4>
+                </div>
+                <div class="card-body">
+                    @if($profile->messages->isEmpty())
+                        <p>No messages available.</p>
+                    @else
+                        <ul class="list-group">
                             @foreach ($profile->messages as $message)
-                                {{$message->id}}
-                                {{$message->name}}
-                                {{$message->message_text}}
-
+                                <li class="list-group-item">
+                                    <strong>Message by {{ $message->email }}:</strong> {{ $message->message_text }}
+                                </li>
                             @endforeach
-                            <h1>sdfsdfdsf</h1>
+                        </ul>
+                    @endif
+                </div>
+            </div>
 
-                        </td>
-                        <td>
-                        <a class="btn btn-primary" href="{{ route("admin.profiles.edit", $profile)}}">
-                            Modifica profilo
-                        </a>
-                        <a class="btn btn-primary" href="{{ route('reviews.create', $profile->id) }}">
-                            Invia recensione
-                        </a>
-                        <a class="btn btn-primary" href="{{ route('messages.create', $profile->id) }}">
-                            Invia un messaggio
-                        </a>
-                        <form method="POST" action="{{ route('profiles.vote', $profile->id) }}">
-                            @csrf
+            <!-- Action Buttons -->
+            <div class="mb-4 d-flex justify-content-around">
+                <a class="btn btn-secondary" href="{{ route("admin.profiles.edit", $profile) }}">Modifica profilo</a>
+                <a class="btn btn-primary" href="{{ route('reviews.create', $profile->id) }}">Invia recensione</a>
+                <a class="btn btn-primary" href="{{ route('messages.create', $profile->id) }}">Invia un messaggio</a>
+            </div>
+
+            <!-- Voting System -->
+            <div class="card">
+                <div class="card-header">
+                    <h4>Vote for this Profile</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('profiles.vote', $profile->id) }}">
+                        @csrf
+                        <div class="mb-3">
                             <select class="form-select" aria-label="Seleziona un voto" name="vote">
                                 @foreach($votes as $vote)
                                     <option value="{{ $vote->id }}">{{ $vote->name }} ({{ $vote->vote }})</option>
                                 @endforeach
                             </select>
-                            <button type="submit" class="btn btn-primary">Invia voto</button>
-                        </form>
-                    </td>
-                    </tr>
-                    </tbody>
-                </table>
-        </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Invia voto</button>
+                    </form>
+                </div>
+            </div>
 
+        </div>
     </div>
 </div>
 @endsection
