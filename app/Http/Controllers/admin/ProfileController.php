@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProfileRequest;
+use App\Http\Requests\UpdateProfileRequest;
 use App\Models\Message;
 use App\Models\Profile;
 use App\Models\Specialization;
@@ -83,9 +84,9 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Profile $profile)
+    public function update(UpdateProfileRequest $request, Profile $profile)
     {
-        $data = $request->all();
+        $data = $request->validated();
 
 
         if (!$request->photo) {
