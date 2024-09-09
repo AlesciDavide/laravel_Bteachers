@@ -20,6 +20,7 @@ class MessageSeeder extends Seeder
                 'email' => 'jojo@gmail.com',
                 'telephone_number' => '3332224566',
                 'message_text' => 'jojo tested it',
+                'profile_id' => '1',
             ],
             [
                 'name' => 'mr.',
@@ -27,6 +28,7 @@ class MessageSeeder extends Seeder
                 'email' => 'muscle@gmail.com',
                 'telephone_number' => '3332224566',
                 'message_text' => 'muscle tested it',
+                'profile_id' => '1',
             ],
         ];
 
@@ -37,6 +39,8 @@ class MessageSeeder extends Seeder
             $message->email = $messageData['email'];
             $message->telephone_number = $messageData['telephone_number'];
             $message->message_text = $messageData['message_text'];
+            $message->profile_id = $messageData['profile_id'];
+
             $message->save();
         }
     }

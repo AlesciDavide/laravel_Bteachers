@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Message;
 use App\Models\Profile;
 use App\Models\Specialization;
 use App\Models\Sponsor;
@@ -39,7 +40,7 @@ class ProfileController extends Controller
             }
         }
 
-        return view('profiles.create' , compact('user'));
+        return view('profiles.create', compact('user'));
     }
 
     /**
@@ -88,7 +89,7 @@ class ProfileController extends Controller
 
         if (!$request->photo) {
             $data["photo"] = $profile->photo;
-        }else{
+        } else {
             Storage::disk('public')->delete($profile->photo);
             $img_path = $request->file('photo')->store('uploads/photo', 'public');
             $data['photo'] = $img_path;
@@ -98,7 +99,7 @@ class ProfileController extends Controller
 
         if (!$request->cv) {
             $data["cv"] = $profile->cv;
-        }else{
+        } else {
             Storage::disk('public')->delete($profile->cv);
             $pdf_path = $request->file('cv')->store('uploads/cv', 'public');
             $data['cv'] = $pdf_path;

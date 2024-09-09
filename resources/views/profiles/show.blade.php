@@ -61,11 +61,24 @@
 
                         </td>
                         <td>
+                            @foreach ($profile->messages as $message)
+                                {{$message->id}}
+                                {{$message->name}}
+                                {{$message->message_text}}
+
+                            @endforeach
+                            <h1>sdfsdfdsf</h1>
+
+                        </td>
+                        <td>
                         <a class="btn btn-primary" href="{{ route("admin.profiles.edit", $profile)}}">
                             Modifica profilo
                         </a>
                         <a class="btn btn-primary" href="{{ route('reviews.create', $profile->id) }}">
                             Invia recensione
+                        </a>
+                        <a class="btn btn-primary" href="{{ route('messages.create', $profile->id) }}">
+                            Invia un messaggio
                         </a>
 
                     </td>

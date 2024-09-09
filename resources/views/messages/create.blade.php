@@ -6,6 +6,7 @@
 <form method="POST" action='{{route('admin.messages.store')}}' class="form-selector">
     @method('POST')
     @csrf
+    <input type="hidden" name="profile_id" value="{{ $profile->id }}">
     <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="name">Nome</span>
         <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="name" name="name" value="{{ old('name') }}">
