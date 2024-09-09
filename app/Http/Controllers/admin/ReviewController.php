@@ -19,16 +19,17 @@ class ReviewController extends Controller
 
 
     public function create(Profile $profile)
-{
-    $review = new Review();
 
-    return view('reviews.create', compact('review', 'profile'));
-}
+    {
+
+        return view('reviews.create', compact('profile'));
+    }
 
 
     public function store(Request $request)
     {
         $data = $request->all();
+
         $newReview = new Review();
         $newReview->name = $data['name'];
         $newReview->surname = $data['surname'];
@@ -37,6 +38,8 @@ class ReviewController extends Controller
         $newReview->profile_id = $data['profile_id'];
 
         $newReview->save();
+
+
 
         return redirect()->route('admin.reviews.show', $newReview);
     }

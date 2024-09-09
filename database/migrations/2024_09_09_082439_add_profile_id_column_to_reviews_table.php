@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('reviews', function (Blueprint $table) {
             // Rimozione di Unique() e potenzialmente nullable() se non serve
-            $table->unsignedBigInteger("profile_id")->after("id");
+            $table->unsignedBigInteger("profile_id")->after("id")->nullable();
             $table->foreign("profile_id")->references("id")->on("profiles")->cascadeOnUpdate()->nullOnDelete();
         });
     }

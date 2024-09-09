@@ -25,7 +25,7 @@
 
 
                     <tr>
-                        <th scope="row">{{ $profile->id}}</th>
+                        <th scope="row">{{ $profile->id }}</th>
 
                         <td>
                             <embed src="{{ asset('storage/' . $profile->cv) }}" width="500" height="375"
@@ -53,12 +53,21 @@
 
                         </td>
                         <td>
+                            @foreach ($profile->reviews as $review)
+                                {{$review->id}}
+                                {{$review->name}}
+                                {{$review->review_text}}
+                            @endforeach
+
+                        </td>
+                        <td>
                         <a class="btn btn-primary" href="{{ route("admin.profiles.edit", $profile)}}">
                             Modifica profilo
                         </a>
-                        <a class="btn btn-primary" href="{{ route("admin.reviews.create", $profile)}}">
+                        <a class="btn btn-primary" href="{{ route('reviews.create', $profile->id) }}">
                             Invia recensione
                         </a>
+
                     </td>
                     </tr>
                     </tbody>

@@ -30,6 +30,7 @@ Auth::routes();
 
 Route::get('/home', [GuestHomeController::class, 'index'])->name('home');
 
+Route::get('/reviews/create/{profile}', [ReviewController::class, 'create'])->name('reviews.create');
 route::middleware('auth')->name('admin.')->prefix('teacher/')->group(
 
     function(){

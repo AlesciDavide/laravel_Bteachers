@@ -8,7 +8,7 @@
             <form action="{{route('admin.reviews.store')}}" method="POST" id="add-form" enctype="multipart/form-data">
                 @method('POST')
                 @csrf
-                <input type="text" name="profile_id" id="profile_id" value="{{ $profile->id }}">
+                <input type="hidden" name="profile_id" value="{{ $profile->id }}">
                 <div class="mb-3">
                     <label for="name">Reviewrs Name</label>
                     <input class="form-control form-control-sm" type="text" placeholder="ReviewrsName" aria-label="ReviewrsName" name="name" id="name" >

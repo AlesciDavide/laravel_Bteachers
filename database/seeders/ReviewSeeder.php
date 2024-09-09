@@ -42,6 +42,7 @@ class ReviewSeeder extends Seeder
             $review->surname = $reviewData["surname"];
             $review->email = $reviewData["email"];
             $review->review_text = $reviewData["review_text"];
+            $review->profile_id = $reviewData["profile_id"];
             $review->save();
         }
     }
