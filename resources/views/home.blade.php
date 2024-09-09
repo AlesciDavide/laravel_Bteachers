@@ -21,7 +21,7 @@
 
                     <div class="row justify-content-center mb-4">
                         <div class="col-12 text-center">
-                            <p class="display-6">Benvenuto, <strong>{{ Auth::user()->name }} {{ Auth::user()->surname }}</strong>!</p>
+                            <p class="display-6">Welcome, <strong>{{ Auth::user()->name }} {{ Auth::user()->surname }}</strong>!</p>
                         </div>
                     </div>
 
