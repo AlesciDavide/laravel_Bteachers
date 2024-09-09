@@ -29,7 +29,7 @@
 
     <div class="input-group input-group-sm mb-3">
         <span class="input-group-text" id="telephone_number">telephone number</span>
-        <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="telephone_number" value="{{ old('telephone_number') }}">
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="telephone_number" value="{{ old('telephone_number') }}">
     </div>
     @error('telephone_number')
     <div class="alert alert-danger my-2">

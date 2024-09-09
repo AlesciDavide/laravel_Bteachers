@@ -37,13 +37,14 @@ class ProfileController extends Controller
 
         $user = Auth::user();
         $profiles = Profile::all();
+        $specializations = Specialization::all();
         foreach ($profiles as $profileId) {
             if ($user->id == $profileId->user_id) {
                 return redirect()->route('admin.profiles.show', $profileId)->with('message', "You already have a profile");
             }
         }
 
-        return view('profiles.create', compact('user'));
+        return view('profiles.create', compact('user', 'specializations'));
     }
 
     /**
@@ -61,6 +62,7 @@ class ProfileController extends Controller
 
         $newProfile = new Profile($data);
         $newProfile->user_id = $user_id;
+        $newProfile->specializations()->sync($data['specializations']);
         $newProfile->save();
 
         return redirect()->route('admin.profiles.show', ['profile' => $newProfile->id]);
@@ -89,13 +91,14 @@ class ProfileController extends Controller
 
     public function edit(Profile $profile)
     {
-        return view('profiles.edit', compact('profile'));
+        $specializations = Specialization::all();
+        return view('profiles.edit', compact('profile', 'specializations'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProfileRequest $request, Profile $profile)
+    public function update(UpdateProfileRequest $request, Profile $profile, Specialization $specialization)
     {
         $data = $request->validated();
 
@@ -119,8 +122,10 @@ class ProfileController extends Controller
         }
 
 
+            $profile->specializations()->sync($data['specializations']);
 
         $profile->update($data);
+
         return redirect()->route('admin.profiles.show', $profile)->with('message', "Profile has Been Edited");
     }
 
@@ -129,6 +134,9 @@ class ProfileController extends Controller
      */
     public function destroy(Profile $profile)
     {
+        $profile->votes()->detach();
+        $profile->specializations()->detach();
+        $profile->sponsors()->detach();
         $profile->delete();
         Storage::disk('public')->delete($profile->photo);
         Storage::disk('public')->delete($profile->cv);

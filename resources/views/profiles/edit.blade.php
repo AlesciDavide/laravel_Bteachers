@@ -51,20 +51,19 @@
                     </select>
 --}}
 
-                        {{-- <label for="technology_id">Linguaggio utilizzato</label>
+                        <label for="specialization">Specialization</label>
                         <div class="customCheckBoxHolder d-flex flex-wrap ">
-                            @foreach ($technologies as $technology)
-                            <input name="technologies[]" type="checkbox" class="customCheckBoxInput" id="technology-check-{{$technology->id}}" autocomplete="off" value="{{$technology->id}}"
-                            {{ in_array($technology->id, old('technologies', [])) ? "checked" : ""}}>
-                            <label class="customCheckBoxWrapper m-1" for="technology-check-{{$technology->id}}" style="--dynamic-color: {{ $technology->colore }}">
+                            @foreach ($specializations as $specialization)
+                            <input name="specialization[]" type="checkbox" class="customCheckBoxInput" id="technology-check-{{$specialization->id}}" autocomplete="off" value="{{$specialization->id}}"
+                            {{ in_array($specialization->id, old('$specialization', [])) ? "checked" : ""}}>
+                            <label class="customCheckBoxWrapper m-1" for="technology-check-{{$specialization->id}}">
                                 <div class="customCheckBox">
-                                    <div class="inner">{{$technology->nome}}</div>
+                                    <div class="inner">{{$specialization->name}}</div>
                                 </div>
                             </label>
 
                             @endforeach
-                    </div> --}}
-
+</div>
 
 
                     <div>

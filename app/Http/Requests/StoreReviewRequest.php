@@ -25,7 +25,7 @@ class StoreReviewRequest extends FormRequest
             'name' => 'nullable|string|min:3|max:100',
             'surname' => 'nullable|string|min:3|max:100',
             'email' => 'required|string|email|max:255',
-            'review_text' => 'required|string|min:100|max:3000',
+            'review_text' => 'required|string|min:20|max:3000',
             'profile_id' => 'required|exists:profiles,id', // Assumiamo che la relazione sia con 'profiles'
         ];
     }

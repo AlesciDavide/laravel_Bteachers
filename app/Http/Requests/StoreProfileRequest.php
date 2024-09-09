@@ -22,7 +22,7 @@ class StoreProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cv' => ['required', 'file', 'mimes:pdf,doc,docx'],
+            'cv' => ['required', 'file', 'mimes:pdf'],
             'photo' => ['required', 'file', 'mimes:jpg,jpeg,png'],
             'address' => ['required', 'min:5', 'max:255'],
             'telephone_number' => ['nullable', 'min:6', 'max:20'],
