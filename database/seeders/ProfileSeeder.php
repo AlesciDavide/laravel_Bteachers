@@ -21,6 +21,7 @@ class ProfileSeeder extends Seeder
             'telephone_number' => '123-456-7890',
             'service' => 'Matematica - Algebra e Geometria',
             'visible' => true,
+            'user_id' => 1,
         ],
         [
             'cv' => 'cv/jane_smith.pdf',
@@ -29,6 +30,7 @@ class ProfileSeeder extends Seeder
             'telephone_number' => '987-654-3210',
             'service' => 'Inglese - Letteratura e Composizione',
             'visible' => true,
+            'user_id' => 2,
         ],
         [
             'cv' => 'cv/michael_jones.pdf',
@@ -37,6 +39,7 @@ class ProfileSeeder extends Seeder
             'telephone_number' => '555-666-7777',
             'service' => 'Scienze - Biologia e Chimica',
             'visible' => true,
+            'user_id' => 3,
         ],
         [
             'cv' => 'cv/emily_clark.pdf',
@@ -45,6 +48,7 @@ class ProfileSeeder extends Seeder
             'telephone_number' => '333-222-1111',
             'service' => 'Storia - Storia Antica e Medievale',
             'visible' => true,
+            'user_id' => 4,
         ],
         [
             'cv' => 'cv/lucas_wilson.pdf',
@@ -53,6 +57,7 @@ class ProfileSeeder extends Seeder
             'telephone_number' => '111-222-3333',
             'service' => 'Fisica - Meccanica e Termodinamica',
             'visible' => true,
+            'user_id' => 5,
         ],
     ];
 

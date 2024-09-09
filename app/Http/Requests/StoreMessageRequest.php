@@ -26,7 +26,8 @@ class StoreMessageRequest extends FormRequest
             'surname' => ['nullable', 'min:3', 'max:100'],
             'email' => ['required','max:255'],
             'telephone_number' => ['nullable', 'min:6', 'max:20'],
-            'message_text' => ['required']
+            'message_text' => ['required'],
+            'profile_id' => ['required']
         ];
     }
 }

@@ -18,8 +18,13 @@
                         <th scope="col">Surname</th>
                         <th scope="col">Email</th>
                         <th scope="col">Telephone number</th>
+                        <th scope="col">Specialization</th>
+                        <th scope="col">Sponsor Level</th>
+                        <th scope="col">Voti</th>
                         <th scope="col">Review_text</th>
                         <th scope="col">visible</th>
+                        <th scope="col">action</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -40,6 +45,23 @@
                         </td>
                         <td>
                             {{ $profile->telephone_number}}
+                        </td>
+                        <td>
+                            @foreach ( $profile->specializations as $specialization)
+                                {{ $specialization->name}}
+                            @endforeach
+                        </td>
+                        <td>
+                            @foreach ( $profile->sponsors as $sponsor)
+                                {{ $sponsor->level}}
+                            @endforeach
+                        </td>
+                        <td>
+                            @foreach ( $profile->votes as $vote)
+                                {{ $vote->vote}}
+                            @endforeach
+
+                            La media è: {{$numerical_vote}}
                         </td>
                         <td>
                             {{ $profile->service}}

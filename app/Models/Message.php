@@ -14,5 +14,11 @@ class Message extends Model
         'email',
         'telephone_number',
         'message_text',
+        'profile_id'
     ];
+
+    public function profile()
+    {
+        return $this->belongsTo(Profile::class);
+    }
 }

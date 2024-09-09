@@ -13,6 +13,12 @@ class Review extends Model
         "name",
         "surname",
         "email",
-        "review_text"
+        "review_text",
+        "profile_id"
     ];
+
+    public function profile()
+    {
+        return $this->belongsTo(Profile::class);
+    }
 }
