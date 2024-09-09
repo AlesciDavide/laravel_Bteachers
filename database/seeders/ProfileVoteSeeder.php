@@ -18,7 +18,7 @@ class ProfileVoteSeeder extends Seeder
         $profiles = Profile::all();
         $votes = Vote::all()->pluck('id');
         foreach ($profiles as $profile) {
-            $profile->votes()->attach($faker->randomElements($votes, rand(1, 5))); // creazione della relazione
+                $profile->votes()->attach($faker->randomElements($votes, rand(1, 5))); // creazione della relazione
         }
     }
 }

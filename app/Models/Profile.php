@@ -43,4 +43,9 @@ class Profile extends Model
     {
         return $this->belongsToMany(Vote::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

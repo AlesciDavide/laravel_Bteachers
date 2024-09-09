@@ -56,6 +56,9 @@
                         <a class="btn btn-primary" href="{{ route("admin.profiles.edit", $profile)}}">
                             Modifica profilo
                         </a>
+                        <a class="btn btn-primary" href="{{ route("admin.reviews.create", $profile)}}">
+                            Invia recensione
+                        </a>
                     </td>
                     </tr>
                     </tbody>
