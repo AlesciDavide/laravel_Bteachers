@@ -48,6 +48,6 @@ class User extends Authenticatable
 
     public function profile(): HasOne
     {
-        return $this->hasOne(Profile::class, 'foreign_key');
+        return $this->hasOne(Profile::class, 'user_id');
     }
 }

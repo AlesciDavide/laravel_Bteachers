@@ -23,7 +23,7 @@ class Profile extends Model
     // relation with users_table
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'foreign_key');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     // relation with specializations_table
