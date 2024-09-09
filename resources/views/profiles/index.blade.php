@@ -23,6 +23,8 @@
                         <th scope="col">Voti</th>
                         <th scope="col">Review_text</th>
                         <th scope="col">visible</th>
+                        <th scope="col">action</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>

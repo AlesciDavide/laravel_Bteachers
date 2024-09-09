@@ -61,6 +61,7 @@
 
                         </td>
                         <td>
+
                             @foreach ($profile->messages as $message)
                                 {{$message->id}}
                                 {{$message->name}}

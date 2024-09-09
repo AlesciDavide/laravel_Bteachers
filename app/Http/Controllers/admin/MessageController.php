@@ -25,7 +25,6 @@ class MessageController extends Controller
     public function store(StoreMessageRequest $request)
     {
         $data = $request->validated();
-
         $message = Message::create($data);
         $message->save();
         return redirect()->route('admin.messages.show', ['message' => $message->id]);
