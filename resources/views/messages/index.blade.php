@@ -1,23 +1,30 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="d-flex justify-content-center">
+<div class="container py-4">
 
-    {{-- <a class=" w-25 btn btn-primary  " href="{{ route('admin.messages.create')}}"  aria-current="page">
-        crea
-    </a> --}}
+    <!-- Lista dei messaggi -->
+    <div class="row">
+        @foreach ($messages as $message)
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">{{ $message->name }} {{ $message->surname }}</h5>
+                    <h6 class="card-subtitle text-muted">{{ $message->email }}</h6>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        {{ $message->message_text }}
+                    </p>
+                    <p class="card-text">
+                        <small class="text-muted">Telefono: {{ $message->telephone_number }}</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
 </div>
-<ul>
-    @foreach ($messages as $message)
 
-    <li>
-        {{$message->name}} - {{$message->surname}}
-        {{$message->email}}
-        <p>
-            {{$message->message_text}}
-            {{$message->telephone_number}}
-        </p>
-    </li>
-    @endforeach
-</ul>
 @endsection
+
