@@ -50,6 +50,22 @@
                 </div>
             </div>
 
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4>Specializations</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        @foreach ($profile->specializations as $specialization)
+                        <li class="list-group-item">
+                                    Field: {{ $specialization->field }} -
+                                    Specialization: {{ $specialization->name }}
+                                </li>
+                            @endforeach
+                        </ul>
+                </div>
+            </div>
+
             <!-- Reviews Section -->
             <div class="card mb-4">
                 <div class="card-header">
