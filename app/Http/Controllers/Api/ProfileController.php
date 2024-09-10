@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Message;
 use App\Models\Profile;
+use App\Models\Review;
 use App\Models\Specialization;
 use App\Models\User;
+use App\Models\Vote;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -23,7 +26,7 @@ class ProfileController extends Controller
     /**
      * Show the form for creating the resource.
      */
-    public function create(): never
+    public function create()
     {
 
     }
@@ -31,9 +34,28 @@ class ProfileController extends Controller
     /**
      * Store the newly created resource in storage.
      */
-    public function store(Request $request): never
+    public function store(Request $request)
     {
-        abort(404);
+        $data = $request->all();
+
+        if(!empty($data['reviews'])) {
+            foreach ($data['reviews'] as $reviewData) {
+                $review = Review::create($reviewData);
+                $review->save();
+            }
+        }
+        if(!empty($data['messages'])) {
+            foreach ($data['messages'] as $messageData) {
+                $message = Message::create($messageData);
+                $message->save();
+            }
+        }
+        if(!empty($data['votes'])) {
+            foreach ($data['votes'] as $voteData) {
+                $vote = Vote::create($voteData);
+                $vote->save();
+            }
+        }
     }
 
     /**
