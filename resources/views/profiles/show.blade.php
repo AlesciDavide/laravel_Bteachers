@@ -32,6 +32,19 @@
                                         {{ $profile->visible ? 'Yes' : 'No' }}
                                     </span>
                                 </li>
+                                <li class="list-group-item"><strong>Average vote:</strong>
+                                    @php
+                                        $voteArray = [];
+                                        foreach ($profile->votes as $vote) {
+                                            $voteArray[] = $vote->pivot->vote_id;
+                                        }
+                                        $totalVotes = array_sum($voteArray);
+                                        $numberVote = count($voteArray);
+                                        $mediaFinale = $numberVote > 0 ? number_format($totalVotes / $numberVote, 2) : 'N/A';
+                                    @endphp
+                                    <span class="badge bg-info">{{ $mediaFinale }}</span>
+                                </li>
+
                             </ul>
                         </div>
                     </div>
