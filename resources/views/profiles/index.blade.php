@@ -20,12 +20,13 @@
                             <th scope="col">ID</th>
                             <th scope="col">Name</th>
                             <th scope="col">Surname</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Telephone</th>
+                            <th scope="col">Photo</th>
+                            {{-- <th scope="col">Email</th> --}}
+                            {{-- <th scope="col">Telephone</th> --}}
                             <th scope="col">Specialization</th>
                             <th scope="col">Sponsor Level</th>
                             <th scope="col">Avg Vote</th>
-                            <th scope="col">Service</th>
+                            {{-- <th scope="col">Service</th> --}}
                             <th scope="col">Visible</th>
                             <th scope="col">Action</th>
                         </tr>
@@ -38,15 +39,18 @@
 
                         <!-- Profile CV (Name) -->
                         <td>
-                            {{ $profile->cv }}
+                            {{ $profile->user->name }}
                         </td>
 
+                        <td>
+                            {{ $profile->user->surname }}
+                        </td>
                         <!-- Profile Photo -->
                         <td>
                             <img class="img-thumbnail" src="{{ asset('storage/' . $profile->photo) }}" alt="Profile Image" style="max-width: 100px;">
                         </td>
 
-                        <!-- Address -->
+                        {{-- <!-- Address -->
                         <td>
                             {{ $profile->address }}
                         </td>
@@ -54,7 +58,7 @@
                         <!-- Telephone -->
                         <td>
                             {{ $profile->telephone_number }}
-                        </td>
+                        </td> --}}
 
                         <!-- Specializations -->
                         <td>
@@ -89,9 +93,9 @@
                         </td>
 
                         <!-- Service Description -->
-                        <td>
+                        {{-- <td>
                             {{ Str::limit($profile->service, 50) }}
-                        </td>
+                        </td> --}}
 
                         <!-- Visibility -->
                         <td>

@@ -32,6 +32,19 @@
                                         {{ $profile->visible ? 'Yes' : 'No' }}
                                     </span>
                                 </li>
+                                <li class="list-group-item"><strong>Average vote:</strong>
+                                    @php
+                                        $voteArray = [];
+                                        foreach ($profile->votes as $vote) {
+                                            $voteArray[] = $vote->pivot->vote_id;
+                                        }
+                                        $totalVotes = array_sum($voteArray);
+                                        $numberVote = count($voteArray);
+                                        $mediaFinale = $numberVote > 0 ? number_format($totalVotes / $numberVote, 2) : 'N/A';
+                                    @endphp
+                                    <span class="badge bg-info">{{ $mediaFinale }}</span>
+                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -47,6 +60,22 @@
                         <h5>Services</h5>
                         <p>{{ $profile->service }}</p>
                     </div>
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4>Specializations</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        @foreach ($profile->specializations as $specialization)
+                        <li class="list-group-item">
+                                    Field: {{ $specialization->field }} -
+                                    Specialization: {{ $specialization->name }}
+                                </li>
+                            @endforeach
+                        </ul>
                 </div>
             </div>
 
