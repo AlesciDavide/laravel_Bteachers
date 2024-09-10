@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form id="register_form" method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="row mb-3">
@@ -16,13 +16,15 @@
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
                                 @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
+                        </div>
+                        <div class="row mb-3 error_validation_name">
+
                         </div>
 
                         <div class="row mb-3">
@@ -38,7 +40,9 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="row mb-3 error_validation_surname">
 
+                        </div>
                         <div class="row mb-3">
                             <label for="address" class="col-md-4 col-form-label text-md-end">{{ __('address') }}</label>
 
@@ -53,11 +57,14 @@
                             </div>
                         </div>
 
+
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -66,7 +73,9 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="row mb-3 error_validation_email">
 
+                        </div>
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
@@ -88,6 +97,9 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+                        <div class="row mb-3 error_validation_password">
+
+                        </div>
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -102,4 +114,9 @@
         </div>
     </div>
 </div>
+@endsection
+
+
+@section('custom_script')
+@vite('resources/js/validation/userValidation.js')
 @endsection
