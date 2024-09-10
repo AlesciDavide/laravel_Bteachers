@@ -124,9 +124,9 @@ class ProfileController extends Controller
         }
 
 
-        $profile->specializations()->sync($data['specializations']);
 
         $profile->update($data);
+        $profile->specializations()->sync($data['specializations']);
 
         return redirect()->route('admin.profiles.show', $profile)->with('message', "Profile has Been Edited");
     }

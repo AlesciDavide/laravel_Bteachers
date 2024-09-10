@@ -28,7 +28,7 @@ class UpdateProfileRequest extends FormRequest
             'telephone_number' => ['nullable', 'min:6', 'max:20'],
             'service' => ['required', 'min:10', 'max:1000'],
             'visible' => ['required', 'boolean'],
-            'specializations' => ['nullable', 'array', 'exists:specializations,id'],
+            'specializations' => ['required', 'array', 'exists:specializations,id'],
         ];
     }
 }
