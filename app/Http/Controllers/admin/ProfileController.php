@@ -26,7 +26,10 @@ class ProfileController extends Controller
 
         // Trova il profilo associato all'utente autenticato
         $profile = Profile::where('user_id', $user->id)->first();
-
+        if (!$profile) {
+            return redirect()->route('admin.profiles.create')
+                            ->with('message', 'Il profilo non esiste. Verrai reindirizzato alla pagina principale.');
+                        }
         $specializations = Specialization::all();
         $sponsors = Sponsor::all();
         $votes = Vote::all();
@@ -41,6 +44,7 @@ class ProfileController extends Controller
      */
     public function create(User $user)
     {
+
 
         $user = Auth::user();
         $profiles = Profile::all();
@@ -83,6 +87,11 @@ class ProfileController extends Controller
      */
     public function show(Profile $profile)
     {
+        $user = auth()->user();
+
+        // Trova il profilo associato all'utente autenticato
+        $profile = Profile::where('user_id', $user->id)->first();
+
         $profile = Profile::with('votes')->findOrFail($profile->id);
         $votes = Vote::all(); // Voti disponibili (1-5)
         return view('profiles.show', compact('profile', 'votes'));
@@ -101,6 +110,12 @@ class ProfileController extends Controller
 
     public function edit(Profile $profile)
     {
+        // Recupera l'utente autenticato
+        $user = auth()->user();
+
+        // Trova il profilo associato all'utente autenticato
+        $profile = Profile::where('user_id', $user->id)->first();
+
         $specializations = Specialization::all();
         return view('profiles.edit', compact('profile', 'specializations'));
     }
@@ -144,12 +159,18 @@ class ProfileController extends Controller
      */
     public function destroy(Profile $profile)
     {
+        // Recupera l'utente autenticato
+        $user = auth()->user();
+
+        // Trova il profilo associato all'utente autenticato
+        $profile = Profile::where('user_id', $user->id)->first();
+
         $profile->votes()->detach();
         $profile->specializations()->detach();
         $profile->sponsors()->detach();
         $profile->delete();
         Storage::disk('public')->delete($profile->photo);
         Storage::disk('public')->delete($profile->cv);
-        return redirect()->route('admin.profiles.index')->with('message', "Profile  " . $profile->id . " has been Deleted");
+        return redirect()->route('admin.profiles.create')->with('message', "Profile has been Deleted");
     }
 }

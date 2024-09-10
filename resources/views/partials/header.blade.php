@@ -30,11 +30,6 @@
                         Lista sponsor
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.profiles.index') ? 'active text-primary' : '' }}" href="{{ route('admin.profiles.index') }}">
-                        Vedi profili
-                    </a>
-                </li>
                 @endauth
                 <!-- Dynamic Profile Link -->
                 @auth
