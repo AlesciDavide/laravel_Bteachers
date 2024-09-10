@@ -32,7 +32,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach ($profiles as $profile)
+                    {{-- @foreach ($profiles as $profile) --}}
                     <tr>
                         <!-- Profile ID -->
                         <th scope="row">{{ $profile->id }}</th>
@@ -120,7 +120,7 @@
                         </td>
 
                     </tr>
-                    @endforeach
+                    {{-- @endforeach --}}
                     </tbody>
                 </table>
             </div>

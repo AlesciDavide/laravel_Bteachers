@@ -13,7 +13,17 @@ class ReviewController extends Controller
 
     public function index()
     {
-        $reviews = Review::all();
+        // $reviews = Review::all();
+
+
+        $user = auth()->user();
+        $profile = Profile::where('user_id', $user->id)->first();
+
+        if (!$profile) {
+            return redirect()->route('home')->with('error', 'Profile not found');
+        }
+        // Recupera le reviews associati al profilo dell'utente
+        $reviews = Review::where('profile_id', $profile->id)->get();
 
         return view('reviews.index', compact("reviews"));
     }

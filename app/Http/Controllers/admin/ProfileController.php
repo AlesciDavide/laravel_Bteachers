@@ -19,14 +19,21 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $profiles = Profile::all();
+        // $profiles = Profile::all();
+
+        // Recupera l'utente autenticato
+        $user = auth()->user();
+
+        // Trova il profilo associato all'utente autenticato
+        $profile = Profile::where('user_id', $user->id)->first();
+
         $specializations = Specialization::all();
         $sponsors = Sponsor::all();
         $votes = Vote::all();
 
 
 
-        return view('profiles.index', compact('profiles', "specializations", "sponsors", "votes"));
+        return view('profiles.index', compact('profile', "specializations", "sponsors", "votes"));
     }
 
     /**
@@ -37,6 +44,7 @@ class ProfileController extends Controller
 
         $user = Auth::user();
         $profiles = Profile::all();
+
         $specializations = Specialization::all();
         foreach ($profiles as $profileId) {
             if ($user->id == $profileId->user_id) {
