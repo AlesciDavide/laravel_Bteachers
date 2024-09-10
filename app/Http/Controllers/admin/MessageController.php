@@ -12,7 +12,15 @@ class MessageController extends Controller
 {
     public function index()
     {
-        $messages = Message::all();
+        $user = auth()->user();
+        $profile = Profile::where('user_id', $user->id)->first();
+
+        if (!$profile) {
+            // Gestisci il caso in cui non esista un profilo per l'utente
+            return redirect()->route('home')->with('error', 'Profile not found');
+        }
+        // Recupera i messaggi associati al profilo dell'utente
+        $messages = Message::where('profile_id', $profile->id)->get();
 
         return view('messages.index', compact('messages'));
     }
