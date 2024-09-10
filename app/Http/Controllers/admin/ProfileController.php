@@ -62,8 +62,10 @@ class ProfileController extends Controller
 
         $newProfile = new Profile($data);
         $newProfile->user_id = $user_id;
-        $newProfile->specializations()->sync($data['specializations']);
+
         $newProfile->save();
+        $newProfile->specializations()->sync($data['specializations']);
+
 
         return redirect()->route('admin.profiles.show', ['profile' => $newProfile->id]);
     }
@@ -122,7 +124,7 @@ class ProfileController extends Controller
         }
 
 
-            $profile->specializations()->sync($data['specializations']);
+        $profile->specializations()->sync($data['specializations']);
 
         $profile->update($data);
 

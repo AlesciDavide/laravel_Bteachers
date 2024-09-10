@@ -22,13 +22,13 @@ class UpdateProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cv' => [ 'file', 'mimes:pdf'],
-            'photo' => [ 'file', 'mimes:jpg,jpeg,png'],
+            'cv' => ['file', 'mimes:pdf'],
+            'photo' => ['file', 'mimes:jpg,jpeg,png'],
             'address' => ['required', 'min:5', 'max:255'],
             'telephone_number' => ['nullable', 'min:6', 'max:20'],
             'service' => ['required', 'min:10', 'max:1000'],
             'visible' => ['required', 'boolean'],
-            'specializations' => ['exists:specializations,id'],
+            'specializations' => ['nullable', 'array', 'exists:specializations,id'],
         ];
     }
 }

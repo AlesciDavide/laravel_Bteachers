@@ -28,6 +28,7 @@ class StoreProfileRequest extends FormRequest
             'telephone_number' => ['nullable', 'min:6', 'max:20'],
             'service' => ['required', 'min:10', 'max:1000'],
             'visible' => ['required', 'boolean'],
+            'specializations' => ['array', 'nullable']
         ];
     }
 }

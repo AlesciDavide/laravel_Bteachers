@@ -54,17 +54,26 @@
 
                         <!-- Specialization -->
                         <div class="form-group mb-3">
-                            <label for="specialization" class="form-label">Specialization</label>
-                            <div class="d-flex flex-wrap">
-                                @foreach ($specializations as $specialization)
-                                    <div class="form-check me-3 mb-2">
-                                        <input class="form-check-input" type="checkbox" id="technology-check-{{$specialization->id}}" name="specialization[]" value="{{$specialization->id}}"
-                                        {{ in_array($specialization->id, old('specialization', $profile->specializations->pluck('id')->toArray())) ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="technology-check-{{$specialization->id}}">
-                                            {{ $specialization->name }}
-                                        </label>
-                                    </div>
-                                @endforeach
+                            <label for="specialization_id">Linguaggio utilizzato</label>
+                            <div class="customCheckBoxHolder d-flex flex-wrap ">
+                            @foreach ($specializations as $specialization)
+                            @if ($errors->any())
+                            <input name="specializations[]" type="checkbox" class="customCheckBoxInput" id="technology-check-{{$specialization->id}}" autocomplete="off" value="{{$specialization->id}}"
+                            {{ in_array($specialization->id, old('specialization', [])) ? "checked" : ""}}
+                            >
+                            @else
+                            <input name="specializations[]" type="checkbox" class="customCheckBoxInput" id="technology-check-{{$specialization->id}}" autocomplete="off" value="{{$specialization->id}}"
+                            {{ $profile->specializations->contains($specialization) ? "checked" : ""}}
+                            >
+                            @endif
+
+                            <label class="customCheckBoxWrapper m-1" for="technology-check-{{$specialization->id}}">
+                                <div class="customCheckBox">
+                                    <div class="inner">{{$specialization->name}}</div>
+                                </div>
+                            </label>
+
+                            @endforeach
                             </div>
                         </div>
 
