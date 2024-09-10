@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="border-bottom: 2px solid #f8f9fa;">
     <div class="container">
         <!-- Logo and Brand Name with a background color -->
-        <a class="navbar-brand fw-bold text-white px-3 rounded" href="{{ url('/home') }}" style="background-color: #007bff;">
+        <a class="navbar-brand fw-bold text-white px-3 rounded" href="#" style="background-color: #007bff;">
             {{ config('app.name', 'Laravel') }}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -12,6 +12,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
+                @auth
+
+
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.messages.index') ? 'active text-primary' : '' }}" href="{{ route('admin.messages.index')}}" aria-current="page">
                         Messages
@@ -32,7 +35,7 @@
                         Vedi profili
                     </a>
                 </li>
-
+                @endauth
                 <!-- Dynamic Profile Link -->
                 @auth
                 @php
