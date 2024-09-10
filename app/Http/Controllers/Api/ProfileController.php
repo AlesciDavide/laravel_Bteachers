@@ -11,7 +11,7 @@ class ProfileController extends Controller
 
     public function index()
     {
-        $profiles = Profile::all();
+        $profiles = Profile::with("user","reviews", "votes", "messages", "sponsors", "specializations")->paginate(10);
         return response()->json([
             'success' => true,
             'results' => $profiles
@@ -37,9 +37,13 @@ class ProfileController extends Controller
     /**
      * Display the resource.
      */
-    public function show()
+    public function show(Profile $profile)
     {
-        //
+        $profile->loadMissing("user","reviews", "votes", "messages", "sponsors", "specializations");
+        return response()->json([
+            'success' => true,
+            'results' => $profile
+        ]);
     }
 
     /**
