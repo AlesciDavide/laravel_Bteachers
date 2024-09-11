@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
     return $request->user();
 });
+
+Route::get('/profiles', [ProfileController::class, 'index'])->name('api.profiles.index');
+Route::post('/profiles', [ProfileController::class, 'store'])->name('api.profile.store');
+Route::get('/profiles/search', [ProfileController::class, 'profileSearch'])->name('api.profile.search');
+Route::get('/profiles/{profile}', [ProfileController::class, 'show'])->name('api.profiles.show');
+
