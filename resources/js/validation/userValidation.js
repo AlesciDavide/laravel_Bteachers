@@ -31,10 +31,10 @@ document.getElementById('register_form').addEventListener('submit', function( ev
         newErrorName.innerText = "The name must be at least 3 characters";
         allertValidationName.appendChild(newErrorName);
     }else if(surnameConfirm.value.length < 3){
-        const newErrorName = document.createElement("div");
-        newErrorName.classList = "alert alert-danger";
-        newErrorName.innerText = "The surname must be at least 3 characters";
-        allertValidationSurname.appendChild(newErrorName);
+        const newErrorSurname = document.createElement("div");
+        newErrorSurname.classList = "alert alert-danger";
+        newErrorSurname.innerText = "The surname must be at least 3 characters";
+        allertValidationSurname.appendChild(newErrorSurname);
     }else if(!email.includes('@')){
         const newErroremail = document.createElement("div");
         newErroremail.classList = "alert alert-danger";
