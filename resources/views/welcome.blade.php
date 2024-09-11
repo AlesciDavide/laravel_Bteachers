@@ -26,15 +26,15 @@
                 @if (Route::has('login'))
                     @auth
                         <li class="nav-item">
-                            <a href="{{ url('/teacher/home') }}" class="nav-link">Home</a>
+                            <a href="{{ url('/teacher/home') }}" class="nav-link  text-danger fs-5 fw-bold">Home</a>
                         </li>
                     @else
                         <li class="nav-item">
-                            <a href="{{ route('login') }}" class="nav-link">Log in</a>
+                            <a href="{{ route('login') }}" class="nav-link  text-danger fs-5 fw-bold">Log in</a>
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a href="{{ route('register') }}" class="nav-link">Register</a>
+                                <a href="{{ route('register') }}" class="nav-link  text-danger fs-5 fw-bold">Register</a>
                             </li>
                         @endif
                     @endauth
@@ -53,14 +53,11 @@
             <p class="lead">Join a growing community of teachers. Register now to create your profile, receive reviews, and manage your classes!</p>
             @if (Route::has('login'))
                     @auth
-                        <li class="nav-item">
-                            <a href="{{ url('/teacher/home') }}" class="btn btn-warning btn-sm">Get Started</a>
-                        </li>
+                        <a href="{{ url('/teacher/home') }}" class="btn btn-warning btn-sm">Get Started</a>
                     @else
-                        <li class="nav-item">
-                            <a href="{{ route('register') }}" class="btn btn-warning btn-sm">Get Started</a>
-                    </li>
+                        <a href="{{ route('register') }}" class="btn btn-warning btn-sm">Get Started</a>
                     @endauth
+
             @endif
         </div>
     </section>
