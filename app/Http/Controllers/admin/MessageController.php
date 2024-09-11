@@ -17,7 +17,7 @@ class MessageController extends Controller
 
         if (!$profile) {
             // Gestisci il caso in cui non esista un profilo per l'utente
-            return redirect()->route('home')->with('error', 'Profile not found');
+            return redirect()->route('admin.profiles.create')->with('error', 'Profile not found');
         }
         // Recupera i messaggi associati al profilo dell'utente
         $messages = Message::where('profile_id', $profile->id)->get();

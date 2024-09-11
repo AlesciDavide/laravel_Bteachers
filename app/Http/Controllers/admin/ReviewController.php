@@ -32,27 +32,27 @@ class ReviewController extends Controller
     public function create(Profile $profile)
 
     {
-
-        return view('reviews.create', compact('profile'));
+        return view('home');
     }
 
 
     public function store(StoreReviewRequest $request)
     {
-        $data = $request->validated();
+        // $data = $request->validated();
 
-        $newReview = new Review();
-        $newReview->name = $data['name'];
-        $newReview->surname = $data['surname'];
-        $newReview->email = $data['email'];
-        $newReview->review_text = $data['review_text'];
-        $newReview->profile_id = $data['profile_id'];
+        // $newReview = new Review();
+        // $newReview->name = $data['name'];
+        // $newReview->surname = $data['surname'];
+        // $newReview->email = $data['email'];
+        // $newReview->review_text = $data['review_text'];
+        // $newReview->profile_id = $data['profile_id'];
 
-        $newReview->save();
+        // $newReview->save();
 
 
 
-        return redirect()->route('admin.reviews.show', $newReview);
+        // return redirect()->route('admin.reviews.show', $newReview);
+        return view('home');
     }
 
 
@@ -73,7 +73,10 @@ class ReviewController extends Controller
     }
 
 
-    public function edit(string $id) {}
+    public function edit(string $id)
+    {
+        return view('home');
+    }
 
 
     public function update(Request $request, string $id) {}

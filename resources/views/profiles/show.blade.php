@@ -122,8 +122,8 @@
             <!-- Action Buttons -->
             <div class="mb-4 d-flex justify-content-around">
                 <a class="btn btn-secondary" href="{{ route("admin.profiles.edit", $profile) }}">Modifica profilo</a>
-                <a class="btn btn-primary" href="{{ route('reviews.create', $profile->id) }}">Invia recensione</a>
-                <a class="btn btn-primary" href="{{ route('messages.create', $profile->id) }}">Invia un messaggio</a>
+                {{-- <a class="btn btn-primary" href="{{ route('reviews.create', $profile->id) }}">Invia recensione</a>
+                <a class="btn btn-primary" href="{{ route('messages.create', $profile->id) }}">Invia un messaggio</a> --}}
             </div>
 
             <!-- Voting System -->

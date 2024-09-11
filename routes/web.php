@@ -28,7 +28,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [GuestHomeController::class, 'index'])->name('home');
+// Route::get('/home', [GuestHomeController::class, 'index'])->name('home');
 
 Route::get('/reviews/create/{profile}', [ReviewController::class, 'create'])->name('reviews.create');
 Route::get('/messages/create/{profile}', [MessageController::class, 'create'])->name('messages.create');
@@ -47,5 +47,6 @@ route::middleware('auth')->name('admin.')->prefix('teacher/')->group(
         Route::get("sponsors", [SponsorController::class, 'index'])->name('sponsors.index');
         Route::get("sponsors/{sponsor}", [SponsorController::class, 'show'])->name('sponsors.show');
         Route::resource("profiles", ProfileController::class);
+        Route::get('/home', [GuestHomeController::class, 'index'])->name('home');
     }
 );

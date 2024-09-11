@@ -46,7 +46,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <a href="#" class="btn btn-primary btn-lg w-100 mb-3">Go to Dashboard</a>
+                            <a href="#" class="btn btn-primary btn-lg w-100 mb-3">Go to Statistics Page</a>
                         </div>
                     </div>
 
