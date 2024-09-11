@@ -27,6 +27,7 @@ class MessageController extends Controller
 
     public function create(Profile $profile)
     {
+
         return view('messages.create', compact('profile'));
     }
 
@@ -40,6 +41,16 @@ class MessageController extends Controller
 
     public function show(Message $message)
     {
+        $user = auth()->user();
+        $profile = Profile::where('user_id', $user->id)->first();
+
+        if (!$profile) {
+            // Gestisci il caso in cui non esista un profilo per l'utente
+            return redirect()->route('home')->with('error', 'Profile not found');
+        }
+        if ($message->profile_id !== $profile->id) {
+            return redirect()->route('admin.messages.index')->with('error', 'You are not authorized to view this message');
+        }
         return view('messages.show', compact('message'));
     }
 }
