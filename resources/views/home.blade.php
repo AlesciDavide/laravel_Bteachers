@@ -8,7 +8,11 @@
                 <div class="card-header bg-primary text-white text-center py-4">
                     <h3 class="mb-0">{{ __('Dashboard') }}</h3>
                 </div>
-
+                {{-- @if (session("message"))
+                    <div class="alert alert-danger">
+                        {{ session("message") }}
+                    </div>
+                @endif --}}
                 <div class="card-body p-5">
                     @if (session('status'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">

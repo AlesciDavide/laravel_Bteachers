@@ -28,15 +28,16 @@ class MessageController extends Controller
     public function create(Profile $profile)
     {
 
-        return view('messages.create', compact('profile'));
+        return view('home');
     }
 
     public function store(StoreMessageRequest $request)
     {
-        $data = $request->validated();
-        $message = Message::create($data);
-        $message->save();
-        return redirect()->route('admin.messages.show', ['message' => $message->id]);
+        // $data = $request->validated();
+        // $message = Message::create($data);
+        // $message->save();
+        // return redirect()->route('admin.messages.show', ['message' => $message->id]);
+        return view('home');
     }
 
     public function show(Message $message)
@@ -52,5 +53,11 @@ class MessageController extends Controller
             return redirect()->route('admin.messages.index')->with('error', 'You are not authorized to view this message');
         }
         return view('messages.show', compact('message'));
+    }
+
+    public function edit()
+    {
+
+        return view('home');
     }
 }
