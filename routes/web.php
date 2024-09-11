@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\ProfileController;
 use App\Http\Controllers\admin\SponsorController;
 use App\Http\Controllers\admin\ReviewController;
 use App\Http\Controllers\admin\SpecializationController;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\VoteController;
 use App\Http\Controllers\HomeController as GuestHomeController;
 use Illuminate\Support\Facades\Auth;
@@ -48,5 +49,7 @@ route::middleware('auth')->name('admin.')->prefix('teacher/')->group(
         Route::get("sponsors/{sponsor}", [SponsorController::class, 'show'])->name('sponsors.show');
         Route::resource("profiles", ProfileController::class);
         Route::get('/home', [GuestHomeController::class, 'index'])->name('home');
+        Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
+        Route::get('/user/update', [UserController::class, 'edit'])->name('user.edit');
     }
 );

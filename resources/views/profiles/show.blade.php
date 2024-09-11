@@ -16,6 +16,8 @@
                 <div class="card-header">
                     <h2>Profile Details: {{ $profile->user->name }}, {{ $profile->user->surname }}</h2>
                 </div>
+
+
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-md-6">
