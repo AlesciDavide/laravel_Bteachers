@@ -32,38 +32,51 @@ class ReviewController extends Controller
     public function create(Profile $profile)
 
     {
-
-        return view('reviews.create', compact('profile'));
+        return view('home');
     }
 
 
     public function store(StoreReviewRequest $request)
     {
-        $data = $request->validated();
+        // $data = $request->validated();
 
-        $newReview = new Review();
-        $newReview->name = $data['name'];
-        $newReview->surname = $data['surname'];
-        $newReview->email = $data['email'];
-        $newReview->review_text = $data['review_text'];
-        $newReview->profile_id = $data['profile_id'];
+        // $newReview = new Review();
+        // $newReview->name = $data['name'];
+        // $newReview->surname = $data['surname'];
+        // $newReview->email = $data['email'];
+        // $newReview->review_text = $data['review_text'];
+        // $newReview->profile_id = $data['profile_id'];
 
-        $newReview->save();
+        // $newReview->save();
 
 
 
-        return redirect()->route('admin.reviews.show', $newReview);
+        // return redirect()->route('admin.reviews.show', $newReview);
+        return view('home');
     }
 
 
     public function show(Review $review)
     {
+        $user = auth()->user();
+        $profile = Profile::where('user_id', $user->id)->first();
+
+        if (!$profile) {
+            // Gestisci il caso in cui non esista un profilo per l'utente
+            return redirect()->route('home')->with('error', 'Profile not found');
+        }
+        if ($review->profile_id !== $profile->id) {
+            return redirect()->route('admin.reviews.index')->with('error', 'You are not authorized to view this review');
+        }
 
         return view("reviews.show", compact("review"));
     }
 
 
-    public function edit(string $id) {}
+    public function edit(string $id)
+    {
+        return view('home');
+    }
 
 
     public function update(Request $request, string $id) {}

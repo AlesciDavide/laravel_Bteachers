@@ -15,18 +15,16 @@ class VoteController extends Controller
      */
     public function index()
     {
-        $votes = Vote::all();
+        // $votes = Vote::all();
 
-        return view('vote.index', compact('votes'));
+        // return view('vote.index', compact('votes'));
+        return view('home');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-
-    }
+    public function create() {}
 
     /**
      * Store a newly created resource in storage.
