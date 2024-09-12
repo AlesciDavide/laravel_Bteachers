@@ -14,14 +14,24 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
 
-    public function index()
-    {
-        $profiles = Profile::with("user","reviews", "votes", "messages", "sponsors", "specializations")->paginate(10);
-        return response()->json([
-            'success' => true,
-            'results' => $profiles
-        ]);
+    public function index(Request $request)
+{
+    $query = Profile::with("user","reviews", "votes", "messages", "sponsors", "specializations");
+
+    // Filtro per specializzazione se è presente nel request
+    if ($request->has('specialization')) {
+        $query->whereHas('specializations', function ($q) use ($request) {
+            $q->where('field', $request->input('specialization'));  // Assicurati che 'name' corrisponda alla colonna corretta
+        });
     }
+
+    $profiles = $query->paginate(10);
+
+    return response()->json([
+        'success' => true,
+        'results' => $profiles
+    ]);
+}
 
     /**
      * Show the form for creating the resource.

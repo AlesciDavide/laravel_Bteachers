@@ -16,86 +16,87 @@ class SpecializationSeeder extends Seeder
         //
         $specializations = [
             [
-                'name' => 'Psicologia dell\'educazione',
-                'field' => 'Psicologia',
+                'name' => 'Educational Psychology',
+                'field' => 'Psychology'
             ],
             [
-                'name' => 'Didattica della matematica',
-                'field' => 'Matematica',
+                'name' => 'Mathematics Education',
+                'field' => 'Mathematics'
             ],
             [
-                'name' => 'Insegnamento di informatica',
-                'field' => 'Informatica',
+                'name' => 'Computer Science Teaching',
+                'field' => 'Computer Science'
             ],
             [
-                'name' => 'Letteratura italiana',
-                'field' => 'Letteratura',
+                'name' => 'Italian Literature',
+                'field' => 'Literature'
             ],
             [
-                'name' => 'Chimica organica',
-                'field' => 'Chimica',
+                'name' => 'Organic Chemistry',
+                'field' => 'Chemistry'
             ],
             [
-                'name' => 'Teoria musicale e composizione',
-                'field' => 'Musica',
+                'name' => 'Music Theory and Composition',
+                'field' => 'Music'
             ],
             [
-                'name' => 'Didattica delle lingue straniere',
-                'field' => 'Linguistica',
+                'name' => 'Foreign Language Teaching',
+                'field' => 'Linguistics'
             ],
             [
-                'name' => 'Storia dell\'arte rinascimentale',
-                'field' => 'Storia dell\'arte',
+                'name' => 'Renaissance Art History',
+                'field' => 'Art History'
             ],
             [
-                'name' => 'Filosofia morale',
-                'field' => 'Filosofia',
+                'name' => 'Moral Philosophy',
+                'field' => 'Philosophy'
             ],
             [
-                'name' => 'Fisica delle particelle',
-                'field' => 'Fisica',
+                'name' => 'Particle Physics',
+                'field' => 'Physics'
             ],
             [
-                'name' => 'Sociologia dell\'educazione',
-                'field' => 'Sociologia',
+                'name' => 'Sociology of Education',
+                'field' => 'Sociology'
             ],
             [
-                'name' => 'Economia internazionale',
-                'field' => 'Economia',
+                'name' => 'International Economics',
+                'field' => 'Economics'
             ],
             [
-                'name' => 'Psicologia clinica',
-                'field' => 'Psicologia',
+                'name' => 'Clinical Psychology',
+                'field' => 'Psychology'
             ],
             [
-                'name' => 'Ingegneria civile',
-                'field' => 'Ingegneria',
+                'name' => 'Civil Engineering',
+                'field' => 'Engineering'
             ],
             [
-                'name' => 'Biotecnologie',
-                'field' => 'Biologia',
+                'name' => 'Biotechnology',
+                'field' => 'Biology'
             ],
             [
-                'name' => 'Pedagogia speciale',
-                'field' => 'Pedagogia',
+                'name' => 'Special Education Pedagogy',
+                'field' => 'Pedagogy'
             ],
             [
-                'name' => 'Letteratura comparata',
-                'field' => 'Letteratura',
+                'name' => 'Comparative Literature',
+                'field' => 'Literature'
             ],
             [
-                'name' => 'Analisi matematica',
-                'field' => 'Matematica',
+                'name' => 'Mathematical Analysis',
+                'field' => 'Mathematics'
             ],
             [
-                'name' => 'Fisica quantistica',
-                'field' => 'Fisica',
+                'name' => 'Quantum Physics',
+                'field' => 'Physics'
             ],
             [
-                'name' => 'Gestione ambientale',
-                'field' => 'Scienze ambientali',
-            ],
+                'name' => 'Environmental Management',
+                'field' => 'Environmental Science'
+            ]
         ];
+
 
         foreach ($specializations as $specialization){
             Specialization::create($specialization);
