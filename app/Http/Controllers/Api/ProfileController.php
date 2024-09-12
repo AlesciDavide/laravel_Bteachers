@@ -16,7 +16,8 @@ class ProfileController extends Controller
 
     public function index(Request $request)
     {
-        $query = Profile::with("user", "reviews", "votes", "messages", "sponsors", "specializations");
+        $query = Profile::with("user", "reviews", "votes", "messages", "sponsors", "specializations")
+            ->withAvg('votes', 'vote');
 
         // Filtro per specializzazione se è presente nel request
         if ($request->has('specialization')) {
@@ -39,6 +40,9 @@ class ProfileController extends Controller
                 $q->where('name', $request->input('user'))
                     ->orWhere('surname', $request->input('user'));
             });
+        }
+        if ($request->has('min_vote')) {
+            $query->having('votes_avg_vote', '>=', $request->input('min_vote'));
         }
         $profiles = $query->paginate(9);
 
