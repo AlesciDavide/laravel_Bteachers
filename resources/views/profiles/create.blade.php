@@ -84,7 +84,7 @@
 
                                     <label class="m-1" for="technology-check-{{$specialization->id}}">
                                         <div >
-                                            <div class="inner">{{$specialization->field}}</div>
+                                            <div class="inner">{{$specialization->field}} - {{$specialization->name}}</div>
                                         </div>
                                     </label>
 
