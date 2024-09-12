@@ -15,8 +15,25 @@ class ProfileController extends Controller
 {
 
     public function index(Request $request)
-{
-    $query = Profile::with("user","reviews", "votes", "messages", "sponsors", "specializations");
+    {
+        $query = Profile::with("user", "reviews", "votes", "messages", "sponsors", "specializations")
+            ->withCount('reviews')
+            ->withAvg('votes', 'vote');
+
+
+    // Recupera il valore di searchQuery dal request
+    $searchQuery = $request->input('searchQuery');
+
+    // Filtro per specializzazione o nome se searchQuery è presente nel request
+    if ($searchQuery) {
+        /*  $query->whereHas('specializations', function ($q) use ($searchQuery) {
+            $q->where('name', 'like', "%{$searchQuery}%");
+        }) */
+        $query->whereHas('user', function ($q) use ($searchQuery) {
+            $q->where('name', 'like', "%{$searchQuery}%")
+            ->orWhere('surname', 'like', "%{$searchQuery}%");
+        });
+    }
 
     // Filtro per specializzazione se è presente nel request
     if ($request->has('specialization')) {
@@ -24,17 +41,26 @@ class ProfileController extends Controller
             $q->where('field', $request->input('specialization'));
         });
     }
-    if ($request->has('user')) {
-        $query->whereHas('users', function ($q) use ($request) {
-            $q->where('name', $request->input('user'));
-        });
-    }
-    if ($request->has('user')) {
-        $query->whereHas('users', function ($q) use ($request) {
-            $q->where('surname', $request->input('user'));
-        });
-    }
-    $profiles = $query->paginate(9);
+
+        if ($request->has('min_vote')) {
+            $query->having('votes_avg_vote', '>=', $request->input('min_vote'));
+        }
+        if ($request->has('n_reviews')) {
+            $nReviews = $request->input('n_reviews');
+            $query->having('reviews_count', '>=', $nReviews); // Filtra per il numero minimo di recensioni
+        }
+
+        if ($request->has('order_by')) {
+            $orderBy = $request->input('order_by');
+            $orderDirection = $request->has('order_direction') ? $request->input('order_direction') : 'asc';
+
+            if (in_array($orderBy, ['votes_avg_vote', 'reviews_count']) && in_array($orderDirection, ['asc', 'desc'])) {
+                $query->orderBy($orderBy, $orderDirection);
+            }
+        }
+
+        $profiles = $query->paginate(9);
+
 
     return response()->json([
         'success' => true,
