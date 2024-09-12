@@ -23,10 +23,10 @@ class ProfileController extends Controller
 
     // Filtro per specializzazione o nome se searchQuery è presente nel request
     if ($searchQuery) {
-        $query->whereHas('specializations', function ($q) use ($searchQuery) {
+        /*  $query->whereHas('specializations', function ($q) use ($searchQuery) {
             $q->where('name', 'like', "%{$searchQuery}%");
-        })
-        ->orWhereHas('user', function ($q) use ($searchQuery) {
+        }) */
+        $query->whereHas('user', function ($q) use ($searchQuery) {
             $q->where('name', 'like', "%{$searchQuery}%")
             ->orWhere('surname', 'like', "%{$searchQuery}%");
         });
