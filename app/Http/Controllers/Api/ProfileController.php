@@ -18,20 +18,24 @@ class ProfileController extends Controller
 {
     $query = Profile::with("user","reviews", "votes", "messages", "sponsors", "specializations");
 
+    // Recupera il valore di searchQuery dal request
+    $searchQuery = $request->input('searchQuery');
+
+    // Filtro per specializzazione o nome se searchQuery è presente nel request
+    if ($searchQuery) {
+        $query->whereHas('specializations', function ($q) use ($searchQuery) {
+            $q->where('name', 'like', "%{$searchQuery}%");
+        })
+        ->orWhereHas('user', function ($q) use ($searchQuery) {
+            $q->where('name', 'like', "%{$searchQuery}%")
+            ->orWhere('surname', 'like', "%{$searchQuery}%");
+        });
+    }
+
     // Filtro per specializzazione se è presente nel request
     if ($request->has('specialization')) {
         $query->whereHas('specializations', function ($q) use ($request) {
             $q->where('field', $request->input('specialization'));
-        });
-    }
-    if ($request->has('user')) {
-        $query->whereHas('users', function ($q) use ($request) {
-            $q->where('name', $request->input('user'));
-        });
-    }
-    if ($request->has('user')) {
-        $query->whereHas('users', function ($q) use ($request) {
-            $q->where('surname', $request->input('user'));
         });
     }
     $profiles = $query->paginate(9);
