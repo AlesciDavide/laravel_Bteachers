@@ -16,68 +16,32 @@ class SpecializationSeeder extends Seeder
         //
         $specializations = [
             [
-                'name' => 'Educational Psychology',
-                'field' => 'Psychology'
-            ],
-            [
-                'name' => 'Mathematics Education',
-                'field' => 'Mathematics'
-            ],
-            [
-                'name' => 'Computer Science Teaching',
-                'field' => 'Computer Science'
-            ],
-            [
-                'name' => 'Italian Literature',
-                'field' => 'Literature'
-            ],
-            [
-                'name' => 'Organic Chemistry',
-                'field' => 'Chemistry'
-            ],
-            [
-                'name' => 'Music Theory and Composition',
-                'field' => 'Music'
-            ],
-            [
-                'name' => 'Foreign Language Teaching',
-                'field' => 'Linguistics'
-            ],
-            [
                 'name' => 'Renaissance Art History',
                 'field' => 'Art History'
-            ],
-            [
-                'name' => 'Moral Philosophy',
-                'field' => 'Philosophy'
-            ],
-            [
-                'name' => 'Particle Physics',
-                'field' => 'Physics'
-            ],
-            [
-                'name' => 'Sociology of Education',
-                'field' => 'Sociology'
-            ],
-            [
-                'name' => 'International Economics',
-                'field' => 'Economics'
-            ],
-            [
-                'name' => 'Clinical Psychology',
-                'field' => 'Psychology'
-            ],
-            [
-                'name' => 'Civil Engineering',
-                'field' => 'Engineering'
             ],
             [
                 'name' => 'Biotechnology',
                 'field' => 'Biology'
             ],
             [
-                'name' => 'Special Education Pedagogy',
-                'field' => 'Pedagogy'
+                'name' => 'Organic Chemistry',
+                'field' => 'Chemistry'
+            ],
+            [
+                'name' => 'Civil Engineering',
+                'field' => 'Engineering'
+            ],
+            [
+                'name' => 'Environmental Management',
+                'field' => 'Environmental Science'
+            ],
+            [
+                'name' => 'Foreign Language Teaching',
+                'field' => 'Linguistics'
+            ],
+            [
+                'name' => 'Italian Literature',
+                'field' => 'Literature'
             ],
             [
                 'name' => 'Comparative Literature',
@@ -88,14 +52,51 @@ class SpecializationSeeder extends Seeder
                 'field' => 'Mathematics'
             ],
             [
+                'name' => 'Mathematics Education',
+                'field' => 'Mathematics'
+            ],
+            [
+                'name' => 'Music Theory and Composition',
+                'field' => 'Music'
+            ],
+            [
+                'name' => 'Moral Philosophy',
+                'field' => 'Philosophy'
+            ],
+            [
+                'name' => 'Particle Physics',
+                'field' => 'Physics'
+            ],
+            [
                 'name' => 'Quantum Physics',
                 'field' => 'Physics'
             ],
             [
-                'name' => 'Environmental Management',
-                'field' => 'Environmental Science'
+                'name' => 'Educational Psychology',
+                'field' => 'Psychology'
+            ],
+            [
+                'name' => 'Clinical Psychology',
+                'field' => 'Psychology'
+            ],
+            [
+                'name' => 'Sociology of Education',
+                'field' => 'Sociology'
+            ],
+            [
+                'name' => 'Computer Science Teaching',
+                'field' => 'Computer Science'
+            ],
+            [
+                'name' => 'Special Education Pedagogy',
+                'field' => 'Pedagogy'
+            ],
+            [
+                'name' => 'International Economics',
+                'field' => 'Economics'
             ]
         ];
+
 
 
         foreach ($specializations as $specialization){

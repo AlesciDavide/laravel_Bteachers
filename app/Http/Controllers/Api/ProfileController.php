@@ -21,7 +21,7 @@ class ProfileController extends Controller
     // Filtro per specializzazione se è presente nel request
     if ($request->has('specialization')) {
         $query->whereHas('specializations', function ($q) use ($request) {
-            $q->where('field', $request->input('specialization'));  // Assicurati che 'name' corrisponda alla colonna corretta
+            $q->where('field', $request->input('specialization'));
         });
     }
 
