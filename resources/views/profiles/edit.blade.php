@@ -62,23 +62,23 @@
                         </div>
                         <!-- Specialization -->
                         <div class="my-form">
-                            <label for="specialization_id">Linguaggio utilizzato</label>
-                            <div class="w-50 d-flex">
+                            <label for="specialization_id">Choose your specializations</label>
+                            <div>
                                 <div class="d-flex flex-wrap flex-column w-100">
                                 @foreach ($specializations as $specialization)
-                                <div>
+                                <div class="w-50 d-flex">
                                     @if ($errors->any())
-                                    <input name="specializations[]" type="checkbox" class="customCheckBoxInput" id="technology-check-{{$specialization->id}}" autocomplete="off" value="{{$specialization->id}}"
+                                    <input name="specializations[]" type="checkbox"  id="technology-check-{{$specialization->id}}" autocomplete="off" value="{{$specialization->id}}"
                                     {{ in_array($specialization->id, old('specialization', [])) ? "checked" : ""}}
                                     >
                                     @else
-                                    <input name="specializations[]" type="checkbox" class="customCheckBoxInput" id="technology-check-{{$specialization->id}}" autocomplete="off" value="{{$specialization->id}}"
+                                    <input name="specializations[]" type="checkbox"  id="technology-check-{{$specialization->id}}" autocomplete="off" value="{{$specialization->id}}"
                                     {{ $profile->specializations->contains($specialization) ? "checked" : ""}}
                                     >
                                     @endif
 
-                                    <label class="customCheckBoxWrapper m-1" for="technology-check-{{$specialization->id}}">
-                                        <div class="customCheckBox">
+                                    <label class="m-1" for="technology-check-{{$specialization->id}}">
+                                        <div >
                                             <div class="inner">{{$specialization->field}}</div>
                                         </div>
                                     </label>
