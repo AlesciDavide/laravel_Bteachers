@@ -15,8 +15,10 @@ class ProfileController extends Controller
 {
 
     public function index(Request $request)
-{
-    $query = Profile::with("user","reviews", "votes", "messages", "sponsors", "specializations");
+    {
+        $query = Profile::with("user", "reviews", "votes", "messages", "sponsors", "specializations")
+            ->withAvg('votes', 'vote');
+
 
     // Recupera il valore di searchQuery dal request
     $searchQuery = $request->input('searchQuery');
@@ -38,21 +40,23 @@ class ProfileController extends Controller
             $q->where('field', $request->input('specialization'));
         });
     }
-    $profiles = $query->paginate(9);
+ 
+        if ($request->has('min_vote')) {
+            $query->having('votes_avg_vote', '>=', $request->input('min_vote'));
+        }
+        $profiles = $query->paginate(9);
 
-    return response()->json([
-        'success' => true,
-        'results' => $profiles
-    ]);
-}
+
+        return response()->json([
+            'success' => true,
+            'results' => $profiles
+        ]);
+    }
 
     /**
      * Show the form for creating the resource.
      */
-    public function create()
-    {
-
-    }
+    public function create() {}
 
     /**
      * Store the newly created resource in storage.
@@ -61,22 +65,23 @@ class ProfileController extends Controller
     {
         $data = $request->all();
 
-        if(!empty($data['reviews'])) {
+        if (!empty($data['reviews'])) {
             foreach ($data['reviews'] as $reviewData) {
                 $review = Review::create($reviewData);
                 $review->save();
             }
         }
-        if(!empty($data['messages'])) {
+        if (!empty($data['messages'])) {
             foreach ($data['messages'] as $messageData) {
                 $message = Message::create($messageData);
                 $message->save();
             }
         }
-        if(!empty($data['votes'])) {
+        if (!empty($data['votes'])) {
             foreach ($data['votes'] as $voteData) {
-                $vote = Vote::create($voteData);
-                $vote->save();
+                $profile = Profile::findOrFail($voteData['profile_id']);
+                $profile->votes()->attach($voteData['vote_id']);
+                $profile->votes()->attach($voteData['profile_id']);
             }
         }
     }
@@ -86,7 +91,7 @@ class ProfileController extends Controller
      */
     public function show(Profile $profile)
     {
-        $profile->loadMissing("user","reviews", "votes", "messages", "sponsors", "specializations");
+        $profile->loadMissing("user", "reviews", "votes", "messages", "sponsors", "specializations");
         return response()->json([
             'success' => true,
             'results' => $profile
