@@ -15,40 +15,43 @@ class ProfileController extends Controller
 {
 
     public function index(Request $request)
-{
-    $query = Profile::with("user","reviews", "votes", "messages", "sponsors", "specializations");
+    {
+        $query = Profile::with("user", "reviews", "votes", "messages", "sponsors", "specializations");
 
-    // Filtro per specializzazione se è presente nel request
-    if ($request->has('specialization')) {
-        $query->whereHas('specializations', function ($q) use ($request) {
-            $q->where('field', $request->input('specialization'));
-        });
-    }
-    if ($request->has('user')) {
-        $query->whereHas('users', function ($q) use ($request) {
-            $q->where('name', $request->input('user'));
-        });
-    }
-    if ($request->has('user')) {
-        $query->whereHas('users', function ($q) use ($request) {
-            $q->where('surname', $request->input('user'));
-        });
-    }
-    $profiles = $query->paginate(9);
+        // Filtro per specializzazione se è presente nel request
+        if ($request->has('specialization')) {
+            $query->whereHas('specializations', function ($q) use ($request) {
+                $q->where('field', $request->input('specialization'));
+            });
+        }
+        // if ($request->has('user')) {
+        //     $query->whereHas('user', function ($q) use ($request) {
+        //         $q->where('name', $request->input('user'));
+        //     });
+        // }
+        // if ($request->has('user')) {
+        //     $query->whereHas('user', function ($q) use ($request) {
+        //         $q->where('surname', $request->input('user'));
+        //     });
+        // }
+        if ($request->has('user')) {
+            $query->whereHas('user', function ($q) use ($request) {
+                $q->where('name', $request->input('user'))
+                    ->orWhere('surname', $request->input('user'));
+            });
+        }
+        $profiles = $query->paginate(9);
 
-    return response()->json([
-        'success' => true,
-        'results' => $profiles
-    ]);
-}
+        return response()->json([
+            'success' => true,
+            'results' => $profiles
+        ]);
+    }
 
     /**
      * Show the form for creating the resource.
      */
-    public function create()
-    {
-
-    }
+    public function create() {}
 
     /**
      * Store the newly created resource in storage.
@@ -57,19 +60,19 @@ class ProfileController extends Controller
     {
         $data = $request->all();
 
-        if(!empty($data['reviews'])) {
+        if (!empty($data['reviews'])) {
             foreach ($data['reviews'] as $reviewData) {
                 $review = Review::create($reviewData);
                 $review->save();
             }
         }
-        if(!empty($data['messages'])) {
+        if (!empty($data['messages'])) {
             foreach ($data['messages'] as $messageData) {
                 $message = Message::create($messageData);
                 $message->save();
             }
         }
-        if(!empty($data['votes'])) {
+        if (!empty($data['votes'])) {
             foreach ($data['votes'] as $voteData) {
                 $vote = Vote::create($voteData);
                 $vote->save();
@@ -82,7 +85,7 @@ class ProfileController extends Controller
      */
     public function show(Profile $profile)
     {
-        $profile->loadMissing("user","reviews", "votes", "messages", "sponsors", "specializations");
+        $profile->loadMissing("user", "reviews", "votes", "messages", "sponsors", "specializations");
         return response()->json([
             'success' => true,
             'results' => $profile
