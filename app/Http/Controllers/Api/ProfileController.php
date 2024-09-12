@@ -71,8 +71,9 @@ class ProfileController extends Controller
         }
         if(!empty($data['votes'])) {
             foreach ($data['votes'] as $voteData) {
-                $vote = Vote::create($voteData);
-                $vote->save();
+                $profile = Profile::findOrFail($voteData['profile_id']);
+                $profile->votes()->attach($voteData['vote_id']);
+                $profile->votes()->attach($voteData['profile_id']);
             }
         }
     }
