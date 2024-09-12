@@ -24,8 +24,17 @@ class ProfileController extends Controller
             $q->where('field', $request->input('specialization'));
         });
     }
-
-    $profiles = $query->paginate(10);
+    if ($request->has('user')) {
+        $query->whereHas('users', function ($q) use ($request) {
+            $q->where('name', $request->input('user'));
+        });
+    }
+    if ($request->has('user')) {
+        $query->whereHas('users', function ($q) use ($request) {
+            $q->where('surname', $request->input('user'));
+        });
+    }
+    $profiles = $query->paginate(9);
 
     return response()->json([
         'success' => true,
