@@ -128,7 +128,7 @@
                 <a class="btn btn-primary" href="{{ route('messages.create', $profile->id) }}">Invia un messaggio</a> --}}
             </div>
 
-            <!-- Voting System -->
+            {{-- <!-- Voting System -->
             <div class="card">
                 <div class="card-header">
                     <h4>Vote for this Profile</h4>
@@ -146,7 +146,7 @@
                         <button type="submit" class="btn btn-primary">Invia voto</button>
                     </form>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
     </div>

@@ -20,7 +20,7 @@ class ReviewController extends Controller
         $profile = Profile::where('user_id', $user->id)->first();
 
         if (!$profile) {
-            return redirect()->route('home')->with('error', 'Profile not found');
+            return redirect()->route('admin.profiles.create')->with('error', 'Profile not found');
         }
         // Recupera le reviews associati al profilo dell'utente
         $reviews = Review::where('profile_id', $profile->id)->get();

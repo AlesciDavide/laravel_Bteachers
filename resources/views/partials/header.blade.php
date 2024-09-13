@@ -21,15 +21,20 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('admin.reviews.index') ? 'active text-primary' : '' }}" href="{{ route('admin.reviews.index')}}" aria-current="page">
+                        Review Index
+                    </a>
+                </li>
+                {{-- <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.vote.index') ? 'active text-primary' : '' }}" href="{{ route('admin.vote.index') }}">
                         Lista voti
                     </a>
-                </li>
-                <li class="nav-item">
+                </li> --}}
+                {{-- <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.sponsors.index') ? 'active text-primary' : '' }}" href="{{ route('admin.sponsors.index') }}">
                         Lista sponsor
                     </a>
-                </li>
+                </li> --}}
                 @endauth
                 <!-- Dynamic Profile Link -->
                 @auth
