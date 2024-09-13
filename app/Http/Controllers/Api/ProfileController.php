@@ -52,7 +52,7 @@ class ProfileController extends Controller
 
         if ($request->has('order_by')) {
             $orderBy = $request->input('order_by');
-            $orderDirection = $request->has('order_direction') ? $request->input('order_direction') : 'asc';
+            $orderDirection = $request->input('order_direction', 'asc');
 
             if (in_array($orderBy, ['votes_avg_vote', 'reviews_count']) && in_array($orderDirection, ['asc', 'desc'])) {
                 $query->orderBy($orderBy, $orderDirection);
