@@ -36,7 +36,9 @@ class Profile extends Model
     public function sponsors(): BelongsToMany
     {
         return $this->belongsToMany(Sponsor::class)
-            ->withPivot('sponsorship_time');
+            ->withPivot('sponsorship_time')
+            ->withPivot('expiration_date')
+            ->withTimestamps();
     }
 
     // relation with votes_table

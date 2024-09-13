@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Profile;
 use App\Models\Sponsor;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,19 +30,27 @@ class SponsorController extends Controller
         $profile = Auth::user()->profile; // Ottieni il profilo dell'utente autenticato
 
         // Controlla se il profilo ha già acquistato questo sponsor
-        $existingSponsorship = $profile->sponsors()->where('sponsor_id', $sponsor->id)->first();
+        /* $existingSponsorship = $profile->sponsors()->where('sponsor_id', $sponsor->id)->first(); */
+        if($sponsor->sponsorship_time === 24){
 
-        if ($existingSponsorship) {
-            // Aggiorna il tempo di sponsorizzazione sommando il nuovo tempo
-            $profile->sponsors()->updateExistingPivot($sponsor->id, [
-                'sponsorship_time' => $existingSponsorship->pivot->sponsorship_time + $sponsor->sponsorship_time
-            ]);
-        } else {
+            $newDateTime = Carbon::now()->addDay(1);
+        }elseif($sponsor->sponsorship_time === 72){
+
+            $newDateTime = Carbon::now()->addDay(3);
+        }else{
+
+            $newDateTime = Carbon::now()->addDay(6);
+        };
+
+
+
+
             // Aggiungi il nuovo sponsor al profilo
             $profile->sponsors()->attach($sponsor->id, [
-                'sponsorship_time' => $sponsor->sponsorship_time
+                'sponsorship_time' => $sponsor->sponsorship_time,
+                'expiration_date' => $newDateTime
+
             ]);
-        }
 
         return redirect()->back()->with('message', 'Sponsorship purchased successfully!');
     }
