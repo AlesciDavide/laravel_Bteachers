@@ -30,11 +30,13 @@
                         Lista voti
                     </a>
                 </li> --}}
-                {{-- <li class="nav-item">
+
+                <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.sponsors.index') ? 'active text-primary' : '' }}" href="{{ route('admin.sponsors.index') }}">
                         Lista sponsor
                     </a>
-                </li> --}}
+                </li>
+
                 @endauth
                 <!-- Dynamic Profile Link -->
                 @auth
