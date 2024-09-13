@@ -5,27 +5,42 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Profile;
 use App\Models\Sponsor;
+use Braintree\Gateway;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class SponsorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    protected $gateway;
+
+    public function __construct()
+    {
+        $this->gateway = new Gateway([
+            'environment' => config('services.braintree.environment'),
+            'merchantId' => config('services.braintree.merchantId'),
+            'publicKey' => config('services.braintree.publicKey'),
+            'privateKey' => config('services.braintree.privateKey'),
+        ]);
+    }
     public function index()
     {
         $sponsors = Sponsor::all();
-
-        return view('sponsors.index', compact('sponsors'));
+        $clientToken = $this->gateway->clientToken()->generate(); // Genera il client token per Braintree
+        return view('sponsors.index', compact('sponsors', 'clientToken'));
     }
 
     /**
      * Attach the sponsor.id to the profile when a user purchase a plan.
      */
+    public function purchase( Sponsor $sponsor)
+    {
+        $profile = Auth::user()->profile; // Ottieni il profilo dell'utente autenticato
+        $sponsorId = $sponsor->id;
+        return redirect()->route('payment.page', ['sponsor' => $sponsorId]);
+    }
 
-    public function purchase(Request $request, Sponsor $sponsor)
+    public function updateSponsorship( Sponsor $sponsor)
     {
         $profile = Auth::user()->profile; // Ottieni il profilo dell'utente autenticato
 

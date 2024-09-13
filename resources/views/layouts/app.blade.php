@@ -24,6 +24,7 @@
             @yield('content')
         </main>
     </div>
+    @yield('script_payment')
     @yield('custom_script')
 </body>
 </html>
