@@ -45,8 +45,8 @@ class ProfileController extends Controller
         if ($request->has('min_vote')) {
             $query->having('votes_avg_vote', '>=', $request->input('min_vote'));
         }
-        if ($request->has('n_reviews')) {
-            $nReviews = $request->input('n_reviews');
+        if ($request->has('reviews_count')) {
+            $nReviews = $request->input('reviews_count');
             $query->having('reviews_count', '>=', $nReviews); // Filtra per il numero minimo di recensioni
         }
 
