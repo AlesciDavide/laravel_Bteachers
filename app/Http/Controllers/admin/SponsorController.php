@@ -33,55 +33,60 @@ class SponsorController extends Controller
     /**
      * Attach the sponsor.id to the profile when a user purchase a plan.
      */
-    public function purchase( Sponsor $sponsor)
+    public function purchase(Sponsor $sponsor)
     {
         $profile = Auth::user()->profile; // Ottieni il profilo dell'utente autenticato
         $sponsorId = $sponsor->id;
         return redirect()->route('payment.page', ['sponsor' => $sponsorId]);
     }
 
-    public function updateSponsorship( Sponsor $sponsor)
+    public function updateSponsorship(Sponsor $sponsor)
     {
         $profile = Auth::user()->profile; // Ottieni il profilo dell'utente autenticato
 
         // Controlla se il profilo ha già acquistato questo sponsor
         $existingSponsorship = $profile->sponsors()->where('profile_id', $profile->id)->get()->last();
-        if($existingSponsorship === null){
+        if ($existingSponsorship === null) {
             $currentDate = null;
-        }else{
+        } else {
             $currentDate = $existingSponsorship->pivot->expiration_date;
         }
 
 
-        if($sponsor->sponsorship_time === 24){
+        if ($sponsor->sponsorship_time === 24) {
             if ($currentDate != null) {
                 $newDateTime = Carbon::parse($currentDate)->addDay(1);
-                }else{
-                    $newDateTime = Carbon::now()->addDay(1);
-                }
-        }elseif($sponsor->sponsorship_time === 72){
+            } else {
+                $newDateTime = Carbon::now()->addDay(1);
+            }
+        } elseif ($sponsor->sponsorship_time === 72) {
             if ($currentDate != null) {
                 $newDateTime = Carbon::parse($currentDate)->addDay(3);
-                }else{
-                    $newDateTime = Carbon::now()->addDay(3);
-                }
-        }else{
+            } else {
+                $newDateTime = Carbon::now()->addDay(3);
+            }
+        } else {
             if ($currentDate != null) {
                 $newDateTime = Carbon::parse($currentDate)->addDay(6);
-                }else{
-                    $newDateTime = Carbon::now()->addDay(6);
-                }
+            } else {
+                $newDateTime = Carbon::now()->addDay(6);
+            }
         };
 
 
 
 
-            // Aggiungi il nuovo sponsor al profilo
-            $profile->sponsors()->attach($sponsor->id, [
-                'sponsorship_time' => $sponsor->sponsorship_time,
-                'expiration_date' => $newDateTime
+        // Aggiungi il nuovo sponsor al profilo
+        $profile->sponsors()->attach($sponsor->id, [
+            'sponsorship_time' => $sponsor->sponsorship_time,
+            'expiration_date' => $newDateTime
 
-            ]);
+        ]);
+
+        $isPremium = $newDateTime->isFuture();
+
+        $profile->is_premium = $isPremium;
+        $profile->save(); // Salva l'aggiornamento nel database
 
         return redirect()->back()->with('message', 'Sponsorship purchased successfully!');
     }
