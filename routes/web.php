@@ -51,5 +51,6 @@ route::middleware('auth')->name('admin.')->prefix('teacher/')->group(
         Route::get('/home', [GuestHomeController::class, 'index'])->name('home');
         Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
         Route::get('/user/update', [UserController::class, 'edit'])->name('user.edit');
+        Route::post('/sponsors/purchase/{sponsor}', [SponsorController::class, 'purchase'])->name('sponsors.purchase');
     }
 );

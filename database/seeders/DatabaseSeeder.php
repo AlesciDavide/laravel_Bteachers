@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
             SponsorSeeder::class,
             SpecializationSeeder::class,
             ProfileSpecializationSeeder::class,
-            ProfileSponsorSeeder::class,
             ProfileVoteSeeder::class,
         ]);
     }

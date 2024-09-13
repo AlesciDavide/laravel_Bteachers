@@ -33,6 +33,8 @@ class ProfileController extends Controller
         $specializations = Specialization::all();
         $sponsors = Sponsor::all();
         $votes = Vote::all();
+        $existingSponsorship = $profile->sponsors()->where('profile_id', $profile->id)->get()->last();
+        dd($existingSponsorship);
 
 
 

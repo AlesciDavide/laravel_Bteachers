@@ -14,11 +14,15 @@ class Sponsor extends Model
         'price',
         'level',
         'sponsorship_time',
+        'expiration_date',
     ];
 
     // relation with profiles_table
     public function profiles(): BelongsToMany
     {
-        return $this->belongsToMany(Profile::class);
+        return $this->belongsToMany(Profile::class)
+            ->withPivot('sponsorship_time')
+            ->withPivot('expiration_date')
+            ->withTimestamps();
     }
 }
