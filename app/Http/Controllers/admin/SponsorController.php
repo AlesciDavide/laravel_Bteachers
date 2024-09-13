@@ -30,16 +30,32 @@ class SponsorController extends Controller
         $profile = Auth::user()->profile; // Ottieni il profilo dell'utente autenticato
 
         // Controlla se il profilo ha già acquistato questo sponsor
-        /* $existingSponsorship = $profile->sponsors()->where('sponsor_id', $sponsor->id)->first(); */
-        if($sponsor->sponsorship_time === 24){
-
-            $newDateTime = Carbon::now()->addDay(1);
-        }elseif($sponsor->sponsorship_time === 72){
-
-            $newDateTime = Carbon::now()->addDay(3);
+        $existingSponsorship = $profile->sponsors()->where('profile_id', $profile->id)->get()->last();
+        if($existingSponsorship === null){
+            $currentDate = null;
         }else{
+            $currentDate = $existingSponsorship->pivot->expiration_date;
+        }
 
-            $newDateTime = Carbon::now()->addDay(6);
+
+        if($sponsor->sponsorship_time === 24){
+            if ($currentDate != null) {
+                $newDateTime = Carbon::parse($currentDate)->addDay(1);
+                }else{
+                    $newDateTime = Carbon::now()->addDay(1);
+                }
+        }elseif($sponsor->sponsorship_time === 72){
+            if ($currentDate != null) {
+                $newDateTime = Carbon::parse($currentDate)->addDay(3);
+                }else{
+                    $newDateTime = Carbon::now()->addDay(3);
+                }
+        }else{
+            if ($currentDate != null) {
+                $newDateTime = Carbon::parse($currentDate)->addDay(6);
+                }else{
+                    $newDateTime = Carbon::now()->addDay(6);
+                }
         };
 
 
