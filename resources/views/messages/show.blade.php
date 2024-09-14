@@ -14,17 +14,17 @@
                     <h6 class="card-subtitle text-muted">{{ $message->email }}</h6>
                 </div>
                 <div class="card-body">
-                    <!-- Testo completo del messaggio -->
+                    <!-- Message Text -->
                     <p class="card-text">
                         {{ $message->message_text }}
                     </p>
                     <p class="card-text">
                         <i class="bi bi-telephone me-2"></i>
-                        <small class="text-muted">Telefono: {{ $message->telephone_number }}</small>
-                    </p>
+                        <small class="text-muted">Telephone : {{ $message->telephone_number }}</small>
+                    </p>elefono
                     <p class="card-text">
                         <i class="bi bi-calendar me-2"></i>
-                        <small class="text-muted">Ricevuto il: {{ $message->created_at->format('d/m/Y H:i') }}</small>
+                        <small class="text-muted">Recived on: {{ $message->created_at->format('d/m/Y H:i') }}</small>
                     </p>
                 </div>
                 <div class="card-footer text-end">

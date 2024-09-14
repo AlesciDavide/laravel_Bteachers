@@ -84,10 +84,10 @@
     width: 80vw;
 }
 
-/* General styles for the index of messages */
+/* Style for index-messages */
 div.index-messages {
 
-    /* Alert box styling */
+
     .alert {
         border-radius: 10px;
         background-color: #e9f5ff;
@@ -99,7 +99,6 @@ div.index-messages {
         margin-bottom: 10px;
     }
 
-    /* List group item styling */
     .list-group-item {
         border-radius: 10px;
         transition: background-color 0.3s ease, transform 0.2s ease;
@@ -131,7 +130,6 @@ div.index-messages {
         color: #1fa140 !important;
     }
 
-    /* Button styling */
     .btn-secondary {
         background-color: #0373e2;
         border-color: #0373e2;
@@ -169,24 +167,20 @@ div.index-messages {
     }
 }
 
-
+/* Style for show-message */
 div.show-message {
     .card {
         border-radius: 10px;
         background-color: #f0f4f8;
-        /* Colore di sfondo leggero */
         border: 1px solid #dee2e6;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        /* Aumentata l'ombra */
         transition: background-color 0.3s ease, transform 0.2s ease;
         margin-bottom: 20px;
     }
 
     .card:hover {
         background-color: #e9f1f7;
-        /* Colore al passaggio del mouse */
         transform: translateY(-5px);
-        /* Sollevamento */
     }
 
     .card-header {
@@ -219,7 +213,6 @@ div.show-message {
     .card-body .card-text small {
         font-size: 0.85rem;
         color: #1fa140;
-        /* Verde per i dettagli secondari */
     }
 
     .card-footer {
@@ -229,7 +222,6 @@ div.show-message {
         border-radius: 0 0 10px 10px;
     }
 
-    /* Pulsante di ritorno */
     .btn-secondary {
         background-color: #0373e2;
         border-color: #0373e2;
@@ -238,7 +230,6 @@ div.show-message {
         display: flex;
         align-items: center;
         gap: 5px;
-        /* Spazio tra testo e icona */
     }
 
     .btn-secondary:hover {
@@ -251,34 +242,27 @@ div.show-message {
         box-shadow: 0 0 8px rgba(3, 115, 226, 0.4);
     }
 
-    /* Stile per l'icona del pulsante */
     .btn-secondary .bi-arrow-left {
         color: white;
-        /* Colore bianco per maggiore visibilità */
         font-size: 1.2rem;
-        /* Dimensione maggiore per evidenziare l'icona */
     }
 
-    /* Stile per il testo del messaggio */
     .card-body .card-text {
         font-size: 1rem;
         color: #495057;
         word-wrap: break-word;
     }
 
-    /* Stile per le icone all'interno del messaggio */
     .card-body .bi {
         font-size: 1.5rem;
         margin-right: 10px;
         color: #0373e2;
-        /* Blu per maggiore visibilità */
         transition: color 0.3s ease;
     }
 
-    /* Hover sulle icone per renderle più visibili */
+
     .card-body .bi:hover {
         color: #005bb5;
-        /* Colore più scuro al passaggio del mouse */
     }
 
     .card-body .bi-telephone {
@@ -290,7 +274,7 @@ div.show-message {
     }
 }
 
-/* Stili per l'index delle recensioni */
+/* Style for reviews Index */
 div.index-reviews {
     .list-group-item {
         border-radius: 10px;
@@ -319,7 +303,6 @@ div.index-reviews {
         color: #636262;
     }
 
-    /* Paginazione */
     div.d-flex.justify-content-center {
         margin-top: 20px;
     }
@@ -337,7 +320,7 @@ div.index-reviews {
 }
 
 
-/* Stili per la pagina di dettaglio recensione */
+/* Style for show-Review */
 div.show-review {
     .card {
         border-radius: 10px;
