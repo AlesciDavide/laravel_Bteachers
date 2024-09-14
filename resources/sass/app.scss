@@ -84,12 +84,26 @@
     width: 80vw;
 }
 
-div.index-mail {
+/* General styles for the index of messages */
+div.index-messages {
+
+    /* Alert box styling */
+    .alert {
+        border-radius: 10px;
+        background-color: #e9f5ff;
+        border-color: #b3d9ff;
+        color: #0373e2;
+    }
+
+    .alert h4 {
+        margin-bottom: 10px;
+    }
+
+    /* List group item styling */
     .list-group-item {
         border-radius: 10px;
         transition: background-color 0.3s ease, transform 0.2s ease;
         background-color: #f0f4f8;
-        /* Colore di sfondo leggero */
         margin-bottom: 10px;
         border: 1px solid #dee2e6;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -97,9 +111,7 @@ div.index-mail {
 
     .list-group-item:hover {
         background-color: #e9f1f7;
-        /* Colore di sfondo al passaggio del mouse */
         transform: translateY(-3px);
-        /* Effetto di sollevamento */
     }
 
     .list-group-item h5 {
@@ -119,7 +131,28 @@ div.index-mail {
         color: #1fa140 !important;
     }
 
-    /* Paginazione */
+    /* Button styling */
+    .btn-secondary {
+        background-color: #0373e2;
+        border-color: #0373e2;
+        color: white;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .btn-secondary:hover {
+        background-color: #005bb5;
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary:focus,
+    .btn-secondary:active {
+        box-shadow: 0 0 8px rgba(3, 115, 226, 0.4);
+    }
+
+    /* Pagination styling */
     div.d-flex.justify-content-center {
         margin-top: 20px;
     }
@@ -134,8 +167,8 @@ div.index-mail {
     div.d-flex.justify-content-center .page-item .page-link:hover {
         background-color: #0056b3;
     }
-
 }
+
 
 div.show-message {
     .card {
@@ -254,5 +287,111 @@ div.show-message {
 
     .card-body .bi-calendar {
         color: #007bff;
+    }
+}
+
+/* Stili per l'index delle recensioni */
+div.index-reviews {
+    .list-group-item {
+        border-radius: 10px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        background-color: #f0f4f8;
+        margin-bottom: 10px;
+        border: 1px solid #dee2e6;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .list-group-item:hover {
+        background-color: #e9f1f7;
+        transform: translateY(-3px);
+    }
+
+    .list-group-item h5 {
+        font-weight: 600;
+        color: #0373e2;
+    }
+
+    .list-group-item p {
+        color: #495057;
+    }
+
+    .list-group-item small {
+        color: #636262;
+    }
+
+    /* Paginazione */
+    div.d-flex.justify-content-center {
+        margin-top: 20px;
+    }
+
+    div.d-flex.justify-content-center .page-item .page-link {
+        background-color: #007bff;
+        color: white;
+        border-radius: 50px;
+        transition: background-color 0.3s ease;
+    }
+
+    div.d-flex.justify-content-center .page-item .page-link:hover {
+        background-color: #0056b3;
+    }
+}
+
+
+/* Stili per la pagina di dettaglio recensione */
+div.show-review {
+    .card {
+        border-radius: 10px;
+        background-color: #f0f4f8;
+        border: 1px solid #dee2e6;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+        background-color: #0373e2;
+        color: white;
+        border-bottom: 1px solid #dee2e6;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .card-title {
+        font-weight: 700;
+        font-size: 1.5rem;
+    }
+
+    .card-body {
+        padding: 20px;
+        color: #495057;
+        line-height: 1.6;
+    }
+
+    .card-body .card-text {
+        font-size: 1rem;
+    }
+
+    .card-footer {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-top: 1px solid #dee2e6;
+        border-radius: 0 0 10px 10px;
+    }
+
+    .btn-secondary {
+        background-color: #0373e2;
+        border-color: #0373e2;
+        color: white;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .btn-secondary:hover {
+        background-color: #005bb5;
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary:focus,
+    .btn-secondary:active {
+        box-shadow: 0 0 8px rgba(3, 115, 226, 0.4);
     }
 }

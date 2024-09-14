@@ -22,7 +22,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.reviews.index') ? 'active text-primary' : '' }}" href="{{ route('admin.reviews.index')}}" aria-current="page">
-                        Review Index
+                        Your Reviews
                     </a>
                 </li>
                 {{-- <li class="nav-item">

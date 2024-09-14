@@ -2,41 +2,21 @@
 
 @section('content')
 
-<div class="container py-4">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    Dettagli Recensione
-                </div>
-                <div class="card-body">
-                    <table class="table table-dark table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Cognome</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Testo della Recensione</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">{{ $review->id }}</th>
-                                <td>{{ $review->name }}</td>
-                                <td>{{ $review->surname }}</td>
-                                <td>{{ $review->email }}</td>
-                                <td>{{ $review->review_text }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="mt-3">
-                        <a href="{{ route('admin.reviews.index') }}" class="btn btn-primary">
-                            Torna all'elenco delle recensioni
-                        </a>
-                    </div>
-                </div>
-            </div>
+<div class="container py-4 show-review">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            Review Details
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ $review->name }} {{ $review->surname }}</h5>
+            <small class="text-muted">{{ $review->created_at->format('d/m/Y') }}</small>
+            <p class="card-text mt-3">{{ $review->review_text }}</p>
+            <p class="card-text"><strong>Email:</strong> {{ $review->email }}</p>
+        </div>
+        <div class="card-footer">
+            <a href="{{ route('admin.reviews.index') }}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Back to reviews
+            </a>
         </div>
     </div>
 </div>
