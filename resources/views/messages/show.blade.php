@@ -29,7 +29,7 @@
                 </div>
                 <div class="card-footer text-end">
                     <a href="{{ route('admin.messages.index') }}" class="btn btn-secondary">
-                        <i class="bi bi-arrow-left"></i> Torna ai messaggi
+                        <i class="bi bi-arrow-left"></i> Back to messages
                     </a>
                 </div>
             </div>
