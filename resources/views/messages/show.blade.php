@@ -21,7 +21,7 @@
                     <p class="card-text">
                         <i class="bi bi-telephone me-2"></i>
                         <small class="text-muted">Telephone : {{ $message->telephone_number }}</small>
-                    </p>elefono
+                    </p>
                     <p class="card-text">
                         <i class="bi bi-calendar me-2"></i>
                         <small class="text-muted">Recived on: {{ $message->created_at->format('d/m/Y H:i') }}</small>
