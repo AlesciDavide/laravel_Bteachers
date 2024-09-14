@@ -17,7 +17,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.messages.index') ? 'active text-primary' : '' }}" href="{{ route('admin.messages.index')}}" aria-current="page">
-                        Messages
+                        Your Messages
                     </a>
                 </li>
                 <li class="nav-item">
