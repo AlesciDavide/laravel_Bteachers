@@ -1,35 +1,41 @@
 @extends('layouts.app')
-
 @section('content')
 
-<div class="container py-4">
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6">
+<div class="container py-4 show-message">
+
+    <div class="row">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header bg-primary text-white">
-                    Dettagli del Messaggio
+                <div class="card-header">
+                    <h5 class="card-title">
+                        <i class="bi bi-envelope-fill me-2"></i>
+                        {{ $message->name }} {{ $message->surname }}
+                    </h5>
+                    <h6 class="card-subtitle text-muted">{{ $message->email }}</h6>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">{{ $message->name }} {{ $message->surname }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ $message->email }}</h6>
-
-                    <div class="mb-3">
-                        <p class="mb-1"><strong>Numero di Telefono:</strong></p>
-                        <p>{{ $message->telephone_number }}</p>
-                    </div>
-
-                    <div>
-                        <p class="mb-1"><strong>Testo del Messaggio:</strong></p>
-                        <p>{{ $message->message_text }}</p>
-                    </div>
+                    <!-- Testo completo del messaggio -->
+                    <p class="card-text">
+                        {{ $message->message_text }}
+                    </p>
+                    <p class="card-text">
+                        <i class="bi bi-telephone me-2"></i>
+                        <small class="text-muted">Telefono: {{ $message->telephone_number }}</small>
+                    </p>
+                    <p class="card-text">
+                        <i class="bi bi-calendar me-2"></i>
+                        <small class="text-muted">Ricevuto il: {{ $message->created_at->format('d/m/Y H:i') }}</small>
+                    </p>
                 </div>
-                <div class="card-footer text-muted">
-                    <!-- Aggiungi eventuali azioni o note qui -->
+                <div class="card-footer text-end">
+                    <a href="{{ route('admin.messages.index') }}" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Torna ai messaggi
+                    </a>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 
 @endsection
-

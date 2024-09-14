@@ -80,6 +80,179 @@
     opacity: 1;
 }
 
-.inner{
+.inner {
     width: 80vw;
+}
+
+div.index-mail {
+    .list-group-item {
+        border-radius: 10px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        background-color: #f0f4f8;
+        /* Colore di sfondo leggero */
+        margin-bottom: 10px;
+        border: 1px solid #dee2e6;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .list-group-item:hover {
+        background-color: #e9f1f7;
+        /* Colore di sfondo al passaggio del mouse */
+        transform: translateY(-3px);
+        /* Effetto di sollevamento */
+    }
+
+    .list-group-item h5 {
+        font-weight: 600;
+        color: #0373e2;
+    }
+
+    .list-group-item p {
+        color: #495057;
+    }
+
+    .list-group-item small {
+        color: #636262;
+    }
+
+    .list-group-item .text-muted {
+        color: #1fa140 !important;
+    }
+
+    /* Paginazione */
+    div.d-flex.justify-content-center {
+        margin-top: 20px;
+    }
+
+    div.d-flex.justify-content-center .page-item .page-link {
+        background-color: #007bff;
+        color: white;
+        border-radius: 50px;
+        transition: background-color 0.3s ease;
+    }
+
+    div.d-flex.justify-content-center .page-item .page-link:hover {
+        background-color: #0056b3;
+    }
+
+}
+
+div.show-message {
+    .card {
+        border-radius: 10px;
+        background-color: #f0f4f8;
+        /* Colore di sfondo leggero */
+        border: 1px solid #dee2e6;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /* Aumentata l'ombra */
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        margin-bottom: 20px;
+    }
+
+    .card:hover {
+        background-color: #e9f1f7;
+        /* Colore al passaggio del mouse */
+        transform: translateY(-5px);
+        /* Sollevamento */
+    }
+
+    .card-header {
+        background-color: #0373e2;
+        color: white;
+        border-bottom: 1px solid #dee2e6;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .card-title {
+        font-weight: 700;
+        font-size: 1.25rem;
+    }
+
+    .card-subtitle {
+        color: #d9e8f7;
+        font-size: 0.9rem;
+    }
+
+    .card-body {
+        padding: 20px;
+        color: #495057;
+        line-height: 1.6;
+    }
+
+    .card-body .card-text {
+        margin-bottom: 15px;
+    }
+
+    .card-body .card-text small {
+        font-size: 0.85rem;
+        color: #1fa140;
+        /* Verde per i dettagli secondari */
+    }
+
+    .card-footer {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-top: 1px solid #dee2e6;
+        border-radius: 0 0 10px 10px;
+    }
+
+    /* Pulsante di ritorno */
+    .btn-secondary {
+        background-color: #0373e2;
+        border-color: #0373e2;
+        color: white;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        /* Spazio tra testo e icona */
+    }
+
+    .btn-secondary:hover {
+        background-color: #005bb5;
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary:focus,
+    .btn-secondary:active {
+        box-shadow: 0 0 8px rgba(3, 115, 226, 0.4);
+    }
+
+    /* Stile per l'icona del pulsante */
+    .btn-secondary .bi-arrow-left {
+        color: white;
+        /* Colore bianco per maggiore visibilità */
+        font-size: 1.2rem;
+        /* Dimensione maggiore per evidenziare l'icona */
+    }
+
+    /* Stile per il testo del messaggio */
+    .card-body .card-text {
+        font-size: 1rem;
+        color: #495057;
+        word-wrap: break-word;
+    }
+
+    /* Stile per le icone all'interno del messaggio */
+    .card-body .bi {
+        font-size: 1.5rem;
+        margin-right: 10px;
+        color: #0373e2;
+        /* Blu per maggiore visibilità */
+        transition: color 0.3s ease;
+    }
+
+    /* Hover sulle icone per renderle più visibili */
+    .card-body .bi:hover {
+        color: #005bb5;
+        /* Colore più scuro al passaggio del mouse */
+    }
+
+    .card-body .bi-telephone {
+        color: #1fa140;
+    }
+
+    .card-body .bi-calendar {
+        color: #007bff;
+    }
 }
