@@ -10,6 +10,7 @@ use App\Models\Specialization;
 use App\Models\User;
 use App\Models\Vote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
@@ -84,23 +85,65 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-
+        // store reviews
         if(!empty($data['reviews'])) {
             foreach ($data['reviews'] as $reviewData) {
-                $review = Review::create($reviewData);
-                $review->save();
+            // review data validation
+            $validator = Validator::make($reviewData, [
+                'profile_id' => 'required|exists:profiles,id',
+                'name' => 'nullable|string|min:3|max:100',
+                'surname' => 'nullable|string|min:3|max:100',
+                'email' => 'required|string|max:255',
+                'review_text' => 'required|max:3000',
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'error' => 'Errore in review data',
+                ],);
+            }
+            // create review
+            $review = Review::create($reviewData);
+            $review->save();
             }
         }
+        // store messages
         if(!empty($data['messages'])) {
             foreach ($data['messages'] as $messageData) {
-                $message = Message::create($messageData);
-                $message->save();
+            // message data validation
+            $validator = Validator::make($messageData, [
+                'profile_id' => 'required|exists:profiles,id',
+                'name' => 'nullable|string|min:3|max:100',
+                'surname' => 'nullable|string|min:3|max:100',
+                'email' => 'required|string|max:255',
+                'telephone_number' => 'nullable|min:6|max:20',
+                'message_text' => 'required|max:3000',
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'error' => 'Errore in message data',
+                ],);
+            }
+            // create message
+            $message = Message::create($messageData);
+            $message->save();
             }
         }
         if(!empty($data['votes'])) {
             foreach ($data['votes'] as $voteData) {
-                $profile = Profile::findOrFail($voteData['profile_id']);
-                $profile->votes()->attach($data['votes']);
+            // vote data validation
+            $validator = Validator::make($voteData, [
+                'profile_id' => 'required|exists:profiles,id',
+                'vote_id' => 'required|exists:votes,id',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'error' => 'Errore nei dati del vote',
+                ],);
+            }
+
+            $profile = Profile::findOrFail($voteData['profile_id']);
+            $profile->votes()->attach($data['votes']);
             }
         }
     }
