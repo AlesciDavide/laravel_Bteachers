@@ -11,6 +11,7 @@ use App\Models\Specialization;
 use App\Models\Sponsor;
 use App\Models\User;
 use App\Models\Vote;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -28,13 +29,12 @@ class ProfileController extends Controller
         $profile = Profile::where('user_id', $user->id)->first();
         if (!$profile) {
             return redirect()->route('admin.profiles.create')
-                            ->with('message', 'Il profilo non esiste. Verrai reindirizzato alla pagina principale.');
-                        }
+                ->with('message', 'Il profilo non esiste. Verrai reindirizzato alla pagina principale.');
+        }
         $specializations = Specialization::all();
         $sponsors = Sponsor::all();
         $votes = Vote::all();
         $existingSponsorship = $profile->sponsors()->where('profile_id', $profile->id)->get()->last();
-        dd($existingSponsorship);
 
 
 
@@ -96,6 +96,8 @@ class ProfileController extends Controller
 
         $profile = Profile::with('votes')->findOrFail($profile->id);
         $votes = Vote::all(); // Voti disponibili (1-5)
+        $profile->checkAndUpdatePremiumStatus();
+
         return view('profiles.show', compact('profile', 'votes'));
     }
 

@@ -3,7 +3,6 @@
 @section('content')
 <div class="container py-5">
     <div class="row justify-content-center">
-        @foreach ($sponsors as $sponsor)
         <div class="col-md-6 col-lg-4 mb-4">
             <div class="card h-100 shadow-lg border-0 rounded-3">
                 <div class="card-body text-center">
@@ -21,7 +20,7 @@
                     <form id="payment-form-{{ $sponsor->id }}" action="{{ route('admin.payment.checkout', ['sponsor' => $sponsor->id]) }}" method="POST">
                         @csrf
                         <div id="dropin-container-{{ $sponsor->id }}"></div>
-                        <input type="hidden" name="payment_method_nonce" id="nonce-{{ $sponsor->id }}">
+                        <input type="hidden" name="payment_method_nonce" >
                         <button type="submit" class="btn btn-lg btn-outline-primary rounded-pill px-4">Select Plan</button>
                     </form>
                 </div>
@@ -30,7 +29,6 @@
                 </div>
             </div>
         </div>
-        @endforeach
     </div>
 </div>
 @endsection

@@ -10,6 +10,7 @@ use App\Http\Controllers\admin\SpecializationController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\VoteController;
 use App\Http\Controllers\HomeController as GuestHomeController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -51,6 +52,14 @@ route::middleware('auth')->name('admin.')->prefix('teacher/')->group(
         Route::get('/home', [GuestHomeController::class, 'index'])->name('home');
         Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
         Route::get('/user/update', [UserController::class, 'edit'])->name('user.edit');
+
+
+        /* Route::post('/sponsors/purchase/{sponsor}', [SponsorController::class, 'purchase'])->name('sponsors.purchase');
+        Route::get('sponsors', [PaymentController::class, 'index'])->name('sponsors.index');
+        Route::post('/payment/checkout/{sponsor}', [PaymentController::class, 'checkout'])->name('payment.checkout'); */
+
         Route::post('/sponsors/purchase/{sponsor}', [SponsorController::class, 'purchase'])->name('sponsors.purchase');
+        Route::get('/sponsors/payment', [PaymentController::class, 'showPaymentPage'])->name('payment.page');
+        Route::post('/sponsors/payment/checkout/{sponsor}', [PaymentController::class, 'checkout'])->name('payment.checkout');
     }
 );

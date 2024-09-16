@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,6 +19,7 @@ class Profile extends Model
         "telephone_number",
         "service",
         "visible",
+        "is_premium"
     ];
 
     // relation with users_table
@@ -54,5 +56,20 @@ class Profile extends Model
     public function messages()
     {
         return $this->hasMany(Message::class);
+    }
+
+    public function checkAndUpdatePremiumStatus()
+    {
+        $existingSponsorship = $this->sponsors()->orderBy('pivot_expiration_date', 'desc')->first();
+        if ($existingSponsorship === null || Carbon::now()->gt($existingSponsorship->pivot->expiration_date)) {
+            // Nessuna sponsorizzazione attiva o scaduta
+            $this->is_premium = false;
+        } else {
+            // Sponsorizzazione attiva
+            $this->is_premium = true;
+        }
+
+        // Salva il cambiamento nel database
+        $this->save();
     }
 }
