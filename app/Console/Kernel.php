@@ -15,7 +15,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('premium:update')->daily();
+        // $schedule->command('app:update-premium-status')->daily();
+        $schedule->command('app:update-premium-status')->everyMinute();
     }
 
     /**
