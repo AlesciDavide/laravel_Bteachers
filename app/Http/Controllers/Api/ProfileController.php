@@ -10,6 +10,7 @@ use App\Models\Specialization;
 use App\Models\User;
 use App\Models\Vote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
@@ -82,11 +83,25 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-
+        // store review
         if(!empty($data['reviews'])) {
             foreach ($data['reviews'] as $reviewData) {
-                $review = Review::create($reviewData);
-                $review->save();
+            // review data validation
+            $validator = Validator::make($reviewData, [
+                'profile_id' => 'required|exists:profiles,id',
+                'name' => 'nullable|string|min:3|max:100',
+                'surname' => 'nullable|string|min:3|max:100',
+                'email' => 'required|string|max:255',
+                'review_text' => 'required|max:3000',
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'error' => 'Errore in review data',
+                ],);
+            }
+            // create review
+            $review = Review::create($reviewData);
+            $review->save();
             }
         }
         if(!empty($data['messages'])) {
