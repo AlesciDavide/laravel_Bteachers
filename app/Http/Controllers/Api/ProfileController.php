@@ -128,8 +128,20 @@ class ProfileController extends Controller
         }
         if(!empty($data['votes'])) {
             foreach ($data['votes'] as $voteData) {
-                $profile = Profile::findOrFail($voteData['profile_id']);
-                $profile->votes()->attach($data['votes']);
+            // vote data validation
+            $validator = Validator::make($voteData, [
+                'profile_id' => 'required|exists:profiles,id',
+                'vote_id' => 'required|exists:votes,id',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'error' => 'Errore nei dati del vote',
+                ],);
+            }
+
+            $profile = Profile::findOrFail($voteData['profile_id']);
+            $profile->votes()->attach($data['votes']);
             }
         }
     }
