@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\HomePageProfilePremiumController;
 use App\Http\Controllers\Api\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/profiles', [ProfileController::class, 'index'])->name('api.profiles.index');
+route::get('/profiles/premium', [HomePageProfilePremiumController::class, 'getPremiumProfiles'])->name('api.profiles.premium');
 Route::get('/profiles/search', [ProfileController::class, 'profileSearch'])->name('api.profile.search');
 Route::get('/profiles/{profile}', [ProfileController::class, 'show'])->name('api.profiles.show');
 Route::post('/profiles/{profile}', [ProfileController::class, 'store'])->name('api.profile.store');

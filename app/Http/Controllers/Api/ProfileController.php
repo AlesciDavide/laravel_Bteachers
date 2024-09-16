@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Validator;
 class ProfileController extends Controller
 {
 
-    public function index(Request $request)
+    public function index(Request $request, Profile $profile)
     {
         $query = Profile::with("user", "reviews", "votes", "messages", "sponsors", "specializations")
             ->withCount('reviews')
@@ -60,7 +60,9 @@ class ProfileController extends Controller
             }
         }
 
-        $profiles = $query->paginate(9);
+
+        $profiles = $query
+        ->orderBy('is_premium','DESC')->paginate(9);
 
 
     return response()->json([
