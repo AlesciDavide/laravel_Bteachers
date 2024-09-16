@@ -83,7 +83,7 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        // store review
+        // store reviews
         if(!empty($data['reviews'])) {
             foreach ($data['reviews'] as $reviewData) {
             // review data validation
@@ -104,10 +104,26 @@ class ProfileController extends Controller
             $review->save();
             }
         }
+        // store messages
         if(!empty($data['messages'])) {
             foreach ($data['messages'] as $messageData) {
-                $message = Message::create($messageData);
-                $message->save();
+            // message data validation
+            $validator = Validator::make($messageData, [
+                'profile_id' => 'required|exists:profiles,id',
+                'name' => 'nullable|string|min:3|max:100',
+                'surname' => 'nullable|string|min:3|max:100',
+                'email' => 'required|string|max:255',
+                'telephone_number' => 'nullable|min:6|max:20',
+                'message_text' => 'required|max:3000',
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    'error' => 'Errore in message data',
+                ],);
+            }
+            // create message
+            $message = Message::create($messageData);
+            $message->save();
             }
         }
         if(!empty($data['votes'])) {
