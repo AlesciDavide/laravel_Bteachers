@@ -46,8 +46,9 @@ class PaymentController extends Controller
         if ($result->success) {
             // Aggiorna il database solo se il pagamento è riuscito
             app('App\Http\Controllers\admin\SponsorController')->updateSponsorship($sponsor);
+            $expirationData = $profile->sponsors()->orderBy('pivot_expiration_date', 'desc')->first();
             /* return response()->json(['success' => true, 'transaction' => $result->transaction]); */
-            return view('profiles.show', compact('profile', 'votes'));
+            return view('profiles.show', compact('profile', 'votes', 'expirationData'));
         } else {
             return response()->json(['success' => false, 'error' => $result->message]);
         }

@@ -34,10 +34,7 @@
                                         {{ $profile->visible ? 'Yes' : 'No' }}
                                     </span>
                                 </li>
-                                @if ($profile->is_premium)
-                                <li class="list-group-item"><strong>Premium</strong>
-                                </li>
-                                @endif
+
                                 <li class="list-group-item"><strong>Average vote:</strong>
                                     @php
                                         $voteArray = [];
@@ -50,6 +47,17 @@
                                     @endphp
                                     <span class="badge bg-info">{{ $mediaFinale }}</span>
                                 </li>
+                                @if ($profile->is_premium)
+                                <li class="list-group-item"><strong>Premium expiration date:</strong>
+                                    {{substr($expirationData->pivot->expiration_date, 0, -9)}}
+                                </li>
+                                @else
+                                <li class="list-group-item d-flex justify-content-center">
+                                    <a class="nav-link {{ request()->routeIs('admin.sponsors.index') ? 'active text-primary' : '' }}" href="{{ route('admin.sponsors.index') }}">
+                                       <strong class="btn btn-outline-primary"> --> Purchase premium sponsorship <-- </strong>
+                                    </a>
+                                </li>
+                                @endif
 
                             </ul>
                         </div>
