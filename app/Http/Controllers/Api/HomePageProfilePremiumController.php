@@ -11,7 +11,9 @@ class HomePageProfilePremiumController extends Controller
     public function getPremiumProfiles(Request $request)
 {
     // Recupera solo gli utenti con profilo premium
-    $premiumProfiles = Profile::where('is_premium', true)->with("user", "reviews", "votes", "messages", "sponsors", "specializations")->paginate(5);
+    $premiumProfiles = Profile::where('is_premium', true)->with("user", "reviews", "votes", "messages", "sponsors", "specializations")
+    ->withAvg('votes', 'vote')
+    ->paginate(5);
 
     // Restituisce i risultati come JSON
     return response()->json([
