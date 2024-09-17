@@ -20,8 +20,8 @@
                     <form id="payment-form-{{ $sponsor->id }}" action="{{ route('admin.payment.checkout', ['sponsor' => $sponsor->id]) }}" method="POST">
                         @csrf
                         <div id="dropin-container-{{ $sponsor->id }}"></div>
-                        <input type="hidden" name="payment_method_nonce" >
-                        <button type="submit" class="btn btn-lg btn-outline-primary rounded-pill px-4">Select Plan</button>
+                        <input type="hidden" name="payment_method_nonce" id="nonce-{{ $sponsor->id }}">
+                        <button type="submit" class="btn btn-lg btn-outline-primary rounded-pill px-4">Pay Now</button>
                     </form>
                 </div>
                 <div class="card-footer bg-transparent border-0 text-center py-3">

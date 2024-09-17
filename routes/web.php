@@ -40,7 +40,7 @@ Route::post('profiles/{id}/vote', [ProfileController::class, 'storeVote'])->name
 
 route::middleware('auth')->name('admin.')->prefix('teacher/')->group(
 
-    function () {
+     function () {
         /* rotte protette */
         route::get("specializations", [SpecializationController::class, "index"])->name("specializations.index");
         Route::resource('messages', MessageController::class);
@@ -54,12 +54,8 @@ route::middleware('auth')->name('admin.')->prefix('teacher/')->group(
         Route::get('/user/update', [UserController::class, 'edit'])->name('user.edit');
 
 
-        /* Route::post('/sponsors/purchase/{sponsor}', [SponsorController::class, 'purchase'])->name('sponsors.purchase');
-        Route::get('sponsors', [PaymentController::class, 'index'])->name('sponsors.index');
-        Route::post('/payment/checkout/{sponsor}', [PaymentController::class, 'checkout'])->name('payment.checkout'); */
 
-        Route::post('/sponsors/purchase/{sponsor}', [SponsorController::class, 'purchase'])->name('sponsors.purchase');
-        Route::get('/sponsors/payment', [PaymentController::class, 'showPaymentPage'])->name('payment.page');
-        Route::post('/sponsors/payment/checkout/{sponsor}', [PaymentController::class, 'checkout'])->name('payment.checkout');
+        Route::get('/sponsors/payment/{sponsor}', [PaymentController::class, 'showPaymentPage'])->name('payment.show');
+        Route::post('/sponsors/checkout/{sponsor}', [PaymentController::class, 'checkout'])->name('payment.checkout');
     }
 );
