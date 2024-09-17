@@ -50,7 +50,9 @@ class PaymentController extends Controller
             /* return response()->json(['success' => true, 'transaction' => $result->transaction]); */
             return view('profiles.show', compact('profile', 'votes', 'expirationData'));
         } else {
-            return response()->json(['success' => false, 'error' => $result->message]);
+            $sponsors = Sponsor::all();
+            $clientToken = $this->gateway->clientToken()->generate(); // Genera il client token per Braintree
+            return view('sponsors.index', compact('sponsors', 'clientToken'));
         }
     }
 }
