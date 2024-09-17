@@ -17,13 +17,8 @@
                         <small class="text-muted">Sponsorship Time: {{ $sponsor->sponsorship_time }} hours</small>
                     </p>
 
-                    <!-- Form di pagamento -->
-                    <form id="payment-form-{{ $sponsor->id }}" action="{{ route('admin.payment.checkout', ['sponsor' => $sponsor->id]) }}" method="POST">
-                        @csrf
-                        <div id="dropin-container-{{ $sponsor->id }}"></div>
-                        <input type="hidden" name="payment_method_nonce" id="nonce-{{ $sponsor->id }}">
-                        <button type="submit" class="btn btn-lg btn-outline-primary rounded-pill px-4">Select Plan</button>
-                    </form>
+                    <!-- Link alla pagina di pagamento -->
+                    <a href="{{ route('admin.payment.show', ['sponsor' => $sponsor->id]) }}" class="btn btn-lg btn-outline-primary rounded-pill px-4">Select Plan</a>
                 </div>
                 <div class="card-footer bg-transparent border-0 text-center py-3">
                     <small class="text-muted">Best for {{ $sponsor->level > 1 ? 'advanced' : 'beginners' }}</small>
@@ -33,15 +28,4 @@
         @endforeach
     </div>
 </div>
-@endsection
-
-@section('custom_script')
-@vite('resources/js/validation/payment.js')
-@endsection
-
-@section('script_payment')
-<script src="https://js.braintreegateway.com/web/dropin/1.32.0/js/dropin.min.js"></script>
-<script>
-    window.clientToken = '{{ $clientToken }}';
-</script>
 @endsection

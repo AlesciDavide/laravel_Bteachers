@@ -23,13 +23,12 @@ class PaymentController extends Controller
         ]);
     }
 
-    public function showPaymentPage(Request $request)
-    {
-        $sponsorId = $request->query('sponsor');
-        $sponsor = Sponsor::findOrFail($sponsorId);
-        $clientToken = $this->gateway->clientToken()->generate();
-        return view('payment', compact('clientToken', 'sponsor'));
-    }
+    public function showPaymentPage($sponsorId)
+{
+    $sponsor = Sponsor::findOrFail($sponsorId);
+    $clientToken = $this->gateway->clientToken()->generate();
+    return view('sponsors.payment', compact('clientToken', 'sponsor'));
+}
 
     public function checkout(Request $request, $sponsorId, Profile $profile)
     {
