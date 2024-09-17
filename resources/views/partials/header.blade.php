@@ -37,6 +37,12 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('admin.profile.statistics') ? 'active text-primary' : '' }}" href="{{ route('admin.profile.statistics') }}">
+                        Your Statistics
+                    </a>
+                </li>
+
                 @endauth
                 <!-- Dynamic Profile Link -->
                 @auth

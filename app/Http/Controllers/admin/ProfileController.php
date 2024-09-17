@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Models\Message;
 use App\Models\Profile;
+use App\Models\Review;
 use App\Models\Specialization;
 use App\Models\Sponsor;
 use App\Models\User;
@@ -14,6 +15,7 @@ use App\Models\Vote;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
@@ -176,5 +178,32 @@ class ProfileController extends Controller
         Storage::disk('public')->delete($profile->photo);
         Storage::disk('public')->delete($profile->cv);
         return redirect()->route('admin.profiles.create')->with('message', "Profile has been Deleted");
+    }
+
+    public function statisticsPage()
+    {
+
+        $user = auth()->user();
+        $profile = $user->profile;
+
+        // Conta i messaggi e recensioni per mese/anno
+        $messagesPerMonth = Message::where('profile_id', $profile->id)
+            ->selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as count')
+            ->groupBy('year', 'month')
+            ->get();
+
+        $reviewsPerMonth = Review::where('profile_id', $profile->id)
+            ->selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as count')
+            ->groupBy('year', 'month')
+            ->get();
+
+        // Fasce di voto per mese/anno
+        $votesPerMonth = DB::table('profile_vote')
+            ->where('profile_id', $profile->id)
+            ->selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as count, vote_id')
+            ->groupBy('year', 'month', 'vote_id')
+            ->get();
+
+        return view('profiles.statistic', compact('messagesPerMonth', 'reviewsPerMonth', 'votesPerMonth'));
     }
 }
