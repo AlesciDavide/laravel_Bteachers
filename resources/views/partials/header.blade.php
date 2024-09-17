@@ -33,7 +33,13 @@
 
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.sponsors.index') ? 'active text-primary' : '' }}" href="{{ route('admin.sponsors.index') }}">
-                        Lista sponsor
+                        Subscribe
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('admin.profile.statistics') ? 'active text-primary' : '' }}" href="{{ route('admin.profile.statistics') }}">
+                        Your Statistics
                     </a>
                 </li>
 
