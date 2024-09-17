@@ -39,15 +39,17 @@
                             @if($profile)
                                 <!-- If user has a profile, show "My Profile" button -->
                                 <a href="{{ route('admin.profiles.show', ['profile' => $profile->id]) }}" class="btn btn-outline-primary btn-lg w-100 mb-3">My Profile</a>
+                                <div >
+                                    <a href="{{route('admin.profile.statistics') }}" class="btn btn-primary btn-lg w-100 mb-3">Go to Statistics Page</a>
+                                </div>
                             @else
                                 <!-- If no profile, show "Create Profile" button -->
                                 <a href="{{ route('admin.profiles.create') }}" class="btn btn-outline-primary btn-lg w-100 mb-3">Create Profile</a>
+
                             @endif
                         </div>
 
-                        <div class="col-md-6">
-                            <a href="#" class="btn btn-primary btn-lg w-100 mb-3">Go to Statistics Page</a>
-                        </div>
+
                     </div>
 
                 </div>

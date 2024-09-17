@@ -187,6 +187,10 @@ class ProfileController extends Controller
         $user = auth()->user();
         $profile = $user->profile;
 
+        if (!$profile = $user->profile) {
+            return view('home');
+        }
+
         // Conta i messaggi e recensioni per mese/anno
         $messagesPerMonth = Message::where('profile_id', $profile->id)
             ->selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as count')
@@ -205,6 +209,7 @@ class ProfileController extends Controller
             ->orderBy('year')
             ->orderBy('month')
             ->get();
+
 
         return view('profiles.statistic', compact('messagesPerMonth', 'reviewsPerMonth', 'votesPerMonth'));
     }
