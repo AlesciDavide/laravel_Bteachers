@@ -34,6 +34,10 @@
                                         {{ $profile->visible ? 'Yes' : 'No' }}
                                     </span>
                                 </li>
+                                @if ($profile->is_premium)
+                                <li class="list-group-item"><strong>Premium</strong>
+                                </li>
+                                @endif
                                 <li class="list-group-item"><strong>Average vote:</strong>
                                     @php
                                         $voteArray = [];
