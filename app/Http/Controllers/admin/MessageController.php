@@ -20,7 +20,7 @@ class MessageController extends Controller
             return redirect()->route('admin.profiles.create')->with('error', 'Profile not found');
         }
         // Recupera i messaggi associati al profilo dell'utente
-        $messages = Message::where('profile_id', $profile->id)->paginate(5);
+        $messages = Message::where('profile_id', $profile->id)->orderBy('created_at', 'desc')->paginate(5);
 
         return view('messages.index', compact('messages'));
     }

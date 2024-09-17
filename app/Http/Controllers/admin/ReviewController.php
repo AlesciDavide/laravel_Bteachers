@@ -23,7 +23,7 @@ class ReviewController extends Controller
             return redirect()->route('admin.profiles.create')->with('error', 'Profile not found');
         }
         // Recupera le reviews associati al profilo dell'utente
-        $reviews = Review::where('profile_id', $profile->id)->paginate(5);
+        $reviews = Review::where('profile_id', $profile->id)->orderBy('created_at', 'desc')->paginate(5);
 
         return view('reviews.index', compact("reviews"));
     }
