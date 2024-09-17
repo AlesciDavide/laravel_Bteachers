@@ -12,38 +12,6 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
-                @auth
-
-
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.messages.index') ? 'active text-primary' : '' }}" href="{{ route('admin.messages.index')}}" aria-current="page">
-                        Your Messages
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.reviews.index') ? 'active text-primary' : '' }}" href="{{ route('admin.reviews.index')}}" aria-current="page">
-                        Your Reviews
-                    </a>
-                </li>
-                {{-- <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.vote.index') ? 'active text-primary' : '' }}" href="{{ route('admin.vote.index') }}">
-                        Lista voti
-                    </a>
-                </li> --}}
-
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.sponsors.index') ? 'active text-primary' : '' }}" href="{{ route('admin.sponsors.index') }}">
-                        Subscribe
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.profile.statistics') ? 'active text-primary' : '' }}" href="{{ route('admin.profile.statistics') }}">
-                        Your Statistics
-                    </a>
-                </li>
-
-                @endauth
                 <!-- Dynamic Profile Link -->
                 @auth
                 @php
@@ -54,6 +22,25 @@
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.profiles.show') ? 'active text-primary' : '' }}" href="{{ route('admin.profiles.show', ['profile' => $profile->id]) }}">
                                 My Profile
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.profile.statistics') ? 'active text-primary' : '' }}" href="{{ route('admin.profile.statistics') }}">
+                                Your Statistics
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.sponsors.index') ? 'active text-primary' : '' }}" href="{{ route('admin.sponsors.index') }}">
+                                Subscribe
+                            </a>
+                        </li><li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.messages.index') ? 'active text-primary' : '' }}" href="{{ route('admin.messages.index')}}" aria-current="page">
+                                Your Messages
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.reviews.index') ? 'active text-primary' : '' }}" href="{{ route('admin.reviews.index')}}" aria-current="page">
+                                Your Reviews
                             </a>
                         </li>
                     @else
