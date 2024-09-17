@@ -95,10 +95,11 @@ class ProfileController extends Controller
         $profile = Profile::where('user_id', $user->id)->first();
 
         $profile = Profile::with('votes')->findOrFail($profile->id);
+        $expirationData = $profile->sponsors()->orderBy('pivot_expiration_date', 'desc')->first();
         $votes = Vote::all(); // Voti disponibili (1-5)
         $profile->checkAndUpdatePremiumStatus();
 
-        return view('profiles.show', compact('profile', 'votes'));
+        return view('profiles.show', compact('profile', 'votes', 'expirationData'));
     }
 
     /* storeVote */
