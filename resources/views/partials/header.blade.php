@@ -43,6 +43,11 @@
                                 Your Reviews
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('admin.profile.payment-history') ? 'active text-primary' : '' }}" href="{{ route('admin.profile.payment-history')}}" aria-current="page">
+                                History Payment
+                            </a>
+                        </li>
                     @else
                         <li class="nav-item">
                             <a class="nav-link text-warning {{ request()->routeIs('admin.profiles.create') ? 'active' : '' }}" href="{{ route('admin.profiles.create') }}">
