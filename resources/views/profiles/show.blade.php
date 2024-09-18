@@ -29,9 +29,9 @@
                                 <li class="list-group-item"><strong>Email:</strong> {{ $profile->user->email }}</li>
                                 <li class="list-group-item"><strong>Telephone:</strong> {{ $profile->telephone_number }}</li>
                                 <li class="list-group-item"><strong>Address:</strong> {{ $profile->address }}</li>
-                                <li class="list-group-item"><strong>Visible:</strong>
+                                <li class="list-group-item"><strong>Your Profile is :</strong>
                                     <span class="badge {{ $profile->visible ? 'bg-success' : 'bg-secondary' }}">
-                                        {{ $profile->visible ? 'Yes' : 'No' }}
+                                        {{ $profile->visible ? 'Public' : 'Private' }}
                                     </span>
                                 </li>
 

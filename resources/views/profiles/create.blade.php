@@ -58,8 +58,8 @@
                         <div class="form-group mb-3">
                             <label for="visible" class="form-label">Profile Visibility</label>
                             <select class="form-select" id="visible" name="visible">
-                                <option selected value="1">Visible</option>
-                                <option value="0">Invisible</option>
+                                <option selected value="1">Public</option>
+                                <option value="0">Private</option>
                             </select>
                         </div>
                         <div class="row mb-3 error_validation_visible">

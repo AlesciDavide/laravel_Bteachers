@@ -9,16 +9,17 @@ use Illuminate\Http\Request;
 class HomePageProfilePremiumController extends Controller
 {
     public function getPremiumProfiles(Request $request)
-{
-    // Recupera solo gli utenti con profilo premium
-    $premiumProfiles = Profile::where('is_premium', true)->with("user", "reviews", "votes", "messages", "sponsors", "specializations")
-    ->withAvg('votes', 'vote')
-    ->paginate(5);
+    {
+        // Recupera solo gli utenti con profilo premium
+        $premiumProfiles = Profile::where('is_premium', true)->with("user", "reviews", "votes", "messages", "sponsors", "specializations")
+            ->withAvg('votes', 'vote')
+            ->where('visible', true)
+            ->paginate(5);
 
-    // Restituisce i risultati come JSON
-    return response()->json([
-        'success' => true,
-        'results' => $premiumProfiles
-    ]);
-}
+        // Restituisce i risultati come JSON
+        return response()->json([
+            'success' => true,
+            'results' => $premiumProfiles
+        ]);
+    }
 }

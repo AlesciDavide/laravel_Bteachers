@@ -53,8 +53,8 @@
                         <div class="form-group mb-3">
                             <label for="visible" class="form-label">Profile Visibility</label>
                             <select class="form-select" id="visible" name="visible">
-                                <option selected value="1" {{ old('visible', $profile->visible) == 1 ? 'selected' : '' }}>Visible</option>
-                                <option value="0" {{ old('visible', $profile->visible) == 0 ? 'selected' : '' }}>Invisible</option>
+                                <option selected value="1" {{ old('visible', $profile->visible) == 1 ? 'selected' : '' }}>Public</option>
+                                <option value="0" {{ old('visible', $profile->visible) == 0 ? 'selected' : '' }}>Private</option>
                             </select>
                         </div>
                         <div class="row mb-3 error_validation_visible">

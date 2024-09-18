@@ -19,29 +19,29 @@ class ProfileController extends Controller
     {
         $query = Profile::with("user", "reviews", "votes", "messages", "sponsors", "specializations")
             ->withCount('reviews')
-            ->withAvg('votes', 'vote');
+            ->withAvg('votes', 'vote')
+            ->where('visible', true); // la query cerca solo coloro che hanno visible true
 
+        // Recupera il valore di searchQuery dal request
+        $searchQuery = $request->input('searchQuery');
 
-    // Recupera il valore di searchQuery dal request
-    $searchQuery = $request->input('searchQuery');
-
-    // Filtro per specializzazione o nome se searchQuery è presente nel request
-    if ($searchQuery) {
-        /*  $query->whereHas('specializations', function ($q) use ($searchQuery) {
+        // Filtro per specializzazione o nome se searchQuery è presente nel request
+        if ($searchQuery) {
+            /*  $query->whereHas('specializations', function ($q) use ($searchQuery) {
             $q->where('name', 'like', "%{$searchQuery}%");
         }) */
-        $query->whereHas('user', function ($q) use ($searchQuery) {
-            $q->where('name', 'like', "%{$searchQuery}%")
-            ->orWhere('surname', 'like', "%{$searchQuery}%");
-        });
-    }
+            $query->whereHas('user', function ($q) use ($searchQuery) {
+                $q->where('name', 'like', "%{$searchQuery}%")
+                    ->orWhere('surname', 'like', "%{$searchQuery}%");
+            });
+        }
 
-    // Filtro per specializzazione se è presente nel request
-    if ($request->has('specialization')) {
-        $query->whereHas('specializations', function ($q) use ($request) {
-            $q->where('field', $request->input('specialization'));
-        });
-    }
+        // Filtro per specializzazione se è presente nel request
+        if ($request->has('specialization')) {
+            $query->whereHas('specializations', function ($q) use ($request) {
+                $q->where('field', $request->input('specialization'));
+            });
+        }
 
         if ($request->has('min_vote')) {
             $query->having('votes_avg_vote', '>=', $request->input('min_vote'));
@@ -62,22 +62,19 @@ class ProfileController extends Controller
 
 
         $profiles = $query
-        ->orderBy('is_premium','DESC')->paginate(9);
+            ->orderBy('is_premium', 'DESC')->paginate(9);
 
 
-    return response()->json([
-        'success' => true,
-        'results' => $profiles
-    ]);
-}
+        return response()->json([
+            'success' => true,
+            'results' => $profiles
+        ]);
+    }
 
     /**
      * Show the form for creating the resource.
      */
-    public function create()
-    {
-
-    }
+    public function create() {}
 
     /**
      * Store the newly created resource in storage.
@@ -86,64 +83,64 @@ class ProfileController extends Controller
     {
         $data = $request->all();
         // store reviews
-        if(!empty($data['reviews'])) {
+        if (!empty($data['reviews'])) {
             foreach ($data['reviews'] as $reviewData) {
-            // review data validation
-            $validator = Validator::make($reviewData, [
-                'profile_id' => 'required|exists:profiles,id',
-                'name' => 'nullable|string|min:3|max:100',
-                'surname' => 'nullable|string|min:3|max:100',
-                'email' => 'required|string|max:255',
-                'review_text' => 'required|max:3000',
-            ]);
-            if ($validator->fails()) {
-                return response()->json([
-                    'error' => 'Errore in review data',
-                ],);
-            }
-            // create review
-            $review = Review::create($reviewData);
-            $review->save();
+                // review data validation
+                $validator = Validator::make($reviewData, [
+                    'profile_id' => 'required|exists:profiles,id',
+                    'name' => 'nullable|string|min:3|max:100',
+                    'surname' => 'nullable|string|min:3|max:100',
+                    'email' => 'required|string|max:255',
+                    'review_text' => 'required|max:3000',
+                ]);
+                if ($validator->fails()) {
+                    return response()->json([
+                        'error' => 'Errore in review data',
+                    ],);
+                }
+                // create review
+                $review = Review::create($reviewData);
+                $review->save();
             }
         }
         // store messages
-        if(!empty($data['messages'])) {
+        if (!empty($data['messages'])) {
             foreach ($data['messages'] as $messageData) {
-            // message data validation
-            $validator = Validator::make($messageData, [
-                'profile_id' => 'required|exists:profiles,id',
-                'name' => 'nullable|string|min:3|max:100',
-                'surname' => 'nullable|string|min:3|max:100',
-                'email' => 'required|string|max:255',
-                'telephone_number' => 'nullable|min:6|max:20',
-                'message_text' => 'required|max:3000',
-            ]);
-            if ($validator->fails()) {
-                return response()->json([
-                    'error' => 'Errore in message data',
-                ],);
-            }
-            // create message
-            $message = Message::create($messageData);
-            $message->save();
+                // message data validation
+                $validator = Validator::make($messageData, [
+                    'profile_id' => 'required|exists:profiles,id',
+                    'name' => 'nullable|string|min:3|max:100',
+                    'surname' => 'nullable|string|min:3|max:100',
+                    'email' => 'required|string|max:255',
+                    'telephone_number' => 'nullable|min:6|max:20',
+                    'message_text' => 'required|max:3000',
+                ]);
+                if ($validator->fails()) {
+                    return response()->json([
+                        'error' => 'Errore in message data',
+                    ],);
+                }
+                // create message
+                $message = Message::create($messageData);
+                $message->save();
             }
         }
-        if(!empty($data['votes'])) {
+        if (!empty($data['votes'])) {
             foreach ($data['votes'] as $voteData) {
-            // vote data validation
-            $validator = Validator::make($voteData, [
-                'profile_id' => 'required|exists:profiles,id',
-                'vote_id' => 'required|exists:votes,id',
-            ]);
+                // vote data validation
+                $validator = Validator::make($voteData, [
+                    'profile_id' => 'required|exists:profiles,id',
+                    'vote_id' => 'required|exists:votes,id',
+                ]);
 
-            if ($validator->fails()) {
-                return response()->json([
-                    'error' => 'Errore nei dati del vote',
-                ],);
-            }
+                if ($validator->fails()) {
+                    return response()->json([
+                        'error' => 'Errore nei dati del vote',
+                    ],);
+                }
 
-            $profile = Profile::findOrFail($voteData['profile_id']);
-            $profile->votes()->attach($data['votes']);
+                $profile = Profile::findOrFail($voteData['profile_id']);
+                $profile->votes()->attach($data['votes']);
             }
         }
     }
@@ -153,7 +150,7 @@ class ProfileController extends Controller
      */
     public function show(Profile $profile)
     {
-        $profile->loadMissing("user","reviews", "votes", "messages", "sponsors", "specializations");
+        $profile->loadMissing("user", "reviews", "votes", "messages", "sponsors", "specializations");
         return response()->json([
             'success' => true,
             'results' => $profile
