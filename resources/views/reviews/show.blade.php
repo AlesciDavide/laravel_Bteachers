@@ -8,7 +8,9 @@
             Review Details
         </div>
         <div class="card-body">
-            <h5 class="card-title">{{ $review->name }} {{ $review->surname }}</h5>
+            <h5 class="card-title">
+                {{ $review->name ?? '' }} {{ $review->surname ?? '' }} {{ $review->name || $review->surname ? '' : 'Anonymous' }}
+            </h5>
             <small class="text-muted">{{ $review->created_at->format('d/m/Y') }}</small>
             <p class="card-text mt-3">{{ $review->review_text }}</p>
             <p class="card-text"><strong>Email:</strong> {{ $review->email }}</p>

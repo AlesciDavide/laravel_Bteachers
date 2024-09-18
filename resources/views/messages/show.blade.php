@@ -9,7 +9,7 @@
                 <div class="card-header">
                     <h5 class="card-title">
                         <i class="bi bi-envelope-fill me-2"></i>
-                        {{ $message->name }} {{ $message->surname }}
+                        {{ $message->name ?? '' }} {{ $message->surname ?? '' }} {{ $message->name || $message->surname ? '' : 'Anonymous' }}
                     </h5>
                     <h6 class="card-subtitle text-muted">{{ $message->email }}</h6>
                 </div>

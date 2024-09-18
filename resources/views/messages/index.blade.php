@@ -21,7 +21,7 @@
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">
                             <i class="bi bi-envelope-fill"></i> <!--Icons Email Bootstrap -->
-                            {{ $message->name }} {{ $message->surname }}
+                            {{ $message->name ?? '' }} {{ $message->surname ?? '' }} {{ $message->name || $message->surname ? '' : 'Anonymous' }}
                         </h5>
                         <small class="text-muted">{{ $message->created_at->format('d/m/Y H:i') }}</small>
                     </div>

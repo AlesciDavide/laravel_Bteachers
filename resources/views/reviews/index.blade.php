@@ -14,7 +14,10 @@
                         @foreach ($reviews as $review)
                         <a href="{{ route('admin.reviews.show', $review->id) }}" class="list-group-item list-group-item-action">
                             <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">{{ $review->name }} {{ $review->surname }}</h5>
+                                <h5 class="mb-1">
+                                    {{ $review->name ?? '' }} {{ $review->surname ?? '' }} {{ $review->name || $review->surname ? '' : 'Anonymous' }}
+                                </h5>
+
                                 <small class="text-muted">{{ $review->created_at->format('d/m/Y') }}</small>
                             </div>
                             <p class="mb-1">{{ \Illuminate\Support\Str::limit($review->review_text, 100) }}</p>
