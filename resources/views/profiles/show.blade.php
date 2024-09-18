@@ -14,7 +14,7 @@
             <!-- Profile Details -->
             <div class="card mb-4">
                 <div class="card-header">
-                    <h2>Profile Details: {{ $profile->user->name }}, {{ $profile->user->surname }}</h2>
+                    <h2> {{ $profile->user->name }}  {{ $profile->user->surname }}</h2>
                 </div>
 
 
@@ -25,12 +25,12 @@
                         </div>
                         <div class="col-md-6">
                             <ul class="list-group">
-                                <li class="list-group-item"><strong>ID:</strong> {{ $profile->id }}</li>
+                                {{-- <li class="list-group-item"><strong>ID:</strong> {{ $profile->id }}</li> --}}
                                 <li class="list-group-item"><strong>Email:</strong> {{ $profile->user->email }}</li>
                                 <li class="list-group-item"><strong>Telephone:</strong> {{ $profile->telephone_number }}</li>
                                 <li class="list-group-item"><strong>Address:</strong> {{ $profile->address }}</li>
                                 <li class="list-group-item"><strong>Your Profile is :</strong>
-                                    <span class="badge {{ $profile->visible ? 'bg-success' : 'bg-secondary' }}">
+                                    <span class="badge {{ $profile->visible ? 'bg-success' : 'bg-warning' }}">
                                         {{ $profile->visible ? 'Public' : 'Private' }}
                                     </span>
                                 </li>
@@ -66,13 +66,17 @@
                     <!-- CV (PDF Display) -->
                     <div class="mb-4">
                         <h5>Curriculum Vitae</h5>
-                        <embed src="{{ asset('storage/' . $profile->cv) }}" width="100%" height="500px" type="application/pdf">
+                        <embed src="{{ asset('storage/' . $profile->cv) }}" width="100%" height="350px" type="application/pdf">
                     </div>
 
                     <!-- Services -->
-                    <div class="mb-4">
-                        <h5>Services</h5>
-                        <p>{{ $profile->service }}</p>
+                    <div class=" card mb-4">
+                        <div class="card-header">
+                            <h5>Your Services</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>{{ $profile->service }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -103,12 +107,13 @@
                         <p>No reviews available.</p>
                     @else
                         <ul class="list-group">
-                            @foreach ($profile->reviews as $review)
+                            @foreach ($profile->reviews->take(3) as $review) <!-- Limita a 5 recensioni -->
                                 <li class="list-group-item">
                                     <strong>Review #{{ $review->id }}:</strong> {{ $review->review_text }}
                                 </li>
                             @endforeach
                         </ul>
+                        <a href="{{ route('admin.reviews.index', $profile->id) }}" class="btn btn-primary mt-3">View All Reviews</a> <!-- Link alla pagina di tutte le recensioni -->
                     @endif
                 </div>
             </div>
@@ -123,12 +128,13 @@
                         <p>No messages available.</p>
                     @else
                         <ul class="list-group">
-                            @foreach ($profile->messages as $message)
+                            @foreach ($profile->messages->take(3) as $message) <!-- Limita a 5 recensioni -->
                                 <li class="list-group-item">
-                                    <strong>Message by {{ $message->email }}:</strong> {{ $message->message_text }}
+                                    <strong>Message #{{ $message->id }}:</strong> {{ $message->message_text }}
                                 </li>
                             @endforeach
                         </ul>
+                        <a href="{{ route('admin.messages.index', $profile->id) }}" class="btn btn-primary mt-3">View All Messages</a>
                     @endif
                 </div>
             </div>
