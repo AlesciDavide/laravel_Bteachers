@@ -19,8 +19,8 @@
                 @foreach($sponsorships as $sponsor)
                 <tr>
                     <td>{{ $sponsor->name }}</td>
-                    <td>{{ $sponsor->pivot->created_at->format('d/m/Y') }}</td>
-                    <td>{{ $sponsor->pivot->expiration_date ? $sponsor->pivot->expiration_date : 'N/A' }}</td>
+                    <td>{{ $sponsor->pivot->created_at->format('d-m-Y') }}</td>
+                    <td>{{ $sponsor->pivot->expiration_date ? \Carbon\Carbon::parse($sponsor->pivot->expiration_date)->format('d-m-Y') : 'N/A' }}</td>
                     <td>{{ $sponsor->pivot->sponsor_id }}</td>
                 </tr>
                 @endforeach
