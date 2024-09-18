@@ -40,7 +40,7 @@ Route::post('profiles/{id}/vote', [ProfileController::class, 'storeVote'])->name
 
 route::middleware('auth')->name('admin.')->prefix('teacher/')->group(
 
-     function () {
+    function () {
         /* rotte protette */
         route::get("specializations", [SpecializationController::class, "index"])->name("specializations.index");
         Route::resource('messages', MessageController::class);
@@ -53,7 +53,7 @@ route::middleware('auth')->name('admin.')->prefix('teacher/')->group(
         Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
         Route::get('/user/update', [UserController::class, 'edit'])->name('user.edit');
         Route::get("profile/statistics", [ProfileController::class, 'statisticsPage'])->name('profile.statistics');
-
+        Route::get("profile/payment-history", [ProfileController::class, 'paymentHistory'])->name('profile.payment-history');
 
 
         Route::get('/sponsors/payment/{sponsor}', [PaymentController::class, 'showPaymentPage'])->name('payment.show');

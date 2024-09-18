@@ -213,4 +213,16 @@ class ProfileController extends Controller
 
         return view('profiles.statistic', compact('messagesPerMonth', 'reviewsPerMonth', 'votesPerMonth'));
     }
+
+    public function paymentHistory()
+    {
+        $user = auth()->user();
+        $profile = Profile::where('user_id', $user->id)->first();
+        if (!$profile) {
+            return redirect()->route('admin.profiles.create')->with('error', 'Profile not found');
+        }
+        $sponsorships = $profile->sponsors()->withPivot('sponsor_id', 'expiration_date', 'created_at', 'updated_at')->paginate(9);
+
+        return view('profiles.payment-history', compact('sponsorships'));
+    }
 }
