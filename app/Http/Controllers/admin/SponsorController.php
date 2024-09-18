@@ -52,24 +52,25 @@ class SponsorController extends Controller
             $currentDate = $existingSponsorship->pivot->expiration_date;
         }
 
+        $timezone = 'Europe/Rome';
 
         if ($sponsor->sponsorship_time === 24) {
             if ($currentDate != null) {
-                $newDateTime = Carbon::parse($currentDate)->addDay(1);
+                $newDateTime = Carbon::parse($currentDate, $timezone)->addDay(1);
             } else {
-                $newDateTime = Carbon::now()->addDay(1);
+                $newDateTime = Carbon::now($timezone)->addDay(1);
             }
         } elseif ($sponsor->sponsorship_time === 72) {
             if ($currentDate != null) {
-                $newDateTime = Carbon::parse($currentDate)->addDay(3);
+                $newDateTime = Carbon::parse($currentDate, $timezone)->addDay(3);
             } else {
-                $newDateTime = Carbon::now()->addDay(3);
+                $newDateTime = Carbon::now($timezone)->addDay(3);
             }
         } else {
             if ($currentDate != null) {
-                $newDateTime = Carbon::parse($currentDate)->addDay(6);
+                $newDateTime = Carbon::parse($currentDate, $timezone)->addDay(6);
             } else {
-                $newDateTime = Carbon::now()->addDay(6);
+                $newDateTime = Carbon::now($timezone)->addDay(6);
             }
         };
 
