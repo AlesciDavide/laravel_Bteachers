@@ -55,7 +55,7 @@ document.getElementById('edit_user_form').addEventListener('submit', function(ev
     }
 
     // Password matching validation
-    if (passwordConfirm !== null && passwordConfirmTwo !== null) {
+    if (passwordConfirm !== "" && passwordConfirmTwo !== "") {
         if (passwordConfirm.value !== passwordConfirmTwo.value) {
             const newError = document.createElement('div');
             newError.classList = "alert alert-danger";
@@ -68,7 +68,7 @@ document.getElementById('edit_user_form').addEventListener('submit', function(ev
     }
 
     // Password length validation
-    if (passwordConfirm !== null && passwordConfirmTwo !== null) {
+    if (passwordConfirm.value !== "" && passwordConfirmTwo.value !== "") {
         if (passwordConfirm.value.length < 8) {
             const newError = document.createElement('div');
             newError.classList = "alert alert-danger";
