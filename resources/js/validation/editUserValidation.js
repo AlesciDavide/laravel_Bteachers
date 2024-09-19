@@ -6,7 +6,7 @@
 const nameConfirm = document.querySelector('input#name');
 const surnameConfirm = document.querySelector('input#surname');
 const passwordConfirm = document.querySelector('input#password');
-const passwordConfirmTwo = document.querySelector('input#password-confirm');
+const passwordConfirmTwo = document.querySelector('input#password_confirmation');
 const emailConfirm = document.querySelector('input#email');
 const allertValidationPassword = document.querySelector('div.error_validation_password');
 const allertValidationName = document.querySelector('div.error_validation_name');
@@ -15,7 +15,7 @@ const allertValidationEmail = document.querySelector('div.error_validation_email
 
 
 
-document.getElementById('register_form').addEventListener('submit', function(event) {
+document.getElementById('edit_user_form').addEventListener('submit', function(event) {
     event.preventDefault();
 
     // Reset error messages
@@ -24,8 +24,8 @@ document.getElementById('register_form').addEventListener('submit', function(eve
     allertValidationPassword.innerHTML = "";
     allertValidationEmail.innerHTML = "";
 
+    let hasError = false; // Track if any validation error occurs
     let email = emailConfirm.value;
-    let hasError = false; // Variable to track errors
 
     // Name validation
     if (nameConfirm.value.length < 3) {
@@ -47,36 +47,40 @@ document.getElementById('register_form').addEventListener('submit', function(eve
 
     // Email validation
     if (!email.includes('@')) {
-        const newErrorEmail = document.createElement("div");
-        newErrorEmail.classList = "alert alert-danger";
-        newErrorEmail.innerText = "The email is not correct";
-        allertValidationEmail.appendChild(newErrorEmail);
+        const newErroremail = document.createElement("div");
+        newErroremail.classList = "alert alert-danger";
+        newErroremail.innerText = "The email is not correct";
+        allertValidationEmail.appendChild(newErroremail);
         hasError = true;
     }
 
-    // Password match validation
-    if (passwordConfirm.value !== passwordConfirmTwo.value) {
-        const newError = document.createElement('div');
-        newError.classList = "alert alert-danger";
-        newError.innerText = "The passwords do not match";
-        allertValidationPassword.appendChild(newError);
-        passwordConfirm.value = "";
-        passwordConfirmTwo.value = "";
-        hasError = true;
+    // Password matching validation
+    if (passwordConfirm !== null && passwordConfirmTwo !== null) {
+        if (passwordConfirm.value !== passwordConfirmTwo.value) {
+            const newError = document.createElement('div');
+            newError.classList = "alert alert-danger";
+            newError.innerText = "The password does not match";
+            allertValidationPassword.appendChild(newError);
+            passwordConfirm.value = "";
+            passwordConfirmTwo.value = '';
+            hasError = true;
+        }
     }
 
     // Password length validation
-    if (passwordConfirm.value.length < 8) {
-        const newError = document.createElement('div');
-        newError.classList = "alert alert-danger";
-        newError.innerText = "The password must be at least 8 characters long";
-        allertValidationPassword.appendChild(newError);
-        passwordConfirm.value = "";
-        passwordConfirmTwo.value = "";
-        hasError = true;
+    if (passwordConfirm !== null && passwordConfirmTwo !== null) {
+        if (passwordConfirm.value.length < 8) {
+            const newError = document.createElement('div');
+            newError.classList = "alert alert-danger";
+            newError.innerText = "The password is shorter than 8 characters";
+            allertValidationPassword.appendChild(newError);
+            passwordConfirm.value = "";
+            passwordConfirmTwo.value = '';
+            hasError = true;
+        }
     }
 
-    // Submit the form if no errors are detected
+    // Submit the form if there are no errors
     if (!hasError) {
         this.submit();
     }
