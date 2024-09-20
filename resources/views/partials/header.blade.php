@@ -26,21 +26,21 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.profile.statistics') ? 'active text-primary' : '' }}" href="{{ route('admin.profile.statistics') }}">
-                                Your Statistics
+                                Statistics
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.sponsors.index') ? 'active text-primary' : '' }}" href="{{ route('admin.sponsors.index') }}">
-                                Subscribe
+                                Sponsorship
                             </a>
                         </li><li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.messages.index') ? 'active text-primary' : '' }}" href="{{ route('admin.messages.index')}}" aria-current="page">
-                                Your Messages
+                                Messages
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.reviews.index') ? 'active text-primary' : '' }}" href="{{ route('admin.reviews.index')}}" aria-current="page">
-                                Your Reviews
+                                Reviews
                             </a>
                         </li>
                         <li class="nav-item">
@@ -50,8 +50,8 @@
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link text-warning {{ request()->routeIs('admin.profiles.create') ? 'active' : '' }}" href="{{ route('admin.profiles.create') }}">
-                                Crea Profilo
+                            <a class="nav-link text-black {{ request()->routeIs('admin.profiles.create') ? 'active' : '' }}" href="{{ route('admin.profiles.create') }}">
+                                Create Profile
                             </a>
                         </li>
                     @endif
