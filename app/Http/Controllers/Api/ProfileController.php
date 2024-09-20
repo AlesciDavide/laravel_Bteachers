@@ -30,10 +30,29 @@ class ProfileController extends Controller
             /*  $query->whereHas('specializations', function ($q) use ($searchQuery) {
             $q->where('name', 'like', "%{$searchQuery}%");
         }) */
-            $query->whereHas('user', function ($q) use ($searchQuery) {
-                $q->where('name', 'like', "%{$searchQuery}%")
-                    ->orWhere('surname', 'like', "%{$searchQuery}%");
-            });
+            $searchTerms = explode(' ', $searchQuery);
+
+            // Se ci sono due termini di ricerca
+            if (count($searchTerms) === 2) {
+                $firstTerm = $searchTerms[0];
+                $secondTerm = $searchTerms[1];
+
+                $query->whereHas('user', function ($q) use ($firstTerm, $secondTerm) {
+                    $q->where(function ($query) use ($firstTerm, $secondTerm) {
+                        // Verifica nome e cognome in entrambi gli ordini
+                        $query->where('name', 'like', "%{$firstTerm}%")
+                            ->where('surname', 'like', "%{$secondTerm}%");
+                    })->orWhere(function ($query) use ($firstTerm, $secondTerm) {
+                        $query->where('name', 'like', "%{$secondTerm}%")
+                            ->where('surname', 'like', "%{$firstTerm}%");
+                    });
+                });
+            } else {
+                $query->whereHas('user', function ($q) use ($searchQuery) {
+                    $q->where('name', 'like', "%{$searchQuery}%")
+                        ->orWhere('surname', 'like', "%{$searchQuery}%");
+                });
+            }
         }
 
         // Filtro per specializzazione se è presente nel request
