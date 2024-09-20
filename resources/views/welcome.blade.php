@@ -60,6 +60,7 @@
                     @endauth
 
             @endif
+            <a href="{{url('http://localhost:5174/')}}" class="btn btn-success btn-sm">User Platform</a>
         </div>
     </section>
 
