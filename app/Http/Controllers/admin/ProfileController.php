@@ -183,11 +183,10 @@ class ProfileController extends Controller
 
     public function statisticsPage()
     {
-
         $user = auth()->user();
         $profile = $user->profile;
 
-        if (!$profile = $user->profile) {
+        if (!$profile) {
             return view('home');
         }
 
@@ -210,8 +209,23 @@ class ProfileController extends Controller
             ->orderBy('month')
             ->get();
 
+        // Formattazione delle etichette
+        $messagesLabels = $messagesPerMonth->map(function ($item) {
+            $formattedMonth = str_pad($item->month, 2, '0', STR_PAD_LEFT);
+            return $item->year . '-' . $formattedMonth;
+        });
 
-        return view('profiles.statistic', compact('messagesPerMonth', 'reviewsPerMonth', 'votesPerMonth'));
+        $reviewsLabels = $reviewsPerMonth->map(function ($item) {
+            $formattedMonth = str_pad($item->month, 2, '0', STR_PAD_LEFT);
+            return $item->year . '-' . $formattedMonth;
+        });
+
+        $votesLabels = $votesPerMonth->map(function ($item) {
+            $formattedMonth = str_pad($item->month, 2, '0', STR_PAD_LEFT);
+            return $item->year . '-' . $formattedMonth;
+        });
+
+        return view('profiles.statistic', compact('messagesPerMonth', 'reviewsPerMonth', 'votesPerMonth', 'messagesLabels', 'reviewsLabels', 'votesLabels'));
     }
 
     public function paymentHistory()

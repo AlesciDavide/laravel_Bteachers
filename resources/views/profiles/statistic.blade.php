@@ -1,25 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1>Statistics for {{ auth()->user()->name }}</h1>
+    <div class="container">
+        <h1>Statistics for {{ auth()->user()->name }}</h1>
 
-    <div class="row">
-        <div class="col-md-6">
-            <h2>Messages Statistics</h2>
-            <canvas id="messagesChart" width="400" height="200"></canvas>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Messages Statistics</h2>
+                <canvas id="messagesChart" width="400" height="200"></canvas>
+            </div>
+            <div class="col-md-6">
+                <h2>Reviews Statistics</h2>
+                <canvas id="reviewsChart" width="400" height="200"></canvas>
+            </div>
         </div>
-        <div class="col-md-6">
-            <h2>Reviews Statistics</h2>
-            <canvas id="reviewsChart" width="400" height="200"></canvas>
+
+        <div>
+            <h2>Votes Statistics</h2>
+            <canvas id="votesChart" width="400" height="200"></canvas>
         </div>
     </div>
-
-    <div>
-        <h2>Votes Statistics</h2>
-        <canvas id="votesChart" width="400" height="200"></canvas>
-    </div>
-</div>
 @endsection
 
 @section('custom_script')
@@ -28,17 +28,15 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Dati per i messaggi
-            var messagesData = @json($messagesPerMonth->pluck('count'));
-            var labels = @json($messagesPerMonth->map(function($item) {
-                return $item->year . '-' . $item->month;
-            }));
+            let messagesData = @json($messagesPerMonth->pluck('count'));
+            let messagesLabels = @json($messagesLabels);
 
-            // Creazione del grafico a area per i messaggi
-            var messagesCtx = document.getElementById('messagesChart').getContext('2d');
-            var messagesChart = new Chart(messagesCtx, {
+            // Creazione del grafico a linea per i messaggi
+            let messagesCtx = document.getElementById('messagesChart').getContext('2d');
+            let messagesChart = new Chart(messagesCtx, {
                 type: 'line',
                 data: {
-                    labels: labels,
+                    labels: messagesLabels,
                     datasets: [{
                         label: 'Messages',
                         data: messagesData,
@@ -69,14 +67,15 @@
             });
 
             // Dati per le recensioni
-            var reviewsData = @json($reviewsPerMonth->pluck('count'));
+            let reviewsData = @json($reviewsPerMonth->pluck('count'));
+            let reviewsLabels = @json($reviewsLabels);
 
-            // Creazione del grafico a area per le recensioni
-            var reviewsCtx = document.getElementById('reviewsChart').getContext('2d');
-            var reviewsChart = new Chart(reviewsCtx, {
+            // Creazione del grafico a linea per le recensioni
+            let reviewsCtx = document.getElementById('reviewsChart').getContext('2d');
+            let reviewsChart = new Chart(reviewsCtx, {
                 type: 'line',
                 data: {
-                    labels: labels,
+                    labels: reviewsLabels,
                     datasets: [{
                         label: 'Reviews',
                         data: reviewsData,
@@ -107,16 +106,12 @@
             });
 
             // Dati per i voti
-            var votesData = @json($votesPerMonth->map(function($item) {
-                return $item->total_votes; // Assicurati che `total_votes` sia il campo corretto per il totale dei voti
-            }));
-            var votesLabels = @json($votesPerMonth->map(function($item) {
-                return $item->year . '-' . $item->month;
-            }));
+            let votesData = @json($votesPerMonth->pluck('total_votes'));
+            let votesLabels = @json($votesLabels);
 
             // Creazione del grafico a barre per i voti
-            var votesCtx = document.getElementById('votesChart').getContext('2d');
-            var votesChart = new Chart(votesCtx, {
+            let votesCtx = document.getElementById('votesChart').getContext('2d');
+            let votesChart = new Chart(votesCtx, {
                 type: 'bar',
                 data: {
                     labels: votesLabels,
