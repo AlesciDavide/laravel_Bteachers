@@ -39,6 +39,7 @@
                         @endif
                     @endauth
                 @endif
+                <a href="{{ url('http://localhost:5174/') }}" class="nav-link  text-primary fs-5 fw-bold">User Platform</a>
             </ul>
         </div>
     </div>
