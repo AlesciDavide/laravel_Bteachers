@@ -202,7 +202,7 @@ class ProfileController extends Controller
             ->get();
 
         // Fasce di voto per mese/anno
-        $votesPerMonth = DB::table('votes')
+        $votesPerMonth = DB::table('profile_vote')
             ->selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as total_votes')
             ->groupBy('year', 'month')
             ->orderBy('year')
