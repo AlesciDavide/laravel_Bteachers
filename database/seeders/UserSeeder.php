@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'John',
                 'surname' => 'Doe',
-                'email' => 'john.doe@example.com',
+                'email' => 'john.doe@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '987 Personal Street, Springfield',
@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Jane',
                 'surname' => 'Smith',
-                'email' => 'jane.smith@example.com',
+                'email' => 'jane.smith@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '654 Home Avenue, Shelbyville',
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Michael',
                 'surname' => 'Jones',
-                'email' => 'michael.jones@example.com',
+                'email' => 'michael.jones@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '123 Residence Road, Capital City',
@@ -44,7 +44,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Emily',
                 'surname' => 'Clark',
-                'email' => 'emily.clark@example.com',
+                'email' => 'emily.clark@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '456 Private Lane, Ogdenville',
@@ -52,7 +52,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Lucas',
                 'surname' => 'Wilson',
-                'email' => 'lucas.wilson@example.com',
+                'email' => 'lucas.wilson@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '789 Home Street, North Haverbrook',
@@ -60,7 +60,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Ava',
                 'surname' => 'Evans',
-                'email' => 'ava.evans@example.com',
+                'email' => 'ava.evans@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '321 Quiet Path, Ogdenville',
@@ -68,7 +68,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Oliver',
                 'surname' => 'Brown',
-                'email' => 'oliver.brown@example.com',
+                'email' => 'oliver.brown@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '564 Elmwood Drive, Springfield',
@@ -76,7 +76,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Sophia',
                 'surname' => 'Taylor',
-                'email' => 'sophia.taylor@example.com',
+                'email' => 'sophia.taylor@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '987 Maple Street, North Haverbrook',
@@ -84,7 +84,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'James',
                 'surname' => 'Davis',
-                'email' => 'james.davis@example.com',
+                'email' => 'james.davis@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '234 Birch Avenue, Shelbyville',
@@ -92,7 +92,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Isabella',
                 'surname' => 'White',
-                'email' => 'isabella.white@example.com',
+                'email' => 'isabella.white@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '678 Oak Lane, Springfield',
@@ -100,7 +100,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'William',
                 'surname' => 'Harris',
-                'email' => 'william.harris@example.com',
+                'email' => 'william.harris@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '345 Sunset Boulevard, Capital City',
@@ -108,7 +108,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Mia',
                 'surname' => 'Martinez',
-                'email' => 'mia.martinez@example.com',
+                'email' => 'mia.martinez@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '876 Riverbank Road, Ogdenville',
@@ -116,7 +116,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Elijah',
                 'surname' => 'Robinson',
-                'email' => 'elijah.robinson@example.com',
+                'email' => 'elijah.robinson@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '432 Hillside Drive, Shelbyville',
@@ -124,7 +124,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Charlotte',
                 'surname' => 'Moore',
-                'email' => 'charlotte.moore@example.com',
+                'email' => 'charlotte.moore@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '654 Pine Circle, Capital City',
@@ -132,7 +132,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Liam',
                 'surname' => 'Thompson',
-                'email' => 'liam.thompson@example.com',
+                'email' => 'liam.thompson@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '321 Park Avenue, North Haverbrook',
@@ -140,7 +140,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Amelia',
                 'surname' => 'Garcia',
-                'email' => 'amelia.garcia@example.com',
+                'email' => 'amelia.garcia@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '876 Forest Road, Springfield',
@@ -148,7 +148,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Henry',
                 'surname' => 'Martinez',
-                'email' => 'henry.martinez@example.com',
+                'email' => 'henry.martinez@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '213 Valley View Lane, Capital City',
@@ -156,7 +156,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Grace',
                 'surname' => 'Lopez',
-                'email' => 'grace.lopez@example.com',
+                'email' => 'grace.lopez@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '345 Maple Avenue, Shelbyville',
@@ -164,7 +164,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Mason',
                 'surname' => 'Anderson',
-                'email' => 'mason.anderson@example.com',
+                'email' => 'mason.anderson@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '678 Cedar Street, North Haverbrook',
@@ -172,7 +172,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Lily',
                 'surname' => 'Hernandez',
-                'email' => 'lily.hernandez@example.com',
+                'email' => 'lily.hernandez@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '432 Oak Boulevard, Ogdenville',
@@ -180,7 +180,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Benjamin',
                 'surname' => 'Clark',
-                'email' => 'benjamin.clark@example.com',
+                'email' => 'benjamin.clark@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '789 High Street, Springfield',
@@ -188,7 +188,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Evelyn',
                 'surname' => 'Lewis',
-                'email' => 'evelyn.lewis@example.com',
+                'email' => 'evelyn.lewis@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '123 Meadow Lane, Shelbyville',
@@ -196,7 +196,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Samuel',
                 'surname' => 'Walker',
-                'email' => 'samuel.walker@example.com',
+                'email' => 'samuel.walker@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '456 River Road, Springfield',
@@ -204,7 +204,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Ella',
                 'surname' => 'Scott',
-                'email' => 'ella.scott@example.com',
+                'email' => 'ella.scott@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '321 Hilltop Drive, Capital City',
@@ -212,7 +212,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Alexander',
                 'surname' => 'Green',
-                'email' => 'alexander.green@example.com',
+                'email' => 'alexander.green@gmail.com',
                 'password' => Hash::make('password123'),
                 'email_verified_at' => now(),
                 'address' => '654 Cedar Lane, North Haverbrook',
