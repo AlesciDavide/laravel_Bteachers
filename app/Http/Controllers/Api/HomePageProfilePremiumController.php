@@ -14,7 +14,7 @@ class HomePageProfilePremiumController extends Controller
         $premiumProfiles = Profile::where('is_premium', true)->with("user", "reviews", "votes", "messages", "sponsors", "specializations")
             ->withAvg('votes', 'vote')
             ->where('visible', true)
-            ->paginate(5);
+            ->paginate(6);
 
         // Restituisce i risultati come JSON
         return response()->json([
