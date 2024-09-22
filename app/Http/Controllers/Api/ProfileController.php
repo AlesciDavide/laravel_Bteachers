@@ -169,10 +169,10 @@ class ProfileController extends Controller
      */
     public function show(Profile $profile)
     {
-        $profile->loadMissing("user", "reviews", "votes", "messages", "sponsors", "specializations");
+        $query = Profile::with("user", "reviews", "votes", "messages", "sponsors", "specializations")->withAvg('votes', 'vote')->findOrFail($profile->id);
         return response()->json([
             'success' => true,
-            'results' => $profile
+            'results' => $query
         ]);
     }
 
