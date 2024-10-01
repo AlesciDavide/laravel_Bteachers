@@ -15,10 +15,7 @@ class VoteController extends Controller
      */
     public function index()
     {
-        // $votes = Vote::all();
-
-        // return view('vote.index', compact('votes'));
-        return view('home');
+        return abort(404);
     }
 
     /**

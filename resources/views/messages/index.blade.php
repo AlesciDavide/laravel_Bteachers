@@ -11,7 +11,7 @@
             </div>
         </div>
     </div>
-
+    <!-- INDEX OF ALL PROFILE MESSAGES -->
     <!-- Messages List -->
     <div class="row">
         <div class="col-md-12">

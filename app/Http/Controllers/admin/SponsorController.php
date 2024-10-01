@@ -26,7 +26,7 @@ class SponsorController extends Controller
     public function index()
     {
         $sponsors = Sponsor::all();
-        $clientToken = $this->gateway->clientToken()->generate(); // Genera il client token per Braintree
+        $clientToken = $this->gateway->clientToken()->generate(); // Generate braintree tokens
         return view('sponsors.index', compact('sponsors', 'clientToken'));
     }
 
@@ -35,16 +35,16 @@ class SponsorController extends Controller
      */
     public function purchase(Sponsor $sponsor)
     {
-        $profile = Auth::user()->profile; // Ottieni il profilo dell'utente autenticato
+        $profile = Auth::user()->profile; // Obtain authenticated profile
         $sponsorId = $sponsor->id;
         return redirect()->route('payment.page', ['sponsor' => $sponsorId]);
     }
 
     public function updateSponsorship(Sponsor $sponsor)
     {
-        $profile = Auth::user()->profile; // Ottieni il profilo dell'utente autenticato
+        $profile = Auth::user()->profile;
 
-        // Controlla se il profilo ha già acquistato questo sponsor
+        // check if the profile had alrady buyed the sponsorship
         $existingSponsorship = $profile->sponsors()->where('profile_id', $profile->id)->get()->last();
         if ($existingSponsorship === null) {
             $currentDate = null;
@@ -53,7 +53,7 @@ class SponsorController extends Controller
         }
 
         $timezone = 'Europe/Rome';
-
+        //Condition for different level of sponsorship
         if ($sponsor->sponsorship_time === 24) {
             if ($currentDate != null) {
                 $newDateTime = Carbon::parse($currentDate, $timezone)->addDay(1);
@@ -77,7 +77,7 @@ class SponsorController extends Controller
 
 
 
-        // Aggiungi il nuovo sponsor al profilo
+        //Add new sponsorship to the profile
         $profile->sponsors()->attach($sponsor->id, [
             'sponsorship_time' => $sponsor->sponsorship_time,
             'expiration_date' => $newDateTime
@@ -87,7 +87,7 @@ class SponsorController extends Controller
         $isPremium = $newDateTime->isFuture();
 
         $profile->is_premium = $isPremium;
-        $profile->save(); // Salva l'aggiornamento nel database
+        $profile->save();
 
         return redirect()->back()->with('message', 'Sponsorship purchased successfully!');
     }

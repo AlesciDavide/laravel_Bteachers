@@ -16,10 +16,10 @@ class MessageController extends Controller
         $profile = Profile::where('user_id', $user->id)->first();
 
         if (!$profile) {
-            // Gestisci il caso in cui non esista un profilo per l'utente
+            // Manage the case the user doesn't have a profile created
             return redirect()->route('admin.profiles.create')->with('error', 'Profile not found');
         }
-        // Recupera i messaggi associati al profilo dell'utente
+        // recover only the message of the used profile
         $messages = Message::where('profile_id', $profile->id)->orderBy('created_at', 'desc')->paginate(5);
 
         return view('messages.index', compact('messages'));
@@ -28,16 +28,12 @@ class MessageController extends Controller
     public function create(Profile $profile)
     {
 
-        return view('home');
+        return abort(404);
     }
 
     public function store(StoreMessageRequest $request)
     {
-        // $data = $request->validated();
-        // $message = Message::create($data);
-        // $message->save();
-        // return redirect()->route('admin.messages.show', ['message' => $message->id]);
-        return view('home');
+        return abort(404);
     }
 
     public function show(Message $message)
@@ -46,7 +42,7 @@ class MessageController extends Controller
         $profile = Profile::where('user_id', $user->id)->first();
 
         if (!$profile) {
-            // Gestisci il caso in cui non esista un profilo per l'utente
+            // Manage the case the user doesn't have a profile created
             return redirect()->route('home')->with('error', 'Profile not found');
         }
         if ($message->profile_id !== $profile->id) {
@@ -58,6 +54,6 @@ class MessageController extends Controller
     public function edit()
     {
 
-        return view('home');
+        return abort(404);
     }
 }

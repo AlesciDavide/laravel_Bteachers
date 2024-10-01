@@ -13,16 +13,13 @@ class ReviewController extends Controller
 
     public function index()
     {
-        // $reviews = Review::all();
-
-
         $user = auth()->user();
         $profile = Profile::where('user_id', $user->id)->first();
 
         if (!$profile) {
             return redirect()->route('admin.profiles.create')->with('error', 'Profile not found');
         }
-        // Recupera le reviews associati al profilo dell'utente
+        // Find the reviews linked to the using profile
         $reviews = Review::where('profile_id', $profile->id)->orderBy('created_at', 'desc')->paginate(5);
 
         return view('reviews.index', compact("reviews"));
@@ -32,27 +29,13 @@ class ReviewController extends Controller
     public function create(Profile $profile)
 
     {
-        return view('home');
+        return abort(404);
     }
 
 
     public function store(StoreReviewRequest $request)
     {
-        // $data = $request->validated();
-
-        // $newReview = new Review();
-        // $newReview->name = $data['name'];
-        // $newReview->surname = $data['surname'];
-        // $newReview->email = $data['email'];
-        // $newReview->review_text = $data['review_text'];
-        // $newReview->profile_id = $data['profile_id'];
-
-        // $newReview->save();
-
-
-
-        // return redirect()->route('admin.reviews.show', $newReview);
-        return view('home');
+        return abort(404);
     }
 
 
@@ -62,7 +45,7 @@ class ReviewController extends Controller
         $profile = Profile::where('user_id', $user->id)->first();
 
         if (!$profile) {
-            // Gestisci il caso in cui non esista un profilo per l'utente
+
             return redirect()->route('home')->with('error', 'Profile not found');
         }
         if ($review->profile_id !== $profile->id) {
@@ -75,7 +58,7 @@ class ReviewController extends Controller
 
     public function edit(string $id)
     {
-        return view('home');
+        return abort(404);
     }
 
 

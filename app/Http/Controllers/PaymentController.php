@@ -24,11 +24,11 @@ class PaymentController extends Controller
     }
 
     public function showPaymentPage($sponsorId)
-{
-    $sponsor = Sponsor::findOrFail($sponsorId);
-    $clientToken = $this->gateway->clientToken()->generate();
-    return view('sponsors.payment', compact('clientToken', 'sponsor'));
-}
+    {
+        $sponsor = Sponsor::findOrFail($sponsorId);
+        $clientToken = $this->gateway->clientToken()->generate();
+        return view('sponsors.payment', compact('clientToken', 'sponsor'));
+    }
 
     public function checkout(Request $request, $sponsorId, Profile $profile)
     {
@@ -44,14 +44,14 @@ class PaymentController extends Controller
         $profile = Auth::user()->profile;
         $votes = Vote::all();
         if ($result->success) {
-            // Aggiorna il database solo se il pagamento è riuscito
+            // Update the db only if the payment is done
             app('App\Http\Controllers\admin\SponsorController')->updateSponsorship($sponsor);
             $expirationData = $profile->sponsors()->orderBy('pivot_expiration_date', 'desc')->first();
             /* return response()->json(['success' => true, 'transaction' => $result->transaction]); */
             return view('profiles.show', compact('profile', 'votes', 'expirationData'));
         } else {
             $sponsors = Sponsor::all();
-            $clientToken = $this->gateway->clientToken()->generate(); // Genera il client token per Braintree
+            $clientToken = $this->gateway->clientToken()->generate(); // Generate the braintree tokens
             return view('sponsors.index', compact('sponsors', 'clientToken'));
         }
     }

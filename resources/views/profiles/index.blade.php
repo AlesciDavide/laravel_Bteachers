@@ -21,18 +21,14 @@
                             <th scope="col">Name</th>
                             <th scope="col">Surname</th>
                             <th scope="col">Photo</th>
-                            {{-- <th scope="col">Email</th> --}}
-                            {{-- <th scope="col">Telephone</th> --}}
                             <th scope="col">Specialization</th>
                             <th scope="col">Sponsor Level</th>
                             <th scope="col">Avg Vote</th>
-                            {{-- <th scope="col">Service</th> --}}
                             <th scope="col">Visible</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                    {{-- @foreach ($profiles as $profile) --}}
                     <tr>
                         <!-- Profile ID -->
                         <th scope="row">{{ $profile->id }}</th>
@@ -49,17 +45,6 @@
                         <td>
                             <img class="img-thumbnail" src="{{ asset('storage/' . $profile->photo) }}" alt="Profile Image" style="max-width: 100px;">
                         </td>
-
-                        {{-- <!-- Address -->
-                        <td>
-                            {{ $profile->address }}
-                        </td>
-
-                        <!-- Telephone -->
-                        <td>
-                            {{ $profile->telephone_number }}
-                        </td> --}}
-
                         <!-- Specializations -->
                         <td>
                             <ul class="list-unstyled">
@@ -91,11 +76,6 @@
                             @endphp
                             <span class="badge bg-info">{{ $mediaFinale }}</span>
                         </td>
-
-                        <!-- Service Description -->
-                        {{-- <td>
-                            {{ Str::limit($profile->service, 50) }}
-                        </td> --}}
 
                         <!-- Visibility -->
                         <td>

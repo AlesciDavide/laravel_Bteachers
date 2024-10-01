@@ -26,14 +26,14 @@ class UpdatePremiumStatus extends Command
      */
     public function handle()
     {
-        // Trova tutti i profili
+        // Find all profile
         $profiles = Profile::all();
 
         foreach ($profiles as $profile) {
-            // Controlla e aggiorna lo stato premium di ogni profilo
+            // check and update the state of every premium profile
             $profile->checkAndUpdatePremiumStatus();
         }
 
-        $this->info('Stato premium aggiornato per tutti i profili.');
+        $this->info('Premium updated for all profiles.');
     }
 }

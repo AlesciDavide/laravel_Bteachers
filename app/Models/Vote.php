@@ -14,10 +14,10 @@ class Vote extends Model
         'vote',
     ];
 
-    // relation with profiles_table
+    // relation many to many with profile
     public function profiles(): BelongsToMany
     {
         return $this->belongsToMany(Profile::class, 'profile_vote', 'vote_id', 'profile_id')
-                    ->withPivot('vote');
+            ->withPivot('vote');
     }
 }

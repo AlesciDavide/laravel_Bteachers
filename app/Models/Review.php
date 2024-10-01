@@ -16,7 +16,7 @@ class Review extends Model
         "review_text",
         "profile_id"
     ];
-
+    // relation many to 1 with profile
     public function profile()
     {
         return $this->belongsTo(Profile::class);

@@ -11,10 +11,10 @@ class UserController extends Controller
 {
     public function update(Request $request)
     {
-        // Trova l'utente autenticato
+        // find auth user
         $user = $request->user();
 
-        // Validazione dei dati
+        // data validation
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
@@ -27,13 +27,13 @@ class UserController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        // Aggiorna i dati dell'utente
+        // updata user data
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->surname = $request->input('surname');
         $user->address = $request->input('address');
 
-        // Solo se viene fornita una nuova password
+        // only if the password is new
         if ($request->filled('password')) {
             $user->password = Hash::make($request->input('password'));
         }

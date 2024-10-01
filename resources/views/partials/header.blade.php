@@ -15,7 +15,7 @@
                 <!-- Dynamic Profile Link -->
                 @auth
                 @php
-                    // Recupera il profilo dell'utente loggato
+                    // Take only authanticated profile
                     $profile = Auth::user()->profile;
                 @endphp
                     @if($profile)

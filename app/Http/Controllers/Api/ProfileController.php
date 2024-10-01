@@ -20,16 +20,13 @@ class ProfileController extends Controller
         $query = Profile::with("user", "reviews", "votes", "messages", "sponsors", "specializations")
             ->withCount('reviews')
             ->withAvg('votes', 'vote')
-            ->where('visible', true); // la query cerca solo coloro che hanno visible true
+            ->where('visible', true); // search only if visibile=true
 
         // Recupera il valore di searchQuery dal request
         $searchQuery = $request->input('searchQuery');
 
         // Filtro per specializzazione o nome se searchQuery è presente nel request
         if ($searchQuery) {
-            /*  $query->whereHas('specializations', function ($q) use ($searchQuery) {
-            $q->where('name', 'like', "%{$searchQuery}%");
-        }) */
             $searchTerms = explode(' ', $searchQuery);
 
             // Se ci sono due termini di ricerca

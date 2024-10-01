@@ -17,7 +17,7 @@ class Sponsor extends Model
         'expiration_date',
     ];
 
-    // relation with profiles_table
+    // relation many to many with profiles
     public function profiles(): BelongsToMany
     {
         return $this->belongsToMany(Profile::class)

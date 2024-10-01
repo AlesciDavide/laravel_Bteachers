@@ -5,8 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header bg-primary text-white">Update Profile</div>
-
+                <div class="card-header bg-primary text-white">Update User</div>
+                <!-- Update user Data -->
                 <div class="card-body">
                     <form id="edit_user_form" method="POST" action="{{ route('admin.user.update') }}">
                         @csrf
@@ -58,7 +58,7 @@
                         </div>
                         <!-- Buttons -->
                         <div class="d-flex justify-content-between">
-                            <button type="submit" class="btn btn-success">Update Profile</button>
+                            <button type="submit" class="btn btn-success">Update User</button>
                             <button type="reset" class="btn btn-secondary">Reset</button>
                         </div>
 

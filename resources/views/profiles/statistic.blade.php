@@ -27,11 +27,11 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Dati per i messaggi
+            // Messages Data
             let messagesData = @json($messagesPerMonth->pluck('count'));
             let messagesLabels = @json($messagesLabels);
 
-            // Creazione del grafico a linea per i messaggi
+            // Linear Chart
             let messagesCtx = document.getElementById('messagesChart').getContext('2d');
             let messagesChart = new Chart(messagesCtx, {
                 type: 'line',
@@ -66,11 +66,11 @@
                 }
             });
 
-            // Dati per le recensioni
+            // Reviews Data
             let reviewsData = @json($reviewsPerMonth->pluck('count'));
             let reviewsLabels = @json($reviewsLabels);
 
-            // Creazione del grafico a linea per le recensioni
+            // Linear Chart
             let reviewsCtx = document.getElementById('reviewsChart').getContext('2d');
             let reviewsChart = new Chart(reviewsCtx, {
                 type: 'line',
@@ -105,11 +105,11 @@
                 }
             });
 
-            // Dati per i voti
+            // Votes Data
             let votesData = @json($votesPerMonth->pluck('total_votes'));
             let votesLabels = @json($votesLabels);
 
-            // Creazione del grafico a barre per i voti
+            // Band chart
             let votesCtx = document.getElementById('votesChart').getContext('2d');
             let votesChart = new Chart(votesCtx, {
                 type: 'bar',

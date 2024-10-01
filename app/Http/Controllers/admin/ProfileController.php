@@ -22,12 +22,11 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        // $profiles = Profile::all();
 
-        // Recupera l'utente autenticato
+        // Recover auth user
         $user = auth()->user();
 
-        // Trova il profilo associato all'utente autenticato
+        // Find the profile linked to the auth user
         $profile = Profile::where('user_id', $user->id)->first();
         if (!$profile) {
             return redirect()->route('admin.profiles.create')
@@ -93,12 +92,12 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
 
-        // Trova il profilo associato all'utente autenticato
+
         $profile = Profile::where('user_id', $user->id)->first();
 
         $profile = Profile::with('votes')->findOrFail($profile->id);
         $expirationData = $profile->sponsors()->orderBy('pivot_expiration_date', 'desc')->first();
-        $votes = Vote::all(); // Voti disponibili (1-5)
+        $votes = Vote::all();
         $profile->checkAndUpdatePremiumStatus();
 
         return view('profiles.show', compact('profile', 'votes', 'expirationData'));
@@ -108,7 +107,7 @@ class ProfileController extends Controller
     public function storeVote(Request $request, $profileId)
     {
         $profile = Profile::findOrFail($profileId);
-        $voteId = $request->input('vote'); // Qui ricevi il vote_id
+        $voteId = $request->input('vote'); // revice vote_id
 
         $profile->votes()->attach($voteId);
 
@@ -117,10 +116,10 @@ class ProfileController extends Controller
 
     public function edit(Profile $profile)
     {
-        // Recupera l'utente autenticato
+
         $user = auth()->user();
 
-        // Trova il profilo associato all'utente autenticato
+
         $profile = Profile::where('user_id', $user->id)->first();
 
         $specializations = Specialization::all();
@@ -166,10 +165,10 @@ class ProfileController extends Controller
      */
     public function destroy(Profile $profile)
     {
-        // Recupera l'utente autenticato
+
         $user = auth()->user();
 
-        // Trova il profilo associato all'utente autenticato
+
         $profile = Profile::where('user_id', $user->id)->first();
 
         $profile->votes()->detach();
@@ -190,7 +189,7 @@ class ProfileController extends Controller
             return view('home');
         }
 
-        // Conta i messaggi e recensioni per mese/anno
+        // Count message and revies for month and years
         $messagesPerMonth = Message::where('profile_id', $profile->id)
             ->selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as count')
             ->groupBy('year', 'month')
@@ -201,7 +200,7 @@ class ProfileController extends Controller
             ->groupBy('year', 'month')
             ->get();
 
-        // Fasce di voto per mese/anno
+        // Count vote for month and years
         $votesPerMonth = DB::table('profile_vote')
             ->selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as total_votes')
             ->groupBy('year', 'month')
@@ -209,7 +208,7 @@ class ProfileController extends Controller
             ->orderBy('month')
             ->get();
 
-        // Formattazione delle etichette
+        // Formatted labels
         $messagesLabels = $messagesPerMonth->map(function ($item) {
             $formattedMonth = str_pad($item->month, 2, '0', STR_PAD_LEFT);
             return $item->year . '-' . $formattedMonth;
